@@ -1,0 +1,32 @@
+<div>
+	<div>
+		<header ng-include="'controllers/header/header.view.html'"></header>
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-2">
+			<div ng-hide="admin" ng-include="'controllers/sidebar/sidebar.view.html'"></div>
+
+			<div ng-show="admin" ng-include="'controllers/admin/sidebar/adminSidebar.view.html'"></div>
+
+		</div>
+
+
+		<div class="col-md-10">
+			<div ui-view="content"></div>
+		</div>
+
+
+	</div>
+
+
+	<div>
+		<div ng-include="'views/footer.view.html'"></div>
+	</div>
+
+
+</div>
+
+
+

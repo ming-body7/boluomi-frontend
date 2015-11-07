@@ -1,0 +1,42 @@
+    <div ng-controller="headerController">
+      <div id='mainNavContainer'>
+        <nav id="mainNav" class="container">
+            <div class="row">
+                <div class="col-md-9">
+
+                    <div class="row">
+                        <a href="#/">
+                            <img src="images/header/logo.png" alt="菠萝蜜" class="col-md-2">
+                        </a>
+                        <img src="images/header/logo-second.png" alt="婚纱照分享神器" class="col-md-3">
+
+
+                    </div>
+
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="col-md-3">
+                    <div id = "logInContainer" ng-hide="loggedIn">
+
+                            <a ui-sref="login" class="btn btn-default">  登陆  </a>
+
+                    </div>
+                    <div id = "loggedInContainer" ng-show="loggedIn">
+
+                            <div class="col-md-8">
+                                <a ui-sref="main">{{user}}</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a ng-click="logout()">退出</a>
+                            </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            </nav>
+            <hr>
+      </div>
+    </div>

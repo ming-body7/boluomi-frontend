@@ -1,0 +1,49 @@
+<div id='basic-information'>
+	<div id='form-container'>
+
+
+		<form name="form" ng-submit="save()" role="form">
+			<div class="form-group">
+				<label>商家名称</label>
+				<input type='text' class="form-control" ng-model="name"> </input>
+			</div>
+			<div class="form-group">
+				<label>联系方式</label>
+				<input type='text' class="form-control" ng-model="phoneNum"> </input>
+			</div>
+			<div class="form-group">
+				<label>商家logo</label>
+				<button>上传</button>
+			</div>
+
+			<div class="form-group">
+				<label>商家类型</label>
+				<label>
+					<input type="radio" ng-model="type" value=0>
+					影楼
+				</label>
+
+				<label>
+					<input type="radio" ng-model="type" value=1>
+					工作室
+				</label>
+			</div>
+
+			<div>商家地址</div>
+
+
+			<div class="form-group">
+				<label>详细地址</label>
+				<input type='text' class="form-control" ng-model="detailAddress"> </input>
+			</div>
+
+			<div>地图标注</div>
+
+			<div class="form-actions">
+				<button type="submit"  class="btn btn-primary">保存</button>
+			</div>
+		</form>
+
+	</div>
+
+</div>

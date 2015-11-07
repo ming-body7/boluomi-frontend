@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>完善商家信息</title>
+	<!-- <link rel="stylesheet" href="css/uploadify.css"> -->
+	<link rel="stylesheet" href="css/finishbrandinfo.css" />
+</head>
+<body>
+	<div class="banner"></div>	
+	<ul id="main" class="main">
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>商家名称：</span>
+			</div>
+			<div class="infoR">
+				<input id="brand_name" class="ipt" type="text">
+				<div class="error" data-empty="请填写商家名">格式不对</div>
+			</div>
+		</li>
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>联系方式：</span>
+			</div>
+			<div class="infoR">
+				<input id="contact_phone" class="ipt" type="text" maxlength="11">
+				<div class="error" data-empty="请填写联系方式" data-error="手机格式有误" >格式不对</div>
+			</div>
+		</li>
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>商家LOGO：</span>
+			</div>
+			<div class="infoR">
+				<a id="brand_logo" href="javascript:;" data-logo-src="">上传</a>
+			</div>
+		</li>
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>商家类型：</span>
+			</div>
+			<div id="brand_type" class="infoR" data-type="">
+				<label for="type1"><input id="type1" data-type="1" name="type" type="radio">影楼</label>
+				<label for="type2"><input id="type2" data-type="2" name="type" type="radio">工作室</label>
+			</div>
+		</li>
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>商家地址：</span>
+			</div>
+			<div class="infoR">
+				<select class="J_province" name="" id=""><option value="-1">请选择</option></select>
+				<select class="J_city" name="" id=""><option value="-1">请选择</option></select>
+				<select class="J_area" name="" id=""><option value="-1">请选择</option></select>
+			</div>
+		</li>
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>详细地址：</span>
+			</div>
+			<div class="infoR">
+				<input id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
+				<div class="error">格式不对</div>
+			</div>
+		</li>
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>地图标注：</span>
+			</div>
+			<div class="infoR">
+				<a id="map_mark" href="javacript:;" data-position="">标注</a>
+			</div>
+		</li>
+		<li>
+			<div class="infoL">
+				<i>*</i>
+				<span>营业执照：</span>
+			</div>
+			<div class="infoR">
+				<a id="licence_pic" href="javacript:;" data-licence-src="">上传</a>
+			</div>
+		</li>
+	</ul>
+	<a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a>
+	<div class="footer">
+		<p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
+	</div>
+
+	<div id="load_img_wrap" class="load_img_wrap">
+		<div class="btn_wrap">
+			<input id="load_btn" class="upload_btn" type="button" value="上传">
+			<input id="cancle_btn" class="upload_btn" type="button" value="关闭" >
+			<input id="hidden_btn" type="button" value="">
+		</div>
+		<div class="img_box">
+			<img src="" alt="">
+		</div>
+		<div class="pro_wrap">
+			<div id="progress" class="progress"></div>
+		</div>
+		
+	</div>
+	<div id="mask" class="mask"></div>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.uploadify.min.js"></script>
+	<script src="http://api.map.baidu.com/api?v=1.5&ak=5U8M51SeGixHSOHsMzKLt1NG" type="text/javascript"></script>
+	<script src="js/linkageCity.js"></script>
+	<script src="js/myEvent.js"></script>
+	<script src="js/finishbrandinfo.js"></script>
+</body>
+</html>

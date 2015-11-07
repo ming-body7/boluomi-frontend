@@ -1,0 +1,32 @@
+{
+  "name": "boluomi-frontend",
+  "description": "boluomi frontend",
+  "version": "0.0.0",
+  "homepage": "www.boluomi1314.com",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular-bootstrap": "~0.13.3",
+    "angular-cookies": "~1.4.6",
+    "angular-animate": "~1.4.4",
+    "angular-ui-router": "~0.2.15",
+    "angular-ui-switch": "~0.1.0",
+    "ng-file-upload-shim": "~9.1.1"
+  },
+  "authors": [
+    "Ming Xu <gmbody7@gmail.com>"
+  ],
+  "main": "",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "keywords": [
+    "boluomi"
+  ]
+}

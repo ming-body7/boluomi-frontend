@@ -1,0 +1,37 @@
+<div ng-controller="contentController">
+
+	<table class="table">
+	  <thead class="row">
+	  	<h4 class="col-md-9">婚纱照分享</h4>
+	    <a class="col-md-2" ui-sref="main.set_hot">
+    		<button class="btn" >设置热门推荐</button>
+		</a>
+	    <a class="col-md-1" ui-sref="main.create">
+    		<button class="btn btn-danger" >新建</button>
+		</a>
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="x in list">
+            <td ui-sref="main.modified({pid: x.id})">
+                <img ng-src="{{x.banner_pic}}" alt="pic" width="100" height="100"/>
+            </td>
+	      	<td>{{x.title}}</td>
+	      	<td>{{x.description}}</td>
+			<td>创建时间：{{x.created_at}}</td>
+            <td>修改时间：{{x.updated_at}}</td>
+	      <td>
+              <img ng-src="{{x.code_url}}" alt="QR code" />
+          </td>
+	      <td>浏览:{{x.read_num}}</td>
+	      <td>分享:{{x.share_num}}</td>
+	      <td><button class="btn btn-default" type="button" ng-click="deleteProduct(x)">Delete</button></td>
+	    </tr> 
+	      
+	    </tr>
+	  </tbody>
+	</table>
+
+
+
+	<pagination items-per-page = "pageSize" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+</div>

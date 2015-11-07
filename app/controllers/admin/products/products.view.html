@@ -1,0 +1,28 @@
+<div ng-controller="productsController">
+
+    <table class="table">
+        <thead>
+        作品管理
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in list">
+            <td ui-sref="admin.view({pid: x.id})">
+                <img ng-src="{{x.banner_pic}}" alt="pic" />
+            </td>
+            <td>{{x.id}}</td>
+            <td>{{x.title}}</td>
+            <td>{{x.description}}</td>
+            <td>创建时间：{{x.created_at}}</td>
+            <td>修改时间：{{x.updated_at}}</td>
+            <td>
+                <img ng-src="{{x.code_url}}" alt="QR code" />
+            </td>
+            <td>浏览:{{x.read_num}}</td>
+            <td>分享:{{x.share_num}}</td>
+            <td><button class="btn" type="button" ng-click="deleteProduct(x)">Delete</button></td>
+        </tr>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
