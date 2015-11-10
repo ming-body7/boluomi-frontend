@@ -170,7 +170,7 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
         },
         'content@main':{
           templateUrl: "controllers/forms/information.view.html",
-          controller:""
+          controller:"informationController"
         }
       }
       
