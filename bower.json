@@ -11,7 +11,8 @@
     "angular-animate": "~1.4.4",
     "angular-ui-router": "~0.2.15",
     "angular-ui-switch": "~0.1.0",
-    "ng-file-upload-shim": "~9.1.1"
+    "ng-file-upload-shim": "~9.1.1",
+    "BaiduMapForAngularJS": "angular-baidu-map#~1.2.1"
   },
   "authors": [
     "Ming Xu <gmbody7@gmail.com>"

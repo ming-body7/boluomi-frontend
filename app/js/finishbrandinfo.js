@@ -63,7 +63,7 @@ var $obj = {
 	mask : $('#mask'),
 	progress : $('#progress'),
 	cancle_btn : $('#cancle_btn'),
-	hidden_btn : $('#hidden_btn')
+	//hidden_btn : $('#hidden_btn')
 
 };
 
@@ -88,7 +88,7 @@ var myEvent = {
 		$obj.licence_pic.on('click',handler.licence_pic_click);
 
 		//图片上传控件渲染
-		handler.rander_load_img($obj.load_img_wrap)
+		//handler.rander_load_img($obj.load_img_wrap)
 
 		//取消上传
 		$obj.cancle_btn.on('click',handler.cancle_btn_click);
@@ -105,7 +105,7 @@ var handler = {
 		setting.img_type = 'licence_pic';
 	},
 	cancle_btn_click : function(){
-		$obj.hidden_btn.uploadify('cancel');
+		//$obj.hidden_btn.uploadify('cancel');
 		$obj.load_img_wrap.fadeOut();
 		$obj.mask.fadeOut();
 		$obj.load_img_wrap_img.attr('src','');

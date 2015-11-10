@@ -11,7 +11,7 @@
             <span>商家名称：</span>
         </div>
         <div class="infoR">
-            <input id="brand_name" class="ipt" type="text">
+            <input ng-model="merchant.name" id="brand_name" class="ipt" type="text">
             <div class="error" data-empty="请填写商家名">格式不对</div>
         </div>
     </li>
@@ -21,7 +21,7 @@
             <span>联系方式：</span>
         </div>
         <div class="infoR">
-            <input id="contact_phone" class="ipt" type="text" maxlength="11">
+            <input ng-model="merchant.phone" id="contact_phone" class="ipt" type="text" maxlength="11">
             <div class="error" data-empty="请填写联系方式" data-error="手机格式有误" >格式不对</div>
         </div>
     </li>
@@ -30,9 +30,11 @@
             <i>*</i>
             <span>商家LOGO：</span>
         </div>
+
         <div class="infoR">
-            <a id="brand_logo" href="javascript:;" data-logo-src="">上传</a>
+            <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="">{{logoButton}}</a>
         </div>
+
     </li>
     <li>
         <div class="infoL">
@@ -40,19 +42,20 @@
             <span>商家类型：</span>
         </div>
         <div id="brand_type" class="infoR" data-type="">
-            <label for="type1"><input id="type1" data-type="1" name="type" type="radio">影楼</label>
-            <label for="type2"><input id="type2" data-type="2" name="type" type="radio">工作室</label>
+            <label for="type1"><input ng-model="merchant.type" id="type1" data-type="1" name="type" type="radio">影楼</label>
+            <label for="type2"><input ng-model="merchant.type" id="type2" data-type="2" name="type" type="radio">工作室</label>
         </div>
     </li>
+
     <li>
         <div class="infoL">
             <i>*</i>
             <span>商家地址：</span>
         </div>
         <div class="infoR">
-            <select class="J_province" name="" id=""><option value="-1">请选择</option></select>
-            <select class="J_city" name="" id=""><option value="-1">请选择</option></select>
-            <select class="J_area" name="" id=""><option value="-1">请选择</option></select>
+            <select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
+            <select ng-model="merchant.city" class="J_city" name="" id=""><option value="-1">请选择</option></select>
+            <select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select>
         </div>
     </li>
     <li>
@@ -61,7 +64,7 @@
             <span>详细地址：</span>
         </div>
         <div class="infoR">
-            <input id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
+            <input ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
             <div class="error">格式不对</div>
         </div>
     </li>
@@ -80,7 +83,7 @@
             <span>营业执照：</span>
         </div>
         <div class="infoR">
-            <a id="licence_pic" href="javacript:;" data-licence-src="">上传</a>
+            <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="">{{licenceButton}}</a>
         </div>
     </li>
 </ul>
@@ -90,18 +93,25 @@
 
 <a id="submit_audit" class="submit-btn" ui-sref="audit">提交审核</a>
 
+
 <div class="footer">
     <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
 </div>
 
 <div id="load_img_wrap" class="load_img_wrap">
     <div class="btn_wrap">
-        <input id="load_btn" class="upload_btn" type="button" value="上传">
+        <!--<input id="load_btn" class="upload_btn" type="button" value="上传"> -->
+
+        <button class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+                accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+            上传</button>
+
         <input id="cancle_btn" class="upload_btn" type="button" value="关闭" >
         <input id="hidden_btn" type="button" value="">
     </div>
     <div class="img_box">
-        <img src="" alt="">
+        <img ng-if="uploadOption = 'logo'" ng-src="{{merchant.logo}}" alt="">
+        <img ng-if="uploadOption = 'licence'" ng-src="{{merchant.licence}}" alt="">
     </div>
     <div class="pro_wrap">
         <div id="progress" class="progress"></div>
