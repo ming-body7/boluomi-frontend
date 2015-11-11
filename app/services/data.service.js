@@ -19,6 +19,7 @@
         service.GetProductInfo = GetProductInfo;
         service.EditProduct = EditProduct;
         service.AddProduct = AddProduct;
+        service.AddMerchant = AddMerchant;
         return service;
 
         function GetProductList(page, pageSize, callback){
@@ -62,15 +63,42 @@
         }
 
         function AddMerchant(merchant, callback){
-            $http.post('http://boluomi.rjl.com/v1/business/add', merchant)
-                .success(function (response) {
-                    if(response.type == 2){
-                        callback({success: true, data: response.result});
-                    }else{
-                        callback({success: false, data:response.result});
-                    }
 
-                });
+            $http({
+                method: 'POST',
+                url: baseUrl+'/v1/business/add',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: {
+                    id:$rootScope.globals.id,
+                    auth_key:$rootScope.globals.authKey,
+                    name:merchant.name,
+                    phone:merchant.phone,
+                    logo:merchant.logo,
+                    type:merchant.type,
+                    province:merchant.province,
+                    city:merchant.city,
+                    area:merchant.area,
+                    address:merchant.address,
+                    licence:merchant.licence,
+                    location:merchant.location
+                }
+
+            }).success(function (response) {
+                if(response.type == 2){
+                    callback({success: true, data: response.result});
+                }else{
+                    callback({success: false, data:"error"});
+                }
+
+            });
+
+
         }
 
         function GetProductInfo(pid, callback){

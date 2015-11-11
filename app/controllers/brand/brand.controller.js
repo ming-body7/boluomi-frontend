@@ -5,7 +5,8 @@
     'use strict';
     angular
         .module('myApp')
-        .controller('brandController', ['$scope', '$rootScope', 'Upload', '$timeout',function($scope, $rootScope, Upload, $timeout){
+        .controller('brandController', ['$scope', '$rootScope', 'Upload', '$timeout','DataService','$state',
+            function($scope, $rootScope, Upload, $timeout, DataService, $state){
 
             var merchant = {
                 name:"",
@@ -26,6 +27,9 @@
             $scope.licenceButton = "上传";
 
             $scope.uploadOption = "logo";
+
+            $scope.addBrandInfo = addBrandInfo;
+
 
             $scope.uploadSingleFile = function(file) {
                 //$scope.product.music = music.name;
@@ -58,5 +62,18 @@
             }
 
 
+                function addBrandInfo(){
+                    DataService.AddMerchant($scope.merchant, function(response){
+                        if(response.success){
+                            $state.go('audit');
+                        }else{
+
+                        }
+                    });
+                }
+
+
         }]);
+
+
 })();
