@@ -1,7 +1,7 @@
 <script src="js/myEvent.js"></script>
 <script src="js/main.js"></script>
 
-
+<!--
 <div class="main">
     <div class="banner">
         <a id="sign_in_btn" class="sign-in-btn" href="#">登录</a>
@@ -12,21 +12,76 @@
     <img class="sec-img" src="img/sec2.jpg" alt="">
     <img class="sec-img" src="img/sec3.jpg" alt="">
 </div>
+
+
 <div class="footer">
     <a class="contact-we" href="#">联系我们：fankui@boluomi1314.com</a>
     <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
 </div>
 
+-->
 
+<div class="main">
+    <div class="banner">
+        <div class="inner">
+            <h1 class="web_logo">
+                <a href="#"></a>
+            </h1>
+            <a id="sign_in_btn" class="sign-in-btn" href="#">登录</a>
+            <div class="txt"></div>
+            <div class="t_wrap">
+                <p class="t1">将客照一键制作成易于手机传播的H5页面，引导客户分享到朋友圈，</p>
+                <p class="t2">轻松获得品牌曝光，带来大量潜在订单</p>
+
+            </div>
+            <div class="btn_wrap">
+                <a class="view-case-btn" href="#">查看案例</a>
+                <a class="free-register-btn" ui-sref="register">免费注册</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="content">
+        <div class="advan_mode">
+            <h2><strong>一键制作</strong> 营销神器玩转婚纱照</h2>
+            <dl>
+                <dd>一键上传客照，任意搭配音乐，只需1分钟，</dd>
+                <dd>就为客人制作出一个图片与文字、声音与动效共存的H5页面</dd>
+            </dl>
+        </div>
+
+        <div class="advan_mode mode_2">
+            <h2><strong>0元推广</strong> 品牌广告刷爆朋友圈</h2>
+            <dl>
+                <dd>植入品牌广告，客户主动分享，不花1分钱，</dd>
+                <dd>就为您带来海量曝光、让您的品牌深入人心</dd>
+            </dl>
+        </div>
+
+        <div class="advan_mode mode_3">
+            <h2><strong>口碑传播</strong> 成单客户带来新客源</h2>
+            <dl>
+                <dd>利用成单客户，引爆关系网络，通过熟人推荐，</dd>
+                <dd>为您吸引潜在客户、提升订单数量</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <a class="contact-we" href="#">联系我们：fankui@boluomi1314.com</a>
+    <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
+</div>
 <!-- combime jquery with angular--  angular response for login and register    comment by Ming-->
 
 <form name="form"  ng-submit="login()" role="form">
 
     <div id="login_zone" class="tipsBox login-zone">
 
-        <input ng-model="account" placeholder="账号（手机号）" class="ipt J_account" type="text" name="" id="" maxlength="11">
+        <input ng-model="account" placeholder="账号（手机号）" class="ipt J_account" type="text" name="account"
+                required ng-minlength="11" ng-maxlength="11">
         <input ng-model="password" placeholder="密码" class="ipt J_password" type="password" name="" id="">
         <button class="login-btn J_login_btn">登录</button>
+
         <div class="info">
 
             <input ng-model="rememberMe" ng-true-value="1" ng-false-value="0"  id="remember_me" type="checkbox" name="" id="">

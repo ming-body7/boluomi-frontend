@@ -5,7 +5,8 @@
     'use strict';
     angular
         .module('myApp')
-        .controller('informationController', ['$scope', '$rootScope', 'Upload', '$timeout',function($scope, $rootScope, Upload, $timeout){
+        .controller('informationController', ['$scope', '$rootScope', 'Upload', '$timeout', 'DataService', '$window',
+            function($scope, $rootScope, Upload, $timeout, DataService, $window){
 
             var merchant = {
                 name:"",
@@ -22,11 +23,21 @@
 
             var baseUrl = "http://boluomi.dev:8083/data/upload/";
             $scope.merchant = merchant;
-            $scope.logoButton = "上传";
-            $scope.licenceButton = "上传";
-
+            $scope.logoButton = "更改";
+            $scope.licenceButton = "更改";
             $scope.uploadOption = "logo";
 
+            $scope.saveBrandInfo = saveBrandInfo;
+            $scope.setLocation = setLocation;
+
+            DataService.GetMerchantInfo(function(response){
+                if(response.success){
+                    $scope.merchant = response.data.detail;
+
+                }else{
+
+                }
+            });
             $scope.uploadSingleFile = function(file) {
                 //$scope.product.music = music.name;
                 if (file) {
@@ -56,6 +67,18 @@
                     });
                 }
             }
+                function setLocation(location){
+                    $scope.merchant.location = location;
+                }
+                function saveBrandInfo(){
+                    DataService.EditMerchant($scope.merchant, function(response){
+                        if(response.success){
+                            alert("保存成功");
+                        }else{
+
+                        }
+                    });
+                }
 
 
         }]);

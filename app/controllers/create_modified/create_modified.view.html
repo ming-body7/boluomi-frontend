@@ -45,17 +45,14 @@
 			<switch id="brand" name="enabled" ng-model="product.is_brand" class="green col-md-2"></switch>
 			<p class="col-md-6">作品最后一页展示商家品牌</p>
 		</div>
-		<div id="business-mainpage" class="row">
+		<!--<div id="business-mainpage" class="row">
 			<p class="col-md-2">商家主页</p>
 			<switch class="col-md-2" id="home" name="enabled" ng-model="product.is_home" class="green"></switch>
 			<p class="col-md-6">作品展示在商家主页上</p>
-		</div>
+		</div> -->
 		<div id="backgroud music" class="row">
 			<p class="col-md-2">背景音乐：</p>
 			<p class="col-md-2">{{musicName}}</p>
-			<!--<div class="col-md-6">
-				<button class="btn btn-default">更改</button>
-			</div> -->
 			<div class="col-md-6">
 				<button class="btn btn-default" type="file" ngf-select="uploadMusic($file)" ngf-max-size="3MB">
 					{{musicButton}}</button>

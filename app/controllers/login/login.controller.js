@@ -20,7 +20,7 @@
             $scope.dataLoading = true;
             AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                 if (response.success) {
-                    AuthenticationService.SetCredentials($scope.account, response.data.auth_key);
+                    AuthenticationService.SetCredentials($scope.account, response.data.auth_key, response.data.id);
                     $location.path('/main');
                 } else {
 

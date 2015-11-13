@@ -19,6 +19,11 @@ angular.module('myApp')
 
         $scope.product = {};
         $scope.baseUrl = "http://www.boluomi1314.com/upload/";
+
+        var App = $rootScope.App;
+        var uploadAPI = App.uploadAPI;
+        var uploadFolder = App.uploadFolder;
+
         $scope.saveChanges = saveChanges;
 
 
@@ -35,7 +40,11 @@ angular.module('myApp')
                         var pics = $scope.product.pics.split(",");
                         $scope.product.pics = pics;
                     }
-
+                    if($scope.product.is_brand == 1){
+                        $scope.product.is_brand = true;
+                    }else{
+                        $scope.product.is_brand = false;
+                    }
                     if($scope.product.music!=null && $scope.product.music != ""){
                         $scope.musicButton = "更改";
                         $scope.musicName =  $scope.product.music.replace(/^.*[\\\/]/, '')
@@ -61,14 +70,14 @@ angular.module('myApp')
             //$scope.product.music = music.name;
             if (music) {
                 music.upload = Upload.upload({
-                    url: 'http://www.boluomi1314.com:8083/upload.php',
+                    url: uploadAPI,
                     data: {file: music}
                 });
 
                 music.upload.then(function (response) {
                     $timeout(function () {
                         //file.result = response.data;
-                        $scope.product.music = response.data.url;
+                        $scope.product.music = uploadFolder+response.data.url;
                         $scope.musicButton = "更改";
                         $scope.musicName = music.name;
                     });
@@ -87,17 +96,17 @@ angular.module('myApp')
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
-                    url: 'http://www.boluomi1314.com:8083/upload.php',
+                    url: uploadAPI,
                     data: {file: file}
                 });
 
                 file.upload.then(function (response) {
                     $timeout(function () {
                         //file.result = response.data;
-                        $scope.product.banner_pic = $scope.baseUrl+response.data.url;
+                        $scope.product.banner_pic = uploadFolder+response.data.url;
                     });
                 }, function (response) {
-                    $scope.product.banner_pic = baseUrl+response.data.url;
+
                 }, function (evt) {
                     file.progress = Math.min(100, parseInt(100.0 *
                         evt.loaded / evt.total));
@@ -106,6 +115,11 @@ angular.module('myApp')
         }
 
         function saveChanges(){
+            if($scope.product.is_brand == true){
+                $scope.product.is_brand = 1;
+            }else{
+                $scope.product.is_brand = 0;
+            }
 
             if(pid != null){
                 DataService.EditProduct(pid, $rootScope.globals.authKey, $scope.product, function(response){
@@ -147,7 +161,7 @@ angular.module('myApp')
                     var file = files[i];
                     if (!file.$error) {
                         Upload.upload({
-                            url: 'http://www.boluomi1314.com:8083/upload.php',
+                            url: uploadAPI,
                             data: {
                                 username: $scope.username,
                                 file: file
@@ -160,7 +174,7 @@ angular.module('myApp')
                             $timeout(function() {
                                 $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
 
-                                $scope.product.pics.push($scope.baseUrl+data.url);
+                                $scope.product.pics.push(uploadFolder+data.url);
                             });
                         });
                     }

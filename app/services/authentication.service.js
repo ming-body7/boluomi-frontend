@@ -147,13 +147,14 @@
             $http.defaults.headers.common.Authorization = 'Basic ';
         }
 
-        function SetCredentials(account, authKey) {
+        function SetCredentials(account, authKey, id) {
 
  
             $rootScope.globals = {
                 loggedIn:true,
                 account:account,
-                authKey:authKey
+                authKey:authKey,
+                id:id
             };
 
             //$http.defaults.headers.common['Authorization'] = 'Basic ' + authKey; // jshint ignore:line

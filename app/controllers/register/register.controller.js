@@ -5,29 +5,20 @@
         .module('myApp')
         .controller('registerController', registerController);
  
-    registerController.$inject = ['UserService', '$location','$scope','FlashService'];
-    function registerController(UserService, $location, $scope, FlashService) {
+    registerController.$inject = ['UserService', '$location','$scope', 'AuthenticationService'];
+    function registerController(UserService, $location, $scope, AuthenticationService) {
 
         $scope.register = register;
 
         function register() {
-
-            $scope.dataLoading = true;
-
-            UserService.Create($scope.user)
-                .then(function (response) {
-                    if (response.success) {
-                        //FlashService.Success('Registration successful', true);
-                        //alert("Registration successful");
-                        $location.path('/brand');
-
-
-                    } else {
-                        //FlashService.Error(response.message);
-                        alert(response.message);
-                        $scope.dataLoading = false;
-                    }
-                });
+            UserService.Create($scope.user, function(response){
+                if (response.success) {
+                    AuthenticationService.SetCredentials($scope.user.account, response.data.auth_key, response.data.id);
+                    $location.path('/brand');
+                } else {
+                    alert(response.data);
+                }
+            });
         }
     }
  

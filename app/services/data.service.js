@@ -20,6 +20,8 @@
         service.EditProduct = EditProduct;
         service.AddProduct = AddProduct;
         service.AddMerchant = AddMerchant;
+        service.GetMerchantInfo = GetMerchantInfo;
+        service.EditMerchant = EditMerchant;
         return service;
 
         function GetProductList(page, pageSize, callback){
@@ -50,16 +52,29 @@
 
         }
 
-        function GetMerchanInfo(id, callback){
-            $http.post('http://boluomi.rjl.com/v1/business/view', id)
-                .success(function (response) {
-                    if(response.type == 2){
-                        callback({success: true, data: response.result});
-                    }else{
-                        callback({success: false, data:response.result});
-                    }
+        function GetMerchantInfo(callback){
 
-                });
+            $http({
+                method: 'POST',
+                url: baseUrl+'/v1/business/view',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: {
+                }
+
+            }).success(function (response) {
+                if(response.type == 2){
+                    callback({success: true, data: response.result});
+                }else{
+                    callback({success: false, data:"error"});
+                }
+
+            });
         }
 
         function AddMerchant(merchant, callback){
@@ -75,6 +90,7 @@
                     return str.join("&");
                 },
                 data: {
+                    status:0,
                     id:$rootScope.globals.id,
                     auth_key:$rootScope.globals.authKey,
                     name:merchant.name,
@@ -101,6 +117,42 @@
 
         }
 
+        function EditMerchant(merchant, callback){
+            $http({
+                method: 'POST',
+                url: baseUrl+'/v1/business/add',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: {
+                    status:0,
+                    auth_key:$rootScope.globals.authKey,
+                    id:$rootScope.globals.id,
+                    name:merchant.name,
+                    phone:merchant.phone,
+                    logo:merchant.logo,
+                    type:merchant.type,
+                    province:merchant.province,
+                    city:merchant.city,
+                    area:merchant.area,
+                    address:merchant.address,
+                    licence:merchant.licence,
+                    location:merchant.location
+                }
+
+            }).success(function (response) {
+                if(response.type == 2){
+                    callback({success: true, data: response.result});
+                }else{
+                    callback({success: false, data:"error"});
+                }
+
+            });
+        }
         function GetProductInfo(pid, callback){
 
             $http({

@@ -210,7 +210,7 @@ var handler = {
 	map_mark_click : function(){
 		var _this = $(this);
 		//判断详细地址有没填写
-		var address = $obj.detail_address.val();
+		var address =  $obj.detail_address.val();
 
 
 		if( G.isEmpty( address )){
@@ -275,8 +275,8 @@ var handler = {
 		        var marker = new BMap.Marker(point);
 
 		        // 赋值坐标
-		        _this.attr('data-position', point.lng+',' + point.lat)
-
+		        _this.attr('data-position', point.lng+',' + point.lat);
+				angular.element(document.getElementById('map_mark')).scope().setLocation(point.lng+',' + point.lat);
 		        map.addOverlay(marker);
 		        marker.enableDragging();
 
@@ -376,3 +376,4 @@ var handler = {
 };
 
 $(myEvent.bind);
+

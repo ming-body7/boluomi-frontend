@@ -31,7 +31,6 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
 
     $urlRouterProvider.otherwise("/index");
 
-  // Now set up the states
   $stateProvider
     .state('index', {
       url: "/index",
@@ -143,20 +142,6 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
         'content@main':{
           templateUrl: "controllers/create_modified/create_modified.view.html",
           controller:"modifiedController"
-        }
-      }
-      
-    })
-    .state('main.set_hot', {
-      url: "/set_hot",
-      views:{
-        'main':{
-          templateUrl: "controllers/main/main.view.html",
-          controller:"mainController"
-        },
-        'content@main':{
-          templateUrl: "controllers/hot/hot.view.html",
-          controller:"hotController"
         }
       }
       
@@ -285,7 +270,7 @@ function run($rootScope, $location, $cookieStore, $http, $state) {
                 }
             }else{
                 var restrictedState = (["admin", "admin.merchants","admin.products"].indexOf(toState.name) === -1);
-                //var loggedIn = $rootScope.globals.loggedIn;
+
                 if (restrictedState) {
                     $state.go('admin');
                 }

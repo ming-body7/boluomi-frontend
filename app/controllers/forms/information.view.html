@@ -120,7 +120,7 @@
 			<span>地图标注：</span>
 		</div>
 		<div class="infoR">
-			<a id="map_mark" href="javacript:;" data-position="">标注</a>
+			<a id="map_mark" href="javacript:;" data-position="">更改</a>
 		</div>
 	</li>
 	<li>
@@ -134,7 +134,7 @@
 	</li>
 </ul>
 
-<a id="submit_audit" class="submit-btn" ui-sref="audit">保存</a>
+<a id="submit_audit" class="submit-btn" ng-click="saveBrandInfo()">保存</a>
 
 <div id="load_img_wrap" class="load_img_wrap">
 	<div class="btn_wrap">
@@ -148,8 +148,8 @@
 		<input id="hidden_btn" type="button" value="">
 	</div>
 	<div class="img_box">
-		<img ng-if="uploadOption = 'logo'" ng-src="{{merchant.logo}}" alt="">
-		<img ng-if="uploadOption = 'licence'" ng-src="{{merchant.licence}}" alt="">
+		<img ng-if="uploadOption == 'logo'" ng-src="{{merchant.logo}}" alt="">
+		<img ng-if="uploadOption == 'licence'" ng-src="{{merchant.licence}}" alt="">
 	</div>
 	<div class="pro_wrap">
 		<div id="progress" class="progress"></div>
@@ -164,7 +164,6 @@
 	}
 </style>
 
-<script src="http://api.map.baidu.com/api?v=1.5&ak=5U8M51SeGixHSOHsMzKLt1NG" type="text/javascript"></script>
 <script src="js/linkageCity.js"></script>
 <script src="js/myEvent.js"></script>
 <script src="js/finishbrandinfo.js"></script>

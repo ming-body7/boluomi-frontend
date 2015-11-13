@@ -77,7 +77,7 @@
 			var cityList = province.getCity( code );
 			fnCreate($sel2,cityList);
 
-			$sel2.find('option').eq(1).attr('selected','selected');
+			$sel2.find('option').eq(0).attr('selected','selected');
 			//重置一下
 			$sel3.html('<option value="-1">请选择</option>');
 		});
@@ -86,10 +86,12 @@
 			var code = $(this).val();
 			var cityList = province.getArea( code );
 			fnCreate($sel3,cityList);
-			$sel3.find('option').eq(1).attr('selected','selected');
+			$sel3.find('option').eq(0).attr('selected','selected');
 		});
-	};
 
+
+
+	};
 
 	//对外开放的接口
 	C = window.C || {};

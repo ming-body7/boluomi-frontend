@@ -20,9 +20,9 @@
             AuthenticationService.UpdatePassword($rootScope.globals.authKey, $scope.oldPassword, $scope.newPassword, $scope.reNewPassword, function (response) {
                 if (response.success) {
                     alert("successful");
+                    AuthenticationService.SetCredentials($rootScope.globals.account, response.data.auth_key);
                 } else {
-                    alert(response.message);
-                    $scope.dataLoading = false;
+                    alert(response.data);
                 }
             });
         };

@@ -1,18 +1,56 @@
 @import "base";
-.main{
-	width:1500px;
-	margin:0 auto;
+body{
+	font-family:"Microsoft YaHei";
 }
 .banner{
-	height:800px;
+	height:904px;
 	position:relative;
-	background:url(../img/banner.jpg) no-repeat center;
-	margin-bottom:120px;
-	.sign-in-btn,.view-case-btn,.free-register-btn{
-		position:absolute;
-		top:60px;
-		right:60px;
+	background:url(../img/banner.png) no-repeat center top;
+	.inner{
+		max-width:1330px;
+		width:90%;
+		height:100%;
+		margin:0 auto;
+		padding-top:60px;
+	}
+	.sign-in-btn{
+		float:right;
 		width:140px;
+		height:50px;
+		text-align:center;
+		line-height: 50px;
+		border:1px solid #fff;
+		border-radius:4px;
+		margin-top:-10px;
+		font-size:20px;
+		color:#fff;
+		letter-spacing: 2px;
+	}
+	.txt{
+		width:430px;
+		height:52px;
+		background:url(../img/txt.png) no-repeat;
+		background-size:100%;
+		margin:0 auto;
+		position:relative;
+		top:260px;
+	}
+	.t_wrap{
+		padding-top:280px;
+	}
+	p{
+		text-align: center;
+		font-size:18px;
+		color:#fff;
+		line-height: 28px;
+	}
+	.btn_wrap{
+		text-align: center;
+		padding-top:50px;
+	}
+	.view-case-btn,.free-register-btn{
+		display:inline-block;
+		width:160px;
 		height:50px;
 		border:1px solid #fff;
 		border-radius:4px;
@@ -21,21 +59,59 @@
 		font-size:20px;
 		color:#fff;
 		cursor:pointer;
-	}
-	.view-case-btn{
-		top:480px;
-		left:570px;
+		margin:0 10px;
 	}
 	.free-register-btn{
-		top:480px;
-		left:774px;
-		background:#fff;
 		color:#b09dc0;
+		background:#fff;
 	}
 }
-.sec-img{
-	margin-bottom:150px;
+.web_logo{
+	float:left;
+	width:375px;
+	height:38px;
+	background:url(../img/web_logo.png);
 }
+.content{
+	max-width:1200px;
+	width:90%;
+	margin:0 auto;
+	
+	.advan_mode{
+		height:580px;
+		background:url(../img/bg_1.png) no-repeat left center;
+		dl{
+			float:right;
+			width:540px;
+		}
+	}
+	.mode_2{
+		background:url(../img/bg_2.png) no-repeat right center;
+		h2{
+			text-align: left;
+		}
+		dl{
+			float:none;
+		}
+	}
+	.mode_3{
+		background:url(../img/bg_3.png) no-repeat left center;
+	}
+	h2{
+		font-size:40px;
+		padding:180px 0 30px;
+		text-align: right;
+	}
+	strong{
+		color:#ff3074;
+	}
+	dd{
+		color:#808080;
+		font-size:20px;
+		line-height: 30px;
+	}
+}
+
 .footer{
 	height:150px;
 	background:#404040;
@@ -51,6 +127,135 @@
 		color:#808080;
 	}
 }
+@media screen and (max-width:1030px){
+	.content{
+		.advan_mode{
+			background-position:center top;
+			text-align: center;
+			dl{
+				float:none;
+				width:auto;
+			}
+		}
+		.mode_2{
+			background-position:center top;
+			h2{
+				text-align: center;
+			}
+			dl{
+				float:none;
+			}
+		}
+		.mode_3{
+			background-position:center top;
+		}
+		h2{
+			padding:404px 0 20px;
+			text-align: center;
+		}
+	}	
+}
+
+@media screen and (max-width:920px){
+	.banner{
+		.txt{
+			width:332px;
+		}
+		p{
+			font-size:16px;
+		}
+	}
+	.content{
+		.advan_mode{
+			height:520px;
+			background-size:450px;
+			dl{
+				float:none;
+				width:auto;
+			}
+		}
+		.mode_2{
+			background-position:center top;
+			h2{
+				text-align: center;
+			}
+			dl{
+				float:none;
+			}
+		}
+		.mode_3{
+			background-position:center top;
+		}
+		h2{
+			padding:330px 0 16px;
+			font-size:32px;
+		}
+		dd{
+			font-size:18px;
+		}
+	}	
+}
+
+
+@media screen and (max-width:866px){
+	.content{
+		h2{
+			font-size:30px;
+		}
+		dd{
+			font-size:16px;
+		}
+	}
+}
+@media screen and (max-width:630px){
+	.web_logo{
+		float:none;
+		margin:0 auto;
+	}
+	.txt{
+		top:332px;
+	}
+	.banner {
+		background-position:-548px top;
+		.sign-in-btn{
+			float:none;
+			display: block;
+			margin:30px auto 0;
+		}
+		p{
+			line-height: 22px; 
+		}
+	}
+}
+
+@media screen and (max-width:560px){
+	.content{
+		.advan_mode {
+			background-size:400px;
+		}
+		h2{
+			padding:290px 0 14px 0;
+			font-size:26px;
+		}
+		dd{
+			font-size:14px;
+			line-height: 22px;
+		}
+	}
+}
+
+@media screen and (max-width:460px){
+	.banner{
+		.view-case-btn,.free-register-btn{
+			display:block;
+			margin:28px auto 0;
+		}
+		.txt{
+			width:80%;
+		}
+	}
+}
+
 .tipsBox{
 	position:fixed;
 	top:50%;
@@ -62,6 +267,7 @@
 	background:#fff url(../img/login-bg.jpg) no-repeat top center;
 	border-radius:4px;
 	z-index:101;
+	box-sizing:content-box;
 	display:none;
 	.close-btn{
 		width:30px;
@@ -100,6 +306,7 @@
 	border-radius:6px;
 	.login-btn,.brand-regist-btn{
 		display:block;
+		width:100%;
 		height:60px;
 		line-height: 60px;
 		text-align: center;
@@ -203,3 +410,4 @@
 		}
 	}
 }
+
