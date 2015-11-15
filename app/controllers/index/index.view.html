@@ -1,25 +1,6 @@
 <script src="js/myEvent.js"></script>
 <script src="js/main.js"></script>
 
-<!--
-<div class="main">
-    <div class="banner">
-        <a id="sign_in_btn" class="sign-in-btn" href="#">登录</a>
-        <a class="view-case-btn" href="#">查看案例</a>
-        <a class="free-register-btn" ui-sref="register">免费注册</a>
-    </div>
-    <img class="sec-img" src="img/sec1.jpg" alt="">
-    <img class="sec-img" src="img/sec2.jpg" alt="">
-    <img class="sec-img" src="img/sec3.jpg" alt="">
-</div>
-
-
-<div class="footer">
-    <a class="contact-we" href="#">联系我们：fankui@boluomi1314.com</a>
-    <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
-</div>
-
--->
 
 <div class="main">
     <div class="banner">
@@ -71,16 +52,16 @@
     <a class="contact-we" href="#">联系我们：fankui@boluomi1314.com</a>
     <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
 </div>
-<!-- combime jquery with angular--  angular response for login and register    comment by Ming-->
 
-<form name="form"  ng-submit="login()" role="form">
 
+<!-- <form id="loginForm" name="form"  ng-submit="login()"> -->
+<form id="loginForm" name="form">
     <div id="login_zone" class="tipsBox login-zone">
 
         <input ng-model="account" placeholder="账号（手机号）" class="ipt J_account" type="text" name="account"
                 required ng-minlength="11" ng-maxlength="11">
         <input ng-model="password" placeholder="密码" class="ipt J_password" type="password" name="" id="">
-        <button class="login-btn J_login_btn">登录</button>
+        <a class="login-btn J_login_btn" href="javascript:;">登录</a>
 
         <div class="info">
 

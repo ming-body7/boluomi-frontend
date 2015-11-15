@@ -50,7 +50,7 @@ var $obj = {
 var myEvent = {
 	bind : function(){
 		//点击注册
-		//$obj.submit_btn.on('click',handler.submit_btnClick);
+		$obj.submit_btn.on('click',handler.submit_btnClick);
 
 		//输入框获得焦点、失去焦点
 		$obj.ipt_s.on('focus',handler.ipt_sFocus);
@@ -126,7 +126,8 @@ var handler = {
 		}
 		if(bOff){
 			//TODO调用接口
-			server.register(moblie,code,password,confirm_password,regist_callback);
+			angular.element('#registerForm').scope().register();
+			/*server.register(moblie,code,password,confirm_password,regist_callback);
 			function regist_callback(data){
 				if(data.type == 2){
 					//获取id auth_key值  用作完善商家信息用作参数
@@ -138,7 +139,7 @@ var handler = {
 				}else{
 					alert('注册失败，请待会再试！')
 				}
-			}
+			}*/
 		}
 	}
 };

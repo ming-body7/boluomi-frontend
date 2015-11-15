@@ -347,6 +347,7 @@ var handler = {
 			alert('请选择商家地址');
 			return false;
 		}
+
 		if(G.isEmpty(address)){//商家详细地址
 			alert('请填写商家详细地址');
 			return false;
@@ -361,14 +362,15 @@ var handler = {
 		}
 
 		//通过校验
-		server.submit_audit(id,auth_key,name,phone,logo,type,province,city,area,address,licence,location,function(data){
+		angular.element('#brandForm').scope().addBrandInfo();
+		/*server.submit_audit(id,auth_key,name,phone,logo,type,province,city,area,address,licence,location,function(data){
 			if(data.type == 2){
 				// 页面跳转，完善商家信息
 				window.location.href = './audit.html';
 			}else{
 				alert('有未填写项，请检查后在提交')
 			}
-		});
+		}); */
 
 
 	}

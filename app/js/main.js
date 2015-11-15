@@ -70,7 +70,7 @@ var myEvent = {
 		$obj.login_close_btn.on('click',handler.login_close_btn_click);
 
 		//登录按钮
-		//$obj.login_btn.on('click',handler.login_btn_click);
+		$obj.login_btn.on('click',handler.login_btn_click);
 
 		//忘记密码
 		$obj.forget_link.on('click',handler.forget_link_click);
@@ -177,16 +177,18 @@ var handler = {
 
 
 		//通过验证
-		server.login(account,password,rememberMe,function(data){
+		angular.element('#loginForm').scope().login();
+		/*server.login(account,password,rememberMe,function(data){
 			if(data.type == 0){//账号或密码错误
 				alert('账号或密码错误')
 			}else{//登录成功
 
 				//window.location.href = './';
-				window.location.href = 'app/index.html';
+				//window.location.href = 'app/index.html';
+				angular.element('#loginForm').scope().login();
 				
 			}
-		})
+		})*/
 
 	},
 	login_close_btn_click : function(){
