@@ -3,7 +3,7 @@
 
 
 <div class="banner"></div>
-<ul id="main" class="main">
+<ul id="brandForm" class="main">
     <li>
         <div class="infoL">
             <i>*</i>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="infoR">
-            <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="">{{logoButton}}</a>
+            <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="{{merchant.logo}}">{{logoButton}}</a>
         </div>
 
     </li>
@@ -82,15 +82,15 @@
             <span>营业执照：</span>
         </div>
         <div class="infoR">
-            <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="">{{licenceButton}}</a>
+            <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a>
         </div>
     </li>
 </ul>
 
 
-<!--<a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a> -->
+<a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a>
 
-<a class="submit-btn" ng-click="addBrandInfo()">提交审核</a>
+<!-- <a class="submit-btn" ng-click="addBrandInfo()">提交审核</a>  -->
 
 
 <div class="footer">

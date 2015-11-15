@@ -46,6 +46,7 @@
                             if($scope.uploadOption == "logo"){
                                 $scope.merchant.logo = uploadFolder+response.data.url;
                                 $scope.logoButton = "上传成功";
+
                             }else{
                                 $scope.merchant.licence = uploadFolder+response.data.url;
                                 $scope.licenceButton = "上传成功";

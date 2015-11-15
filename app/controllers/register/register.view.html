@@ -1,40 +1,8 @@
-﻿<!--<div class="col-md-6 col-md-offset-3">
-    <h2>注册一个账号，让你的客照会说话</h2>
-
-    <form name="form" ng-submit="register()" role="form">
-        <div class="form-group">
-            <label>*账号（手机号）</label>
-            <input type="text"  ng-model="user.account" required />
-        </div>
-        <div class="form-group">
-            <label>验证码</label>
-            <input type="text" ng-model="user.code" required />
-            <button>获取验证码</button>
-        </div>
-
-        <div class="form-group">
-            <label for="password">设置密码</label>
-            <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
-        </div>
-
-        <div class="form-group">
-            <label>确认密码</label>
-            <input type="password" name="rePassword" id="rePassword" class="form-control" ng-model="user.rePassword" required />
-        </div>
-
-        <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Register</button>
-            <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <a href="#/login" class="btn btn-link">Cancel</a>
-        </div>
-    </form>
-</div>
-
--->
+﻿
 <link rel="stylesheet" href="css/finishbrandinfo.css" />
 
-<form name="form" ng-submit="register()" role="form">
-
+<!-- <form name="form" ng-submit="register()" role="form"> -->
+<form name="form" id="registerForm">
 <div class="banner regist-bg"></div>
 <ul class="main">
     <li>
@@ -80,8 +48,8 @@
     </li>
 </ul>
 
-<!--<a id="submit_btn" class="submit-btn" href="javascript:;">下一步</a> -->
-    <button type="submit" id="submit_btn" class="submit-btn">下一步</button>
+<a id="submit_btn" class="submit-btn" href="javascript:;">下一步</a>
+<!--    <button type="submit" id="submit_btn" class="submit-btn">下一步</button> -->
 
 <div class="footer footer-mar">
     <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
