@@ -245,6 +245,7 @@ run.$inject = ['$rootScope', '$location', '$cookieStore', '$http','$state'];
 function run($rootScope, $location, $cookieStore, $http, $state) {
 
         // keep user logged in after page refresh
+        /*
         $rootScope.admin = false;
 
         $rootScope.globals = $cookieStore.get('globals') || {};
@@ -281,6 +282,7 @@ function run($rootScope, $location, $cookieStore, $http, $state) {
             }
 
         });
+        */
     }
 
 })();

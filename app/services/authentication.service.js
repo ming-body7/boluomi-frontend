@@ -38,10 +38,10 @@
                 },
                 data: {account: account, password: password, rememberMe: rememberMe}
             }).success(function (response) {
-                if(response.type == 2){
-                    callback({success: true, data: response.result});
+                if(response.type == 0){
+                    callback({success: false, data: response.result});
                 }else{
-                    callback({success: false, data:"error"});
+                    callback({success: true, data:response.result});
                 }
 
             });

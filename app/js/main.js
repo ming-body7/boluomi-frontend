@@ -194,6 +194,9 @@ var handler = {
 
 
 		//通过验证
+		//登陆的逻辑我在angular里面实现啦，这块需要调用angular的登陆
+		angular.element('#loginForm').scope().login();
+		/*
 		server.login(account,password,rememberMe,function(data){
 			console.log(data)
 			if(data.type == 0){//账号或密码错误
@@ -222,6 +225,7 @@ var handler = {
 				};
 			}
 		})
+		*/
 
 	},
 	login_close_btn_click : function(){
