@@ -64,6 +64,7 @@ var $obj = {
 	progress : $('#progress'),
 	cancle_btn : $('#cancle_btn'),
 	//hidden_btn : $('#hidden_btn')
+	smallMap: $('#smallMap')
 
 };
 
@@ -98,8 +99,8 @@ var myEvent = {
 
 var handler = {
 	licence_pic_click : function(){
-		$obj.load_img_wrap.fadeIn();
-		$obj.mask.fadeIn();
+		//$obj.load_img_wrap.fadeIn();
+		//$obj.mask.fadeIn();
 
 		//用于 判断是上传logo还是 营业执照
 		setting.img_type = 'licence_pic';
@@ -192,11 +193,11 @@ var handler = {
 
 	},
 	brand_logo_click : function(){
-		$obj.load_img_wrap.fadeIn();
-		$obj.mask.fadeIn();
+		//$obj.load_img_wrap.fadeIn();
+		//$obj.mask.fadeIn();
 
 		//用于 判断是上传logo还是 营业执照
-		setting.img_type = 'logo';
+		//setting.img_type = 'logo';
 	},
 	linkAge : function(){
 		C.linkAge($('.J_province'),$('.J_city'),$('.J_area'));
@@ -274,6 +275,13 @@ var handler = {
 		        map.centerAndZoom(point, 16);
 		        var marker = new BMap.Marker(point);
 
+
+				  //add small map
+				  var map2 = new BMap.Map("smallMap");          // 创建地图实例
+				  var point2 = new BMap.Point(116.404, 39.915);  // 创建点坐标
+				  map2.centerAndZoom(point2, 15);                 // 初始化地图，设置中心点坐标和地图级别
+
+
 		        // 赋值坐标
 		        _this.attr('data-position', point.lng+',' + point.lat);
 				angular.element(document.getElementById('map_mark')).scope().setLocation(point.lng+',' + point.lat);
@@ -287,8 +295,10 @@ var handler = {
 		              var addComp = rs.addressComponents;
 		                  address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
 
-		                  // 移动了坐标点重新赋值
-		                  _this.attr('data-position', p.lng+',' + p.lat)
+						map2.centerAndZoom(p, 15);
+						// 移动了坐标点重新赋值
+		                  _this.attr('data-position', p.lng+',' + p.lat);
+
 		            }); 
 		          }
 
