@@ -57,7 +57,10 @@ var $obj = {
 	forget_link : $('#forget_link'),
 	forget_zone : $('#forget_zone'),
 	forget_close_btn : $('#forget_zone .J_close_btn'),
-	finish_btn : $('#finish_btn')
+	finish_btn : $('#finish_btn'),
+	free_btn : $('#free_btn'),
+	link_box : $('#link-box'),
+	link_box_know : $('#link-box .J_i-know')
 
 };
 
@@ -80,10 +83,24 @@ var myEvent = {
 
 		//忘记密码关闭按钮
 		$obj.forget_close_btn.on('click',handler.forget_close_btn_click);
+
+		//移动尺寸下 免费试用按钮
+		$obj.free_btn.on('click',handler.free_btn_click);
+
+		//移动端’我知道了‘按钮
+		$obj.link_box_know.on('click',handler.link_box_know_click);
 	}
 }
 
 var handler = {
+	link_box_know_click : function(){
+		$obj.link_box.fadeOut();
+		$obj.mask.fadeOut();
+	},
+	free_btn_click : function(){
+		$obj.link_box.fadeIn();
+		$obj.mask.fadeIn();
+	},
 	forget_close_btn_click : function(){
 		$obj.forget_zone.fadeOut();
 		$obj.mask.fadeOut();
@@ -159,7 +176,7 @@ var handler = {
 		var password = _this.siblings('.J_password').val();
 		var rememberMe = $obj.remember_me.is(':checked') ? 1 : 0;
 
-		console.log(rememberMe)
+		
 
 		//校验
 		if(G.isEmpty(account)){
@@ -177,18 +194,34 @@ var handler = {
 
 
 		//通过验证
-		angular.element('#loginForm').scope().login();
-		/*server.login(account,password,rememberMe,function(data){
+		server.login(account,password,rememberMe,function(data){
+			console.log(data)
 			if(data.type == 0){//账号或密码错误
 				alert('账号或密码错误')
 			}else{//登录成功
 
-				//window.location.href = './';
-				//window.location.href = 'app/index.html';
-				angular.element('#loginForm').scope().login();
-				
+				//获取id auth_key值  用作完善商家信息用作参数
+				G.setCookie('id',data.result.id,365);
+				G.setCookie('auth_key',data.result.auth_key,365);
+
+				var status = data.result.status;
+				switch(status){
+					case 9: //信息未完成  去完善信息
+						window.location.href = './finishbrandinfo.html';
+					break;
+					case -1: //已删除
+						alert('你的信息已删除！');
+					break;
+					case 0: //未审批
+						window.location.href = './audit.html';
+					break;
+					case 1: //已通过
+						//TODO登录成功的跳转页面待定
+						alert('登录成功')
+					break;
+				};
 			}
-		})*/
+		})
 
 	},
 	login_close_btn_click : function(){
