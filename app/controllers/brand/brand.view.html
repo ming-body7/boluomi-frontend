@@ -83,8 +83,12 @@
         <div class="infoR">
             <a id="map_mark" href="javacript:;"  data-position="">标注</a>
         </div>
+
+    </li>
+
+    <li>
         <div>
-            <div id="smallMap" class="smallMap" width="150" height="150">地图</div>
+            <div ng-show="merchant.location!=null && merchant.location!='' " id="smallMap" class="smallMap"></div>
         </div>
     </li>
     <li>
@@ -111,6 +115,8 @@
 <a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a>
 
 <!-- <a class="submit-btn" ng-click="addBrandInfo()">提交审核</a>  -->
+
+
 
 
 <div class="footer">
@@ -143,6 +149,11 @@
 <style>
     .infoL{
         box-sizing: content-box;
+    }
+
+    #smallMap{
+        width: 200px;
+        height: 200px;
     }
 </style>
 

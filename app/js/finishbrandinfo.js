@@ -213,6 +213,8 @@ var handler = {
 		//判断详细地址有没填写
 		var address =  $obj.detail_address.val();
 
+		var final_point = new BMap.Point(116.331398,39.897445);
+		var final_marker = new BMap.Marker(final_point);
 
 		if( G.isEmpty( address )){
 			alert('请先填写详细地址！');
@@ -245,7 +247,16 @@ var handler = {
 		    oMask.remove();
 
 		    //标注成功
-		    _this.html('标注成功')
+		    _this.html('标注成功');
+
+			  //add small map
+			  var map2 = new BMap.Map("smallMap");          // 创建地图实例
+			  //var point2 = new BMap.Point(116.404, 39.915);  // 创建点坐标
+			  map2.centerAndZoom(final_point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+			  //map2.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+			  final_marker = new BMap.Marker(final_point);
+			  map2.addOverlay(final_marker);
+
 		  })
 		  mapZ.appendTo($obj.bd);
 		  $obj.bd.append(oMask).append(closeBtn);
@@ -272,15 +283,11 @@ var handler = {
 		    // 将地址解析结果显示在地图上,并调整地图视野
 		    myGeo.getPoint(address, function(point){
 		      if (point) {
+
+				  final_point = point;
+
 		        map.centerAndZoom(point, 16);
 		        var marker = new BMap.Marker(point);
-
-
-				  //add small map
-				  var map2 = new BMap.Map("smallMap");          // 创建地图实例
-				  var point2 = new BMap.Point(116.404, 39.915);  // 创建点坐标
-				  map2.centerAndZoom(point2, 15);                 // 初始化地图，设置中心点坐标和地图级别
-
 
 		        // 赋值坐标
 		        _this.attr('data-position', point.lng+',' + point.lat);
@@ -295,8 +302,9 @@ var handler = {
 		              var addComp = rs.addressComponents;
 		                  address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
 
-						map2.centerAndZoom(p, 15);
 						// 移动了坐标点重新赋值
+						final_point = new BMap.Point(p.lng, p.lat);
+
 		                  _this.attr('data-position', p.lng+',' + p.lat);
 
 		            }); 
@@ -388,4 +396,7 @@ var handler = {
 };
 
 $(myEvent.bind);
+
+
+
 
