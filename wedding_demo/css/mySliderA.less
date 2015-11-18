@@ -1,0 +1,96 @@
+@charset "UTF-8";
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;vertical-align:middle}
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+input[type=submit],input[type=reset]{-webkit-appearance:none}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+html,body{height:100%;}
+html{font-size:16px;}
+body {
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	overflow: hidden;
+}
+/*...................less公用方法.................*/
+.pre(@attr,@val){
+	-webkit-@{attr}:@val;
+	-moz-@{attr}:@val;
+	-ms-@{attr}:@val;
+	-o-@{attr}:@val;
+	@{attr}:@val;
+}
+
+//宽高100%
+.wh100(){
+	width:100%;
+	height:100%;
+}
+
+/*...................less公用方法.................*/
+@import "Animation.css";
+.loading{
+	width:100%;
+	height:100%;
+	background:#fff url(../img/loading.gif) no-repeat center center;
+	position:absolute;
+	z-index:100000;
+}
+
+/*ul wrapper*/
+#iSlider-wrapper {
+	.wh100;
+	overflow: hidden;
+	position: absolute;
+}
+
+.islider-outer {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+.islider-dom {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	list-style: none;
+}
+.edit_area{
+	width:320px;
+	height:486px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-160px;
+	margin-top:-243px;
+	overflow: hidden;
+	&>div,&>img{
+		opacity:0;
+		position:absolute;
+		.pre(animation-fill-mode,forwards);
+	}
+}
+
+.section {
+	.wh100();
+	background-color:#fff;
+	font-family:'Microsoft Yahei',Tahoma,Helvetica,Arial,sans-serif;
+}
+.sec1{
+	background:url(../img/playingBg.png) no-repeat center;
+	background-size: cover;
+}
+
+
+
+

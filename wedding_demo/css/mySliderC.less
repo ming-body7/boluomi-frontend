@@ -1,0 +1,158 @@
+@charset "UTF-8";
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;vertical-align:middle}
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+input[type=submit],input[type=reset]{-webkit-appearance:none}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+html,body{height:100%;}
+html{font-size:16px;}
+body {
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	overflow: hidden;
+}
+/*...................less公用方法.................*/
+.pre(@attr,@val){
+	-webkit-@{attr}:@val;
+	-moz-@{attr}:@val;
+	-ms-@{attr}:@val;
+	-o-@{attr}:@val;
+	@{attr}:@val;
+}
+
+//宽高100%
+.wh100(){
+	width:100%;
+	height:100%;
+}
+
+/*...................less公用方法.................*/
+@import "Animation.css";
+.loading{
+	width:100%;
+	height:100%;
+	background:#fff url(../img/loading.gif) no-repeat center center;
+	position:absolute;
+	z-index:100000;
+}
+
+/*ul wrapper*/
+#iSlider-wrapper {
+	.wh100;
+	overflow: hidden;
+	position: absolute;
+}
+
+.islider-outer {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+.islider-dom {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	list-style: none;
+}
+.edit_area{
+	width:320px;
+	height:486px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-160px;
+	margin-top:-243px;
+	overflow: hidden;
+	&>div,&>img{
+		opacity:0;
+		position:absolute;
+		.pre(animation-fill-mode,forwards);
+	}
+}
+
+.section {
+	.wh100();
+	background-color:#fff;
+	font-family:'Microsoft Yahei',Tahoma,Helvetica,Arial,sans-serif;
+}
+.sec1{
+	background:url(../img/albumBg.png) no-repeat;
+	background-size:corver;
+	.edit_area{
+		overflow: visible;
+	}
+	.logo{
+		width:154px;
+		top:20px;
+		left:50%;
+		margin-left:-77px;
+		opacity:1;
+	}
+	.lightIcon{
+		position:absolute;
+		left:50%;
+		top:260px;
+		width:59px;
+		height:57px;
+		background:url(../img/light.png) no-repeat;
+		background-size:contain;
+		margin-left:-30px;
+	}
+	.BrandInfo{
+		position:absolute;
+		top:322px;
+		left:0;
+		width:100%;
+		font-weight:normal;
+		z-index:10;
+	}
+	p{
+		color:#ccc;
+		text-align: center;
+		font-size:12px;
+		padding:2px 0;
+	}
+}
+.detailBtn{
+	position:absolute;
+	top:176px;
+	left:50%;
+	width:88px;
+	height:26px;
+	line-height: 26px;
+	text-align:center;
+	margin-left:-44px;
+	border: 1px solid #fff;
+	border-radius:4px;
+	color:#fff;
+	font-size:12px;
+	text-decoration:none;
+	opacity:.6;
+	letter-spacing: 2px;
+	z-index:999;
+}
+.moonBg{
+	position:absolute;
+	top:220px;
+	left:50%;
+	width:1200px;
+	height:1200px;
+	margin-left:-600px;
+	background:#fff;
+	border-radius:50%;
+}
+
+
+
+
