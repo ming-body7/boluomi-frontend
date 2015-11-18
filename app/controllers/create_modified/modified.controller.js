@@ -4,6 +4,18 @@
 angular.module('myApp')
     .controller('modifiedController', ['$rootScope','$timeout','Upload','$scope','$state', '$stateParams','DataService',function($rootScope, $timeout, Upload, $scope, $state, $stateParams, DataService){
 
+
+        $scope.sortableOptions = {
+            containment: '#sortable-container',
+            //restrict move across columns. move only within column.
+            accept: function (sourceItemHandleScope, destSortableScope) {
+                return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+            }
+        };
+
+
+
+
         var pid = $stateParams.pid;
 
         $scope.options = [{
@@ -53,6 +65,13 @@ angular.module('myApp')
             });
         }
 
+
+        function deletePic(pic){
+            var index = $scope.product.pics.indexOf(pic);
+            if (index > -1) {
+                $scope.product.pics.splice(index, 1);
+            }
+        }
         function initProduct(){
             $scope.product.title = "快给作品起个名字吧";
             $scope.product.banner_pic = "images/create/default-cover.png";

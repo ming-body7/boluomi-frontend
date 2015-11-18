@@ -86,9 +86,21 @@
 						</div> -->
 						<div class="jumbotron">
 							<!--<li ng-repeat="f in files">{{f.name}} {{f.$error}} {{f.$errorParam}}</li> -->
-							<img ng-repeat="pic in product.pics" ng-src="{{pic}}" alt="图片" width="200" height="200"  />
+							<!-- <img ng-repeat="pic in product.pics" ng-src="{{pic}}" alt="图片" width="200" height="200"  /> -->
+							<div class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics">
+								<div ng-repeat="item in product.pics" as-sortable-item>
+									<div as-sortable-item-handle ngf-as-background="true">
+										<img  ng-src="{{item}}" alt="图片" width="200" height="200"  />
+										<button ng-click="product.pics.splice($index,1); $event.stopPropagation()">删除</button>
+
+									</div>
+								</div>
+							</div>
+
 
 						</div>
+
+
 
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4">
@@ -125,9 +137,29 @@
 		width:100%;
 		background: rgba(255,255,255,0.6);
 	}
+	/* Put your css in here */
 
-</style>
-<style>
+	.as-sortable-item,
+	.as-sortable-placeholder {
+		display: inline-block;
+		width: 200px;
+		height: 300px;
+		float: left;
+	}
+
+	/*.sortable-row:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }*/
+
+	#sortable-container {
+		display: inline-block;
+
+	}
+
 	.infoL{
 		box-sizing: content-box;
 	}
