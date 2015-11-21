@@ -112,7 +112,12 @@ angular.module('myApp')
 
         $scope.uploadFiles = function(file, errFiles) {
             $scope.f = file;
+
             $scope.errFile = errFiles && errFiles[0];
+            if($scope.errFile){
+                alert("图片超过大小");
+            }
+
             if (file) {
                 file.upload = Upload.upload({
                     url: uploadAPI,

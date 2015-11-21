@@ -242,14 +242,14 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
 
 run.$inject = ['$rootScope', '$location', '$cookieStore', '$http','$state'];
 
-function run($rootScope, $location, $cookieStore, $http, $state) {
+function run($rootScope, $location, $cookies, $http, $state) {
 
         // keep user logged in after page refresh
 
         $rootScope.admin = false;
 
-        $rootScope.globals = $cookieStore.get('globals') || {};
-        $rootScope.globals.loggedIn = true;
+        $rootScope.globals = $cookies.get('globals') || {};
+        //$rootScope.globals.loggedIn = true;
         /*
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line

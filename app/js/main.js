@@ -233,8 +233,12 @@ var handler = {
 		$obj.mask.fadeOut();
 	},
 	sign_in_btn_click : function(){
-		$obj.login_zone.fadeIn();
-		$obj.mask.fadeIn();
+		var loginStatus = angular.element('#loginForm').scope().checkLoginStatus();
+		if(loginStatus == false){
+			$obj.login_zone.fadeIn();
+			$obj.mask.fadeIn();
+		}
+
 	}
 }
 

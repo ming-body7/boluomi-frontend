@@ -5,8 +5,8 @@
         .module('myApp')
         .factory('AuthenticationService', AuthenticationService);
  
-    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
+    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
 
         var App = $rootScope.App;
         var baseUrl = App.baseUrl;
@@ -20,7 +20,9 @@
         service.ResetPassword = ResetPassword;
         service.UpdatePassword = UpdatePassword;
         service.ResetAccount = ResetAccount;
- 
+        service.GetCredentials = GetCredentials;
+
+
         return service;
  
         function Login(account, password, rememberMe, callback) {
@@ -143,7 +145,7 @@
             $rootScope.globals = {loggedIn: false, account:"null",
                 authKey:"null"};
 
-            $cookieStore.remove('globals');
+            $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic ';
         }
 
@@ -158,7 +160,12 @@
             };
 
             //$http.defaults.headers.common['Authorization'] = 'Basic ' + authKey; // jshint ignore:line
-            $cookieStore.put('globals', $rootScope.globals);
+            $cookies.put('globals', JSON.stringify($rootScope.globals));
+        }
+
+
+        function GetCredentials(){
+            $rootScope.globals = $cookies.get('globals');
         }
 
 
