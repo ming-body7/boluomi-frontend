@@ -146,6 +146,20 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
       }
       
     })
+      .state('main.advertisement', {
+          url: "/ad",
+          views:{
+              'main':{
+                  templateUrl: "controllers/main/main.view.html",
+                  controller:""
+              },
+              'content@main':{
+                  templateUrl: "controllers/advertisement/advertisement.view.html",
+                  controller:"advertisementController"
+              }
+          }
+
+      })
     .state('main.information', {
       url: "/information",
       views:{
