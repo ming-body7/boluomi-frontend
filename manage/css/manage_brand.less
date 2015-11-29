@@ -1,0 +1,130 @@
+@import "common";
+.edit_wrap{
+	.pagination{
+		float:left;
+		width:590px;
+		a{
+			margin:0 6px;
+			padding:6px 20px;
+			border-radius:17px;
+			color:#000;
+			&.omit{
+				border-color:#fff;
+				font-size:30px;
+				line-height:8px;
+				&:hover{
+					background:#fff;
+				};
+			}
+		}
+	}
+	.go_zone{
+		float:left;
+		width:236px;
+		margin:20px 0;
+		text-align: right;
+		input{
+			width:60px;
+			height:34px;
+			border:1px solid #ddd;
+			border-radius:20px;
+			margin:0 10px;
+			text-align: center;
+		}
+		a{
+			display:inline-block;
+			width:58px;
+			height:34px;
+			line-height: 34px;
+			text-align:center;
+			border:1px solid #ddd;
+			border-radius:29px;
+			margin-left:10px;
+		}
+	}
+}
+.edit_zone{
+	width:890px;
+	.clearfix();
+	li{
+		float:left;
+		width:240px;
+		height:380px;
+		margin:0 50px 50px 0;
+		box-shadow: 2px 3px 11px 0px rgba(0,0,0,0.2);
+		&.new_pic{
+			background:#f2f2f2;
+			i{
+				display:block;
+				width:140px;
+				height:140px;
+				border:1px dashed #ccc;
+				margin:90px auto 30px;
+				background:url(../img/icon_add.png) no-repeat center;
+				cursor:pointer;
+			}
+			p{
+				text-align: center;
+				color:#8d8d8d;
+			}
+		}
+	}
+	.img_box{
+		width:240px;
+		height:240px;
+		overflow: hidden;
+		position:relative;
+		border-radius:6px;
+		border-bottom-left-radius:0;
+		border-bottom-right-radius:0;
+		img{
+			display:block;
+		}
+		p{
+			position:absolute;
+			left:0;
+			bottom:0;
+			width:100%;
+			height:40px;
+			line-height: 40px;
+			text-align: center;
+			background:rgba(0,0,0,.4);
+			color:#fff;
+		}
+	}
+	h4{
+		text-align: center;
+		font-size:16px;
+		padding:18px 0;
+	}
+	.pic_status{
+		text-align: center;
+		strong{
+			font-weight:bold;
+		}
+	}
+	.btn_zone{
+		padding-top:26px;
+		text-align: center;
+	}
+	a{
+		display:inline-block;
+		width:96px;
+		height:28px;	
+		line-height: 28px;
+		border:1px solid #c9c9c9;
+		margin:0 4px;
+		border-radius:14px;
+		text-indent:20px;
+		font-size:12px;
+		color:#8d8d8d;
+		background-position:26px center;
+		background-repeat:no-repeat;
+		&.edit{
+			background-image:url(../img/icon_pencil.png);
+		}
+		&.delete{
+			background-image:url(../img/icon_delete.png);
+		}
+	}
+}
