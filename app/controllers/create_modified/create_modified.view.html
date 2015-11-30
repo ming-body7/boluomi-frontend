@@ -1,4 +1,67 @@
+<div class="curmb">
+	<a href="">婚纱照分享</a> &gt; <a href="">你是我一生的守候</a>
+</div>
 
+<div class="share_wrap">
+	<div class="page_face">
+		<div class="img_box">
+			<img ng-src="{{product.banner_pic}}" alt="封面图片"/>
+			<p type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+					accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+				更改封面</p>
+
+		</div>
+		<input type="text" ng-model = "product.title"/>
+		<textarea ng-model = "product.description"/>
+	</div>
+	<ul class="choice_type">
+		<li><span>页尾品牌：</span>
+			<input ng-model="product.is_brand" class="chec" type="checkbox" name="" id="" checked="checked">
+			<strong>作品最后一页展示商家品牌广告</strong>
+		</li>
+		<li>
+			<span>背景音乐：</span>
+			{{musicName}}
+			<button class="base_btn" type="file" ngf-select="uploadMusic($file)" ngf-max-size="3MB">
+				{{musicButton}}</button>
+		</li>
+
+		<li>
+			<span>页面切换：</span>
+			<select ng-model="product.change_status">
+				<option ng-selected="product.change_status == item.value" ng-repeat="item in options" ng-value="item.value">{{item.name}}</option>
+			</select>
+		</li>
+	</ul>
+	<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
+	<!-- <a class="i_btn face_btn" >本地上传</a> -->
+	<div class="i_btn face_btn" ngf-drop ngf-select ng-model="files"
+		 ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+		 accept="image/*,application/pdf"
+		 ngf-pattern="'image/*,application/pdf'">本地上传</div>
+	<div class="upload_zone">
+		<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
+			<li ng-repeat="item in product.pics" as-sortable-item>
+				<div as-sortable-item-handle ngf-as-background="true">
+					<img ng-src="{{item}}" alt="" width="150" height="236">
+					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
+				</div>
+			</li>
+			<!--<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
+			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
+			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
+			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
+			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
+			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
+			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li> -->
+		</ul>
+	</div>
+
+
+	<button class="i_btn save_btn" ng-click="saveChanges()">保存</button><a class="i_btn pre_view" href="">预览</a>
+</div>
+
+<!--
 <div class="row">
 	<div>婚纱照分享 > 你是我一生的守候</div>
 
@@ -10,7 +73,7 @@
             <div class="col-md-3">
                 <div id="coverContainer">
                     <img ng-src="{{product.banner_pic}}" alt="封面图片" width="150" height="150"/>
-                    <!--<button id="coverChangeBtn">更改封面</button> -->
+                    <button id="coverChangeBtn">更改封面</button>
 					<button id="coverChangeBtn" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
 							accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
 						更改封面</button>
@@ -45,11 +108,11 @@
 			<switch id="brand" name="enabled" ng-model="product.is_brand" class="green col-md-2"></switch>
 			<p class="col-md-6">作品最后一页展示商家品牌</p>
 		</div>
-		<!--<div id="business-mainpage" class="row">
+			<div id="business-mainpage" class="row">
 			<p class="col-md-2">商家主页</p>
 			<switch class="col-md-2" id="home" name="enabled" ng-model="product.is_home" class="green"></switch>
 			<p class="col-md-6">作品展示在商家主页上</p>
-		</div> -->
+		</div>
 		<div id="backgroud music" class="row">
 			<p class="col-md-2">背景音乐：</p>
 			<p class="col-md-2">{{musicName}}</p>
@@ -81,12 +144,9 @@
                          accept="image/*,application/pdf"
                          ngf-pattern="'image/*,application/pdf'">
 
-						<!--<div>
-							<li ng-repeat="f in files">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-						</div> -->
+
 						<div class="jumbotron">
-							<!--<li ng-repeat="f in files">{{f.name}} {{f.$error}} {{f.$errorParam}}</li> -->
-							<!-- <img ng-repeat="pic in product.pics" ng-src="{{pic}}" alt="图片" width="200" height="200"  /> -->
+
 							<div class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics">
 								<div ng-repeat="item in product.pics" as-sortable-item>
 									<div as-sortable-item-handle ngf-as-background="true">
@@ -124,7 +184,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	</div>   -->
 <style>
 	#coverContainer {
 		display:inline-block;

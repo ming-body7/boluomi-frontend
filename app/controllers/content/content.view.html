@@ -1,3 +1,4 @@
+<!--
 <div ng-controller="contentController">
 
 	<table class="table">
@@ -9,27 +10,70 @@
 		</a>
 	  </thead>
 	  <tbody>
-	    <tr ng-repeat="x in list">
-            <td ui-sref="main.modified({pid: x.id})">
-                <img ng-src="{{x.banner_pic}}" alt="pic" width="100" height="100"/>
-            </td>
-	      	<td>{{x.title}}</td>
-	      	<td>{{x.description}}</td>
-			<td>创建时间：{{x.created_at}}</td>
-            <td>修改时间：{{x.updated_at}}</td>
-	      <td>
-              <img ng-src="{{x.code_url}}" alt="QR code" />
-          </td>
-	      <td>浏览:{{x.read_num}}</td>
-	      <td>分享:{{x.share_num}}</td>
-	      <td><button class="btn btn-default" type="button" ng-click="deleteProduct(x)">Delete</button></td>
-	    </tr> 
-	      
-	    </tr>
+
 	  </tbody>
 	</table>
+<pagination items-per-page = "pageSize" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+</div>
 
 
+-->
+<div ng-controller="contentController">
+	<div class="curmb">
+		<a href="">婚纱照分享</a> &gt; <a href="">你是我一生的守候</a>
+	</div>
+	<div class="edit_wrap">
+		<ul class="edit_zone">
+			<li ui-sref="main.create" class="new_pic">
+				<i></i>
+				<p>点击新建</p>
+			</li>
 
-	<pagination items-per-page = "pageSize" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+			<li ng-repeat="x in list">
+				<div class="img_box">
+					<img ng-src="{{x.banner_pic}}" alt="pic">
+					<p>{{x.updated_at}}</p>
+				</div>
+				<h4>{{x.title}}</h4>
+				<div class="pic_status">
+					<span>浏览</span>
+					<strong>{{x.read_num}}</strong>
+					<span>分享</span>
+					<strong>{{x.share_num}}</strong>
+				</div>
+				<div class="btn_zone">
+					<a class="edit" ui-sref="main.modified({pid: x.id})">编辑</a>
+					<a class="delete" ng-click="deleteProduct(x)">删除</a>
+				</div>
+			</li>
+		</ul>
+		<nav>
+			<pagination items-per-page = "pageSize" total-items="totalItems" ng-model="currentPage" max-size="maxSize"
+						class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"
+						previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页"></pagination>
+
+			<!--<ul class="pagination">
+				<li>
+					<a href="#" aria-label="Previous">
+						<span aria-hidden="true">上一页</span>
+					</a>
+				</li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a class="omit" href="#">...</a></li>
+				<li><a href="#">20</a></li>
+				<li>
+					<a href="#" aria-label="Next">
+						<span aria-hidden="true">下一页</span>
+					</a>
+				</li>
+			</ul>   -->
+			<div class="go_zone">
+				第<input type="text" ng-model="page" name="" id="">页
+				<a ng-click="goPage(page)">GO</a>
+			</div>
+		</nav>
+	</div>
 </div>

@@ -11,6 +11,7 @@ angular.module('myApp')
 
 
 		$scope.deleteProduct = deleteProduct;
+		$scope.goPage = goPage;
 		DataService.GetProductList(page, pageSize, function(response){
 			if (response.success) {
 				$scope.list = response.data.list;
@@ -22,6 +23,13 @@ angular.module('myApp')
 			var index = $scope.list.indexOf(x);
 			$scope.list.splice(index, 1);
 
+
+		}
+
+		function goPage(page){
+			if(page>=0 && page<($scope.totalItems/$scope.maxSize)){
+				$scope.currentPage = page;
+			}
 
 		}
 	}]);

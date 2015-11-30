@@ -11,7 +11,7 @@
     DataService.$inject = ['$rootScope', '$http'];
     function DataService($rootScope ,$http) {
 
-        var App = $rootScope.App;
+        var App = window.App;
         var baseUrl = App.baseUrl;
 
         var service = {};

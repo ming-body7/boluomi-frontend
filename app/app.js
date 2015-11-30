@@ -11,6 +11,11 @@ config.$inject = ["$stateProvider", "$urlRouterProvider", "$httpProvider"];
 
 function config($stateProvider, $urlRouterProvider, $httpProvider){
 
+    var App;
+    App = angular.copy(Config);
+    window.App = App;
+
+
 
     $httpProvider.defaults.withCredentials = true;
 
@@ -254,11 +259,14 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
       });
 }
 
-run.$inject = ['$rootScope', '$location', '$cookieStore', '$http','$state'];
+run.$inject = ['$rootScope', '$location', '$cookieStore', '$http','$state', 'DataService'];
 
-function run($rootScope, $location, $cookies, $http, $state) {
+function run($rootScope, $location, $cookies, $http, $state, DataService) {
 
         // keep user logged in after page refresh
+
+
+
 
         $rootScope.admin = false;
 
