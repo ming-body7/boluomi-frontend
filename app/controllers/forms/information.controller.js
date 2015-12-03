@@ -8,6 +8,10 @@
         .controller('informationController', ['$scope', '$rootScope', 'Upload', '$timeout', 'DataService', '$window',
             function($scope, $rootScope, Upload, $timeout, DataService, $window){
 
+            var App = $rootScope.App;
+            var uploadAPI = App.uploadAPI;
+            var uploadFolder = App.uploadFolder;
+
             var merchant = {
                 name:"",
                 phone:"",
@@ -20,6 +24,7 @@
                 licence:"",
                 location:""
             };
+
 
             var baseUrl = "http://boluomi.dev:8083/data/upload/";
             $scope.merchant = merchant;
@@ -38,7 +43,7 @@
 
                 }
             });
-            $scope.uploadSingleFile = function(file) {
+            /*$scope.uploadSingleFile = function(file) {
                 //$scope.product.music = music.name;
                 if (file) {
                     file.upload = Upload.upload({
@@ -66,7 +71,38 @@
                             evt.loaded / evt.total));
                     });
                 }
-            }
+            }  */
+                $scope.uploadSingleFile = function(file) {
+
+                    if (file) {
+                        file.upload = Upload.upload({
+                            url: uploadAPI,
+                            data: {file: file}
+                        });
+
+                        file.upload.then(function (response) {
+                            $timeout(function () {
+
+                                if($scope.uploadOption == "logo"){
+                                    $scope.merchant.logo = uploadFolder+response.data.url;
+                                    $scope.logoButton = "上传成功";
+
+                                }else{
+                                    $scope.merchant.licence = uploadFolder+response.data.url;
+                                    $scope.licenceButton = "上传成功";
+                                }
+
+
+                            });
+                        }, function (response) {
+
+                        }, function (evt) {
+                            file.progress = Math.min(100, parseInt(100.0 *
+                                evt.loaded / evt.total));
+                        });
+                    }
+                }
+
                 function setLocation(location){
                     $scope.merchant.location = location;
                 }

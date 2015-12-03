@@ -1,5 +1,5 @@
 <div class="curmb">
-	<a href="">婚纱照分享</a> &gt; <a href="">你是我一生的守候</a>
+	<a ui-sref="main">婚纱照分享</a> &gt; <a href="">{{guideTitle}}</a>
 </div>
 
 <div class="share_wrap">
@@ -11,8 +11,8 @@
 				更改封面</p>
 
 		</div>
-		<input type="text" ng-model = "product.title"/>
-		<textarea ng-model = "product.description"/>
+		<input type="text" placeholder="快给作品起个名字吧"  ng-model = "product.title"/>
+		<textarea placeholder="加点摘要说明，发送到朋友圈，点开的可能性更大哟~" ng-model = "product.description"/>
 	</div>
 	<ul class="choice_type">
 		<li><span>页尾品牌：</span>
@@ -22,15 +22,19 @@
 		<li>
 			<span>背景音乐：</span>
 			{{musicName}}
-			<button class="base_btn" type="file" ngf-select="uploadMusic($file)" ngf-max-size="3MB">
+			<button class="base_btn" type="file"
+					ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="4MB">
 				{{musicButton}}</button>
 		</li>
 
 		<li>
 			<span>页面切换：</span>
-			<select ng-model="product.change_status">
-				<option ng-selected="product.change_status == item.value" ng-repeat="item in options" ng-value="item.value">{{item.name}}</option>
-			</select>
+			<!--<select ng-model="product.change_status">
+				<option ng-selected="product.change_status == item" ng-repeat="item in options" ng-value="item.value">{{item.name}}</option>
+			</select>  -->
+
+			<select ng-init="product.change_status = options[0]" ng-model="product.change_status"
+					ng-options="option.name for option in options"></select>
 		</li>
 	</ul>
 	<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>

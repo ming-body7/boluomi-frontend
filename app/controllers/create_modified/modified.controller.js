@@ -43,15 +43,21 @@ angular.module('myApp')
         initProduct();
 
         if(pid != null){
+            $scope.guideTitle = "作品";
             DataService.GetProductInfo(pid, function(response){
                 if (response.success) {
+
                     $scope.product = response.data.detail[0];
+
+                    $scope.guideTitle = $scope.product.title;
                     if($scope.product.pics == null){
                         $scope.product.pics = [];
                     }else{
                         var pics = $scope.product.pics.split(",");
                         $scope.product.pics = pics;
                     }
+
+
                     if($scope.product.is_brand == 1){
                         $scope.product.is_brand = true;
                     }else{
@@ -63,6 +69,8 @@ angular.module('myApp')
                     }
                 }
             });
+        }else{
+            $scope.guideTitle = "新建";
         }
 
 
@@ -73,9 +81,9 @@ angular.module('myApp')
             }
         }
         function initProduct(){
-            $scope.product.title = "快给作品起个名字吧";
+            $scope.product.title = "";
             $scope.product.banner_pic = "images/create/default-cover.png";
-            $scope.product.description = "加点摘要说明，发送到朋友圈，点开的可能性更大哟~";
+            $scope.product.description = "";
             $scope.product.is_brand = 0;
             $scope.product.is_home = 0;
             $scope.product.music = "";
@@ -109,6 +117,12 @@ angular.module('myApp')
             }
         }
 
+        $scope.validate = function(music){
+            if(music.type!=="mp3"){
+                alert("请上传MP3格式的音乐");
+                return false;
+            }
+        }
 
         $scope.uploadFiles = function(file, errFiles) {
             $scope.f = file;

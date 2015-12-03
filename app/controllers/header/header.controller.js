@@ -9,9 +9,9 @@
             //$scope.user = $rootScope.globals.account;
             $scope.user = $rootScope.User;
             $scope.$watch(function() {
-                return $rootScope.globals;
+                return $rootScope.User;
             }, function() {
-                $scope.loggedIn = $rootScope.globals.loggedIn;
+                //$scope.loggedIn = $rootScope.globals.loggedIn;
                 //$scope.user = $rootScope.globals.account;
                 $scope.user = $rootScope.User;
             }, true);

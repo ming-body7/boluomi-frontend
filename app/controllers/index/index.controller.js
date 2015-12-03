@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('indexController', indexController);
 
-    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state'];
-    function indexController(AuthenticationService,$scope, $rootScope, $state) {
+    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService'];
+    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService) {
 
         $rootScope.admin = false;
         $scope.login = login;
@@ -34,9 +34,17 @@
                 AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                     if (response.success) {
 
+                        DataService.GetMerchantInfo(function(response){
+                            if(response.success){
+                                $rootScope.User = response.data.detail;
+                                //$state.go('main');
+                            }else{
+
+                            }
+                        });
                         AuthenticationService.SetCredentials($scope.account, response.data.auth_key, response.data.id);
                         var status = response.data.status;
-                        switch(status){
+                        /*switch(status){
                             case 9: //信息未完成  去完善信息
                                 //window.location.href = './finishbrandinfo.html';
                                 $state.go('brand');
@@ -53,8 +61,8 @@
                                 //alert('登录成功');
                                 $state.go('main');
                                 break;
-                        };
-
+                        }; */
+                        $state.go('main');
 
                     } else {
 

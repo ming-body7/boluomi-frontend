@@ -38,12 +38,26 @@
 					<span class="key">商家LOGO：</span>
 				</div>
 
+				<!--<div class="col-md-10">
+					<a ng-click="uploadOption = 'logo'" id="brand_logo"
+					   href="javascript:;" data-logo-src="" class="base_btn"  role="button">{{logoButton}}</a>
+				</div> -->
+
 				<div class="col-md-10">
-					<a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="" class="base_btn"  role="button">{{logoButton}}</a>
+					<button id="brand_logo" class="base_btn"  role="button"
+							ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
+							class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+							accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+						{{logoButton}}</button>
 				</div>
 
-			</li>
 
+			</li>
+			<!-- <li>
+				<div>
+					<img ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
+				</div>
+			</li>  -->
 			<li class="row">
 				<div class="col-md-2">
 					<span class="key">商家头图：</span>
@@ -96,18 +110,53 @@
 					<div class="area"></div>
 				</div>
 			</li>
+			<li>
+				<div>
+					<div ng-show="merchant.location!=null && merchant.location!='' " id="smallMap" class="smallMap"></div>
+				</div>
+			</li>
 			<li class="row">
 				<div class="col-md-2">
 					<span class="key">营业执照：</span>
 				</div>
+				<!--<div class="col-md-10">
+					 <a class="base_btn" role="button" ng-click="uploadOption = 'licence'" id="licence_pic"
+					   href="javacript:;" data-licence-src="">{{licenceButton}}</a>
+				</div>-->
 				<div class="col-md-10">
-					<a class="base_btn" role="button" ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="">{{licenceButton}}</a>
+					<!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
+					<button id="licence_pic" class="base_btn" role="button"
+							ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
+							class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+							accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
+						{{licenceButton}}</button>
 				</div>
+
+
 			</li>
+			<!-- <li>
+				<div>
+					<img ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
+				</div>
+			</li>  -->
 		</ul>
 		<a class="save_btn" ng-click="saveBrandInfo()">保存</a>
 	</div>
+
 </div>
+<div id="mask" class="mask"></div>
+
+
+<style>
+	#smallMap{
+		width: 200px;
+		height: 200px;
+	}
+	.allmap{position:fixed !important;left:50%;top:0;box-shadow:1px 1px 2px 1px rgba(0,0,0,0.5);z-index:999 !important}
+	.closeBtn{position:fixed;right:10px;top:10px;font-size:20px;font-style:normal;cursor:pointer;font-size:50px;z-index:1000;color:#fff}
+	.mask{position:fixed;top:0;left:0;bottom:0;right:0;background:#000;opacity:.5;filter:alpha(opacity=50);z-index:998;display:none}
+</style>
+
 
 <script src="js/linkageCity.js"></script>
 <script src="js/myEvent.js"></script>

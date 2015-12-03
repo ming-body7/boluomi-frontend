@@ -20,7 +20,7 @@
 -->
 <div ng-controller="contentController">
 	<div class="curmb">
-		<a href="">婚纱照分享</a> &gt; <a href="">你是我一生的守候</a>
+		<a ui-sref="main">婚纱照分享</a>
 	</div>
 	<div class="edit_wrap">
 		<ul class="edit_zone">
@@ -32,7 +32,7 @@
 			<li ng-repeat="x in list">
 				<div class="img_box">
 					<img ng-src="{{x.banner_pic}}" alt="pic">
-					<p>{{x.updated_at}}</p>
+					<p>{{transferTime(x.updated_at)}}</p>
 				</div>
 				<h4>{{x.title}}</h4>
 				<div class="pic_status">
@@ -77,3 +77,17 @@
 		</nav>
 	</div>
 </div>
+<style>
+	.pagination > .active > a,
+	.pagination > .active > span,
+	.pagination > .active > a:hover,
+	.pagination > .active > span:hover,
+	.pagination > .active > a:focus,
+	.pagination > .active > span:focus {
+		z-index: 2;
+		/* color: #fff; */
+		cursor: default;
+		background-color: #fe325f;
+		border-color: #fe325f;
+	}
+</style>
