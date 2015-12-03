@@ -395,6 +395,15 @@ var handler = {
 	
 };
 
+/*var newPoint = angular.element(document.getElementById('map_mark')).scope().getLocation();
+if(newPoint!=null){
+	var map2 = new BMap.Map("smallMap");          // 创建地图实例
+	//var point2 = new BMap.Point(116.404, 39.915);  // 创建点坐标
+	map2.centerAndZoom(new_point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+	//map2.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	final_marker = new BMap.Marker(new_point);
+	map2.addOverlay(final_marker);
+} */
 $(myEvent.bind);
 
 

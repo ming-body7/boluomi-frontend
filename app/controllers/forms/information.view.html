@@ -4,9 +4,9 @@
 		<div class="curmb">
 			<a href="">设置</a> > <a href="">基本信息</a>
 		</div>
-		<div class="page_tips">
+		<!--<div class="page_tips">
 			<i></i>本页为必填页
-		</div>
+		</div> -->
 
 		<ul>
 			<li class="row">
@@ -53,11 +53,11 @@
 
 
 			</li>
-			<!-- <li>
+			<li>
 				<div>
-					<img ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
+					<img class="logo_img" ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
 				</div>
-			</li>  -->
+			</li>
 			<li class="row">
 				<div class="col-md-2">
 					<span class="key">商家头图：</span>
@@ -75,8 +75,8 @@
 				</div>
 				<div id="brand_type" class="col-md-10" data-type="">
 					<div class="radio_zone">
-						<input ng-model="merchant.type" id="type1" data-type="1" class="rad" type="radio" name="type" id="">影楼
-						<input ng-model="merchant.type" id="type2" data-type="2" class="rad" type="radio" name="type" id="">工作室
+						<input ng-model="merchant.type" ng-checked="merchant.type==0" id="type1" data-type="1" class="rad" type="radio" name="type" id="">影楼
+						<input ng-model="merchant.type" ng-checked="merchant.type==1" id="type2" data-type="2" class="rad" type="radio" name="type" id="">工作室
 					</div>
 				</div>
 
@@ -134,11 +134,11 @@
 
 
 			</li>
-			<!-- <li>
+			<li>
 				<div>
-					<img ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
+					<img class="licence_img" ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
 				</div>
-			</li>  -->
+			</li>
 		</ul>
 		<a class="save_btn" ng-click="saveBrandInfo()">保存</a>
 	</div>
@@ -152,6 +152,15 @@
 		width: 200px;
 		height: 200px;
 	}
+	.logo_img{
+		width: 200px;
+		height: 200px;
+	}
+	.licence_img{
+		width: 200px;
+		height: 200px;
+	}
+
 	.allmap{position:fixed !important;left:50%;top:0;box-shadow:1px 1px 2px 1px rgba(0,0,0,0.5);z-index:999 !important}
 	.closeBtn{position:fixed;right:10px;top:10px;font-size:20px;font-style:normal;cursor:pointer;font-size:50px;z-index:1000;color:#fff}
 	.mask{position:fixed;top:0;left:0;bottom:0;right:0;background:#000;opacity:.5;filter:alpha(opacity=50);z-index:998;display:none}

@@ -22,6 +22,7 @@
         service.AddMerchant = AddMerchant;
         service.GetMerchantInfo = GetMerchantInfo;
         service.EditMerchant = EditMerchant;
+        service.DelProduct = DelProduct;
         return service;
 
         function GetProductList(page, pageSize, callback){
@@ -211,6 +212,32 @@
 
         }
 
+        function DelProduct(pid, authKey, callback){
+
+            $http({
+                method: 'POST',
+                url: baseUrl+'/v1/product/del',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: {
+                    pid: pid,
+                    auth_key:authKey
+                }
+
+            }).success(function (response) {
+                if(response.type == 2){
+                    callback({success: true, data: response.result});
+                }else{
+                    callback({success: false, data:"error"});
+                }
+
+            });
+        }
         function EditProduct(pid, authKey, product, callback){
 
             $http({
@@ -224,12 +251,12 @@
                     return str.join("&");
                 },
                 data: {pid: pid, auth_key:authKey, title:product.title, banner_pic:product.banner_pic,
-                        description:product.description,
-                        is_brand:product.is_brand,
-                        is_home:product.is_home,
-                        music:product.music,
-                        change_status:product.change_status,
-                        pics:product.pics.toString()
+                    description:product.description,
+                    is_brand:product.is_brand,
+                    is_home:product.is_home,
+                    music:product.music,
+                    change_status:product.change_status,
+                    pics:product.pics.toString()
                 }
 
             }).success(function (response) {

@@ -37,7 +37,7 @@ angular.module('myApp')
         var uploadFolder = App.uploadFolder;
 
         $scope.saveChanges = saveChanges;
-
+        $scope.saveChangesAndExit = saveChangesAndExit;
 
         $scope.musicName = "";
         initProduct();
@@ -118,7 +118,7 @@ angular.module('myApp')
         }
 
         $scope.validate = function(music){
-            if(music.type!=="mp3"){
+            if(music.type!="audio/mp3"){
                 alert("请上传MP3格式的音乐");
                 return false;
             }
@@ -153,6 +153,9 @@ angular.module('myApp')
         }
 
         function saveChanges(){
+
+            //TODO:add product返回pid
+
             if($scope.product.is_brand == true){
                 $scope.product.is_brand = 1;
             }else{
@@ -162,19 +165,50 @@ angular.module('myApp')
             if(pid != null){
                 DataService.EditProduct(pid, $rootScope.globals.authKey, $scope.product, function(response){
                     if(response.success){
-                        $state.go('main');
+                        //$state.go('main');
+                        alert("保存成功！");
+
                     }
                 });
             }else{
                 DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
                     if(response.success){
-                        $state.go('main');
+                        //$state.go('main');
+                        pid = response.data.id;
+                        alert("保存成功！");
                     }
                 });
             }
 
         }
 
+        function saveChangesAndExit(){
+            if($scope.product.is_brand == true){
+                $scope.product.is_brand = 1;
+            }else{
+                $scope.product.is_brand = 0;
+            }
+
+            if(pid != null){
+                DataService.EditProduct(pid, $rootScope.globals.authKey, $scope.product, function(response){
+                    if(response.success){
+                        //
+                        alert("保存成功！");
+                        $state.go('main');
+
+                    }
+                });
+            }else{
+                DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
+                    if(response.success){
+                        //
+                        pid = response.data.id;
+                        alert("保存成功！");
+                        $state.go('main');
+                    }
+                });
+            }
+        }
         function abortChanges(){
             //delete uploaded pic
         }
@@ -198,6 +232,8 @@ angular.module('myApp')
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     if (!file.$error) {
+                        var new_pic = {};
+                        $scope.product.pics.push(new_pic);
                         Upload.upload({
                             url: uploadAPI,
                             data: {
@@ -208,11 +244,13 @@ angular.module('myApp')
                             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                             $scope.log = 'progress: ' + progressPercentage + '% ' +
                                 evt.config.data.file.name + '\n' + $scope.log;
+                            $scope.percent = progressPercentage + "%";
                         }).success(function (data, status, headers, config) {
                             $timeout(function() {
                                 $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
 
-                                $scope.product.pics.push(uploadFolder+data.url);
+                                //$scope.product.pics.push(uploadFolder+data.url);
+                                $scope.product.pics[$scope.product.pics.length - 1] = uploadFolder+data.url;
                             });
                         });
                     }

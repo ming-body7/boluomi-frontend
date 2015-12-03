@@ -1,5 +1,5 @@
 angular.module('myApp')
-	.controller('contentController', ['$scope','DataService',function($scope, DataService){
+	.controller('contentController', ['$scope','DataService', '$rootScope',function($scope, DataService, $rootScope){
 
 		$scope.totalItems = 0;
 		$scope.currentPage = 1;
@@ -17,16 +17,32 @@ angular.module('myApp')
 
 		DataService.GetProductList(page, pageSize, function(response){
 			if (response.success) {
-				$scope.list = response.data.list;
-				$scope.totalItems = response.data.totalCount;
+				for(p in response.data.list){
+					if(p.status >= 0){
+						$scope.list.add(p);
+					}
+				}
+				//$scope.list = response.data.list;
+
+				//$scope.totalItems = response.data.totalCount;
+				$scope.totalItems = $scope.list.length;
 			}
 		});
 
 		function deleteProduct(x){
 			if (confirm("确认删除？")) {
 				//TODO: 服务器端删除
-				var index = $scope.list.indexOf(x);
-				$scope.list.splice(index, 1);
+				DataService.DelProduct(x.id, $rootScope.globals.authKey, function(response){
+					if(response.success){
+						alert("删除成功");
+						var index = $scope.list.indexOf(x);
+						$scope.list.splice(index, 1);
+					}else{
+						alert("删除失败");
+					}
+				});
+
+
 			}
 		}
 

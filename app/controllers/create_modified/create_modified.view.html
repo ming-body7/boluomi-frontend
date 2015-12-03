@@ -5,7 +5,7 @@
 <div class="share_wrap">
 	<div class="page_face">
 		<div class="img_box">
-			<img ng-src="{{product.banner_pic}}" alt="封面图片"/>
+			<img class="banner_pic"  ng-src="{{product.banner_pic}}" alt="封面图片"/>
 			<p type="file" ngf-select="uploadFiles($file, $invalidFiles)"
 					accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
 				更改封面</p>
@@ -32,9 +32,14 @@
 			<!--<select ng-model="product.change_status">
 				<option ng-selected="product.change_status == item" ng-repeat="item in options" ng-value="item.value">{{item.name}}</option>
 			</select>  -->
-
+			<select ng-model="product.change_status">
+				<option ng-selected="product.change_status == 0" value =0>上下切换</option>
+				<option ng-selected="product.change_status == 1" value =1>折叠切换</option>
+				<option ng-selected="product.change_status == 2" value =2>立体切换</option>
+			</select>
+			<!--
 			<select ng-init="product.change_status = options[0]" ng-model="product.change_status"
-					ng-options="option.name for option in options"></select>
+					ng-options="option.name for option in options"></select>  -->
 		</li>
 	</ul>
 	<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
@@ -45,11 +50,13 @@
 		 ngf-pattern="'image/*,application/pdf'">本地上传</div>
 	<div class="upload_zone">
 		<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
+			<div ng-show="product.pics.length == 0">请上传图片</div>
 			<li ng-repeat="item in product.pics" as-sortable-item>
 				<div as-sortable-item-handle ngf-as-background="true">
-					<img ng-src="{{item}}" alt="" width="150" height="236">
+					<img ng-src="{{item}}" alt="{{percent}}" width="150" height="236">
 					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 				</div>
+				<div></div>
 			</li>
 			<!--<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
 			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
@@ -63,6 +70,7 @@
 
 
 	<button class="i_btn save_btn" ng-click="saveChanges()">保存</button><a class="i_btn pre_view" href="">预览</a>
+	<button class="i_btn save_btn" ng-click="saveChangesAndExit()">保存并退出</button>
 </div>
 
 <!--
@@ -190,6 +198,15 @@
 	</div>
 	</div>   -->
 <style>
+
+	.banner_pic {
+		max-width: 100%;
+		max-height: 100%;
+		margin:auto;
+		display:block;
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+	}
 	#coverContainer {
 		display:inline-block;
 		position:relative;
