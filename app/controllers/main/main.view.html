@@ -3,14 +3,14 @@
 	<div class="header" ng-include="'controllers/header/header.view.html'"></div>
 
 
-	<div class="main">
+	<div class="mana_main">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
 					<div ng-hide="admin" ng-include="'controllers/sidebar/sidebar.view.html'"></div>
 					<div ng-show="admin" ng-include="'controllers/admin/sidebar/adminSidebar.view.html'"></div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-9 col_cont">
 					<div ui-view="content"></div>
 				</div>
 			</div>

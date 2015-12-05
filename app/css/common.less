@@ -93,12 +93,11 @@ a{
 	}
 
 }
-.main{
+.mana_main{
 	width:1200px;
 	margin:0 auto 50px;
 	background:#fff;
-	padding:20px 0 50px;
-
+	padding:0 0 50px;
 }
 .set_wrap{
 	dt{
@@ -109,6 +108,9 @@ a{
 		background-position:60px center;
 		margin:16px 0;
 		color:#8d8d8d;
+		&.set_tit{
+			background-image:url(../img/icon_2.png);
+		}
 	}
 	dd{
 		height:42px;
@@ -125,7 +127,9 @@ a{
 	}
 }
 .curmb{
-	padding-bottom:52px;
+	padding:20px 0 22px 20px;
+	margin-bottom:30px;
+	border-bottom:1px solid #ccc;
 	a{
 		color:#5A5959;
 	}
@@ -151,10 +155,15 @@ a{
 	background: -webkit-linear-gradient(left,#ff7392,#fe325f);
 	background: -o-linear-gradient(left, #ff7392,#fe325f);
 	background: linear-gradient(left, #ff7392,#fe325f);
+	cursor:pointer;
 	&:hover{
 		color:#fff;
 	};
 	&:focus{
 		color:#fff;
 	};
+}
+.col_cont{
+	border-left:1px solid #ccc;
+	padding-left:0;
 }

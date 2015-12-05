@@ -25,6 +25,7 @@
 			<button class="base_btn" type="file"
 					ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="4MB">
 				{{musicButton}}</button>
+			<em class="tips">（只能上传MP3格式的，不超过4M ）</em>
 		</li>
 
 		<li>
@@ -56,7 +57,7 @@
 					<img ng-src="{{item}}" alt="{{percent}}" width="150" height="236">
 					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 				</div>
-				<div></div>
+				<div class="pro"></div>
 			</li>
 			<!--<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
 			<li as-sortable-item><img src="./img/page_img.jpg" alt=""><p></p></li>
