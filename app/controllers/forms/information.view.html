@@ -53,8 +53,8 @@
 
 
 			</li>
-			<li>
-				<div>
+			<li class="row">
+				<div class="col-md-2 col-md-offset-2">
 					<img class="logo_img" ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
 				</div>
 			</li>
@@ -87,9 +87,21 @@
 					<span class="key">所在区域：</span>
 				</div>
 				<div class="col-md-10">
-					<select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
+					<!--<select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
 					<select ng-model="merchant.city" class="J_city" name="" id=""><option value="-1">请选择</option></select>
-					<select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select>
+					<select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select> -->
+					<select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
+							ng-change="merchant.city='';merchant.area='';">
+						<option value="">省</option>
+					</select>
+
+					<select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
+							ng-change="merchant.area='';">
+						<option value="">市</option>
+					</select>
+					<select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
+						<option value="">区</option>
+					</select>
 				</div>
 			</li>
 
@@ -98,7 +110,7 @@
 					<span class="key">详细地址：</span>
 				</div>
 				<div class="col-md-10">
-					<input ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
+					<input id="detail_address" ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
 				</div>
 			</li>
 			<li class="row">
@@ -110,9 +122,9 @@
 					<div class="area"></div>
 				</div>
 			</li>
-			<li>
-				<div>
-					<div ng-show="merchant.location!=null && merchant.location!='' " id="smallMap" class="smallMap"></div>
+			<li class="row">
+				<div class="col-md-offset-2 map_preview">
+					<baidu-map  options="smallMap"></baidu-map>
 				</div>
 			</li>
 			<li class="row">
@@ -134,8 +146,8 @@
 
 
 			</li>
-			<li>
-				<div>
+			<li class="row">
+				<div class="col-md-2 col-md-offset-2">
 					<img class="licence_img" ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
 				</div>
 			</li>
@@ -146,9 +158,8 @@
 </div>
 <div id="mask" class="mask"></div>
 
-
 <style>
-	#smallMap{
+	.map_preview{
 		width: 200px;
 		height: 200px;
 	}
@@ -169,4 +180,5 @@
 
 <script src="js/linkageCity.js"></script>
 <script src="js/myEvent.js"></script>
-<script src="js/finishbrandinfo.js"></script>
+<!--<script src="js/finishbrandinfo.js"></script> -->
+<script src="js/updateinformation.js"></script>

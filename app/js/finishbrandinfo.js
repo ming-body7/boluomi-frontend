@@ -212,7 +212,7 @@ var handler = {
 		var _this = $(this);
 		//判断详细地址有没填写
 		var address =  $obj.detail_address.val();
-
+		console.log(address);
 		var final_point = new BMap.Point(116.331398,39.897445);
 		var final_marker = new BMap.Marker(final_point);
 
@@ -283,7 +283,8 @@ var handler = {
 		    // 将地址解析结果显示在地图上,并调整地图视野
 		    myGeo.getPoint(address, function(point){
 		      if (point) {
-
+				  console.log(address);
+				  console.log(point);
 				  final_point = point;
 
 		        map.centerAndZoom(point, 16);

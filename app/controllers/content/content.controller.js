@@ -5,7 +5,7 @@ angular.module('myApp')
 		$scope.currentPage = 1;
 		$scope.maxSize = 8;
 
-		$scope.list = {};
+		$scope.list = new Array();
 		var page = 0;
 		var pageSize = 10;
 
@@ -17,9 +17,10 @@ angular.module('myApp')
 
 		DataService.GetProductList(page, pageSize, function(response){
 			if (response.success) {
-				for(p in response.data.list){
+				for(i = 0; i<response.data.list.length; i++){
+					var p = response.data.list[i];
 					if(p.status >= 0){
-						$scope.list.add(p);
+						$scope.list.push(p);
 					}
 				}
 				//$scope.list = response.data.list;
