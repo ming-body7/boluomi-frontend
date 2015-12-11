@@ -60,9 +60,18 @@
             <span>商家地址：</span>
         </div>
         <div class="infoR">
-            <select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
-            <select ng-model="merchant.city" class="J_city" name="" id=""><option value="-1">请选择</option></select>
-            <select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select>
+            <select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
+                    ng-change="merchant.city='';merchant.area='';">
+                <option value="">省</option>
+            </select>
+
+            <select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
+                     ng-change="merchant.area='';">
+                <option value="">市</option>
+            </select>
+            <select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
+                <option value="">区</option>
+            </select>
         </div>
     </li>
     <li>
@@ -86,9 +95,14 @@
 
     </li>
 
-    <li>
+    <!--<li>
         <div>
             <div ng-show="merchant.location!=null && merchant.location!='' " id="smallMap" class="smallMap"></div>
+        </div>
+    </li> -->
+    <li class="row">
+        <div ng-show="merchant.location!=null && merchant.location!=''" class="col-md-offset-2 map_preview">
+            <baidu-map  options="smallMap"></baidu-map>
         </div>
     </li>
     <li>
@@ -113,10 +127,6 @@
 
 
 <a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a>
-
-<!-- <a class="submit-btn" ng-click="addBrandInfo()">提交审核</a>  -->
-
-
 
 
 <div class="footer">
@@ -151,7 +161,7 @@
         box-sizing: content-box;
     }
 
-    #smallMap{
+    .map_preview{
         width: 200px;
         height: 200px;
     }

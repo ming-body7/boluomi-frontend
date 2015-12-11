@@ -27,11 +27,6 @@ var handler = {
         }
         //判断详细地址有没填写
         var address =  getAddressFromAngular();
-        //改成用angular获取数据
-        //console.log(address);
-        //var final_point = new BMap.Point(116.331398,39.897445);
-        //var final_marker = new BMap.Marker(final_point);
-
         if( G.isEmpty( address )){
             alert('请先填写详细地址！');
             return false;
@@ -62,16 +57,6 @@ var handler = {
                 mapZ.remove();
                 oMask.remove();
                 finishSetPoint();
-                //标注成功
-                //_this.html('标注成功');
-
-                //add small map
-                //var map2 = new BMap.Map("smallMap");          // 创建地图实例
-                //var point2 = new BMap.Point(116.404, 39.915);  // 创建点坐标
-                //map2.centerAndZoom(final_point, 15);                 // 初始化地图，设置中心点坐标和地图级别
-                //map2.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
-                //final_marker = new BMap.Marker(final_point);
-                //map2.addOverlay(final_marker);
 
             })
             mapZ.appendTo($obj.bd);

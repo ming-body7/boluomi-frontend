@@ -209,12 +209,23 @@ var handler = {
 		$(this).parents('#brand_type').attr('data-type',$(this).attr('data-type'))
 	},
 	map_mark_click : function(){
-		var _this = $(this);
+
+		function getAddressFromAngular(){
+			return angular.element(document.getElementById('map_mark')).scope().getAddress();
+		}
+		function setPointInAngular(point){
+			angular.element(document.getElementById('map_mark')).scope().setPointFromMap(point);
+		}
+		function finishSetPoint(){
+			angular.element(document.getElementById('map_mark')).scope().finishSetPoint();
+		}
 		//判断详细地址有没填写
-		var address =  $obj.detail_address.val();
-		console.log(address);
-		var final_point = new BMap.Point(116.331398,39.897445);
-		var final_marker = new BMap.Marker(final_point);
+		var address =  getAddressFromAngular();
+
+
+		//var _this = $(this);
+		//判断详细地址有没填写
+		//var address =  $obj.detail_address.val();
 
 		if( G.isEmpty( address )){
 			alert('请先填写详细地址！');
@@ -245,17 +256,7 @@ var handler = {
 		  	$(this).remove();
 		    mapZ.remove();
 		    oMask.remove();
-
-		    //标注成功
-		    _this.html('标注成功');
-
-			  //add small map
-			  var map2 = new BMap.Map("smallMap");          // 创建地图实例
-			  //var point2 = new BMap.Point(116.404, 39.915);  // 创建点坐标
-			  map2.centerAndZoom(final_point, 15);                 // 初始化地图，设置中心点坐标和地图级别
-			  //map2.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
-			  final_marker = new BMap.Marker(final_point);
-			  map2.addOverlay(final_marker);
+			finishSetPoint();
 
 		  })
 		  mapZ.appendTo($obj.bd);
@@ -281,43 +282,41 @@ var handler = {
 		    // 创建地址解析器实例
 		    var myGeo = new BMap.Geocoder();
 		    // 将地址解析结果显示在地图上,并调整地图视野
-		    myGeo.getPoint(address, function(point){
-		      if (point) {
-				  console.log(address);
-				  console.log(point);
-				  final_point = point;
+			myGeo.getPoint(address, function(point){
+				if (point) {
+					map.centerAndZoom(point, 16);
+					var marker = new BMap.Marker(point);
+					// 赋值坐标
+					//_this.attr('data-position', point.lng+',' + point.lat);
+					setPointInAngular(point);
 
-		        map.centerAndZoom(point, 16);
-		        var marker = new BMap.Marker(point);
 
-		        // 赋值坐标
-		        _this.attr('data-position', point.lng+',' + point.lat);
-				angular.element(document.getElementById('map_mark')).scope().setLocation(point.lng+',' + point.lat);
-		        map.addOverlay(marker);
-		        marker.enableDragging();
+					map.addOverlay(marker);
+					marker.enableDragging();
 
-		        marker.addEventListener("mouseup",attribute);
-		        function attribute(){
-		            var p = marker.getPosition();  //获取marker的经纬度值位置
-		            myGeo.getLocation(p, function(rs){//通过经纬度解析地址
-		              var addComp = rs.addressComponents;
-		                  address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
+					marker.addEventListener("mouseup",attribute);
+					function attribute(){
+						var p = marker.getPosition();  //获取marker的经纬度值位置
+						setPointInAngular(p);
+						/*myGeo.getLocation(p, function(rs){//通过经纬度解析地址
+						 var addComp = rs.addressComponents;
+						 address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
 
-						// 移动了坐标点重新赋值
-						final_point = new BMap.Point(p.lng, p.lat);
+						 // 移动了坐标点重新赋值
+						 final_point = new BMap.Point(p.lng, p.lat);
 
-		                  _this.attr('data-position', p.lng+',' + p.lat);
+						 _this.attr('data-position', p.lng+',' + p.lat);
 
-		            }); 
-		          }
+						 });*/
+					}
 
-		        // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
-		      }else{
-		      	mapZ.fadeOut().remove();
-		      	oMask.fadeOut().remove();
-		        alert("您选择地址没有解析到结果!");
-		      }
-		    }, "北京市");
+					// marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				}else{
+					mapZ.fadeOut().remove();
+					oMask.fadeOut().remove();
+					alert("您选择地址没有解析到结果!");
+				}
+			}, "北京市");
 		}
 		taggingClick();
 

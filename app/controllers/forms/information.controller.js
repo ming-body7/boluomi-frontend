@@ -21,6 +21,7 @@
                 $scope.setPointFromMap = setPointFromMap;
                 $scope.uploadSingleFile = uploadSingleFile;
                 $scope.finishSetPoint = finishSetPoint;
+                $scope.updateSmallMap = updateSmallMap;
 
                 initController();
 
@@ -72,7 +73,6 @@
                         }
                     });
                 }
-
 
                 function uploadSingleFile(file) {
 
