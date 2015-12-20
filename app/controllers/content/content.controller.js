@@ -9,10 +9,11 @@ angular.module('myApp')
 		var page = 0;
 		var pageSize = 10;
 
-
+		$scope.demo_base_url = "wwww.boluomi1314.com/demo/?id=";
 		$scope.deleteProduct = deleteProduct;
 		$scope.goPage = goPage;
 		$scope.transferTime = transferTime;
+		$scope.getQRUrl = getQRUrl;
 
 
 		DataService.GetProductList(page, pageSize, function(response){
@@ -53,7 +54,9 @@ angular.module('myApp')
 			}
 
 		}
-
+		function getQRUrl(x){
+			return $scope.demo_base_url+ x.id;
+		}
 		function transferTime(x){
 			var today = new Date();
 			var time = new Date(Date.parse(x));

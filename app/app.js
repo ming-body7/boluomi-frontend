@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-  .module('myApp', ['ngFileUpload','ui.router','ui.bootstrap','ngAnimate','uiSwitch','ngCookies','as.sortable','baiduMap'])
+  .module('myApp', ['ngFileUpload','ui.router','ui.bootstrap','ngAnimate','uiSwitch','ngCookies','as.sortable','baiduMap','monospaced.qrcode'])
   .config(config)
   .run(run);
 
