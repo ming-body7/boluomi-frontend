@@ -1,0 +1,205 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="utf-8" />   
+<title>显示地图</title>  
+<style type="text/css">  
+  *{
+    margin:0;
+    padding:0;
+  }
+  .allmap{
+    position:absolute;
+    left:50%;
+    top:0;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,.5);
+    z-index:999;
+  }
+  .tagging{
+    display:inline-block;
+    padding:10px 30px;
+    background:blue;
+    color:#fff;
+    border-radius:4px;
+    text-decoration:none;
+  }
+  .closeBtn{
+    position:absolute;
+    right:10px;
+    top:10px;
+    font-size:20px;
+    font-style:normal;
+    cursor:pointer;
+    font-size:50px;
+    z-index:1000;
+    color:#fff;
+  }
+  .mask{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    background:#000;
+    opacity:.5;
+    filter:alpha(opaciyt=50);
+    z-index:998;
+  }
+</style>  
+<script src="jquery.js"></script>
+<script src="http://api.map.baidu.com/api?v=1.5&ak=5U8M51SeGixHSOHsMzKLt1NG" type="text/javascript"></script>
+<script>
+  $(function(){
+
+      var $obj = {
+        win : $(window),
+        bd : $('body'),
+        tagging : $('#tagging')
+      };
+
+
+    $obj.tagging.on('click',taggingClick);
+
+    function taggingClick(){//地图标注
+       if($('#allmap').length != 0){
+          $('#allmap').fadeIn();
+          $('#mask').fadeIn();
+             return;
+       }
+      var mapZ = $('<div id="allmap" class="allmap">map</div>');
+      var closeBtn = $('<i class="closeBtn">X</i>');
+      var oMask = $('<div id="mask" class="mask"></div>')
+
+     
+      setMapPos(mapZ);
+      function setMapPos(mapZ){ //设置mapZ尺寸、位置
+        var winW = $obj.win.width();
+        var winH = $obj.win.height();
+        mapZ.css({
+          width:winW/2,
+          height:winH-2,
+          marginLeft : -(winW/2)/2
+        })
+        oMask.css({
+          height : winH
+        })
+      };
+     
+     
+      closeBtn.on('click',function(){
+        mapZ.fadeOut();
+        oMask.fadeOut();
+      })
+      mapZ.appendTo($obj.bd);
+      $obj.bd.append(oMask).append(closeBtn);
+       $obj.win.on('resize',function(){//大小自适应
+       setMapPos(mapZ);
+      })
+
+
+      //地图渲染
+        var address = '';
+      // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.331398,39.897445);
+        map.centerAndZoom(point,14);
+        map.enableScrollWheelZoom(true);
+
+
+        //添加控件和比例尺
+        var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+        var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+
+        map.addControl(top_left_control);        
+        map.addControl(top_left_navigation);     
+
+        // 创建地址解析器实例
+        var myGeo = new BMap.Geocoder();
+        // 将地址解析结果显示在地图上,并调整地图视野
+        myGeo.getPoint("北京望京soho", function(point){
+          if (point) {
+            map.centerAndZoom(point, 16);
+            var marker = new BMap.Marker(point);
+
+            map.addOverlay(marker);
+            marker.enableDragging();
+
+            marker.addEventListener("mouseup",attribute);
+            function attribute(){
+                var p = marker.getPosition();  //获取marker的经纬度值位置
+                myGeo.getLocation(p, function(rs){//通过经纬度解析地址
+                  var addComp = rs.addressComponents;
+                      address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
+
+                      alert(address)
+                }); 
+              }
+
+            // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+          }else{
+            alert("您选择地址没有解析到结果!");
+          }
+        }, "北京市");
+    }
+
+
+
+  })
+
+</script>
+</head>  
+<body>  
+<a id="tagging" class="tagging" href="javascript:;">标注地图</a>
+
+</body>
+</html>  
+<script type="text/javascript">  
+
+//   var address = '';
+// // 百度地图API功能
+//   var map = new BMap.Map("allmap");
+//   var point = new BMap.Point(116.331398,39.897445);
+//   map.centerAndZoom(point,14);
+//   map.enableScrollWheelZoom(true);
+
+
+//   //添加控件和比例尺
+//   var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+//   var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+
+//   map.addControl(top_left_control);        
+//   map.addControl(top_left_navigation);     
+
+//   // 创建地址解析器实例
+//   var myGeo = new BMap.Geocoder();
+//   // 将地址解析结果显示在地图上,并调整地图视野
+//   myGeo.getPoint("北京望京soho", function(point){
+//     if (point) {
+//       map.centerAndZoom(point, 16);
+//       var marker = new BMap.Marker(point);
+
+//       map.addOverlay(marker);
+//       marker.enableDragging();
+
+//       marker.addEventListener("mouseup",attribute);
+//       function attribute(){
+//           var p = marker.getPosition();  //获取marker的经纬度值位置
+//           myGeo.getLocation(p, function(rs){//通过经纬度解析地址
+//             var addComp = rs.addressComponents;
+//                 address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
+
+//                 alert(address)
+//           }); 
+//         }
+
+//       // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+//     }else{
+//       alert("您选择地址没有解析到结果!");
+//     }
+//   }, "北京市");
+
+
+
+
+
+
+</script>

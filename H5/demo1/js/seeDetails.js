@@ -68,7 +68,7 @@ $(function(){
 	var x = 116.331;
 	var y = 40.897;
 
-	var brandHand = '<div class="section brandSec brandDetail"><div class="edit_area"><p class="fix_box">'+ logoHtml + brandNameHtml + brandAddressHtml + brandHtml +'<a class="detailBtn seeMap" href="javascript:;" data-position="'+ x +','+ y +'">查看地图</a><a class="detailBtn concatBrand" href="javascript:;">联系商家</a><i class="moonBg"></i><ul>';
+	var brandHand = '<div class="section brandSec brandDetail"><div class="edit_area"><p class="fix_box">'+ logoHtml + brandNameHtml + brandAddressHtml + brandHtml +'<p class="tmp_zone"><a class="detailBtn seeMap" href="javascript:;" data-position="'+ x +','+ y +'">查看地图</a><a class="detailBtn concatBrand" href="javascript:;">联系商家</a></p class="tmp_zone"><i class="moonBg"></i><ul>';
 	var brandFoot = '</ul><div class="brandInfo"><a href="javascript:;" class="seeMap2" data-position="'+ x +','+ y +'">查看地图</a><a href="javascript:;" class="concatBrand2">联系商家</a></p></div></div><div>';
 	var brandHtml = brandHand + liHtml + brandFoot;
 	data.push({
