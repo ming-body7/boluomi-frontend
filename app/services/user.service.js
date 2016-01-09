@@ -8,13 +8,16 @@
     UserService.$inject = ['$http', '$rootScope'];
     function UserService($http, $rootScope) {
 
-        var App = $rootScope.App;
+        var App = window.App;
         var baseUrl = App.baseUrl;
 
 
         var service = {};
-
+        service.accessLevel = '';
         service.Create = Create;
+        service.getAccessLevel = getAccessLevel;
+        service.setAccessLevel = setAccessLevel;
+
         return service;
 
         function Create(user, callback) {
@@ -37,6 +40,14 @@
                 }
 
             });
+        }
+
+        function getAccessLevel(){
+            return service.accessLevel;
+        }
+        function setAccessLevel(accessLevel){
+            service.accessLevel = accessLevel;
+            $rootScope.admin = true;
         }
 
     }

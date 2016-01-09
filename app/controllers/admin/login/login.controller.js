@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('adminLoginController', adminLoginController);
 
-    adminLoginController.$inject = ['$rootScope','$state', 'AuthenticationService','$scope'];
-    function adminLoginController($rootScope, $state, AuthenticationService,$scope) {
+    adminLoginController.$inject = ['$rootScope','$state', 'AuthenticationService','$scope','UserService'];
+    function adminLoginController($rootScope, $state, AuthenticationService,$scope, UserService) {
 
 
         $scope.login = login;
@@ -22,6 +22,7 @@
                 if (response.success) {
                     $rootScope.admin = true;
                     AuthenticationService.SetCredentials($scope.account, response.data.auth_key);
+                    UserService.setAccessLevel('admin');
                     $state.go('admin.merchants');
                 } else {
 

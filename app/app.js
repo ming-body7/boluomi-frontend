@@ -2,7 +2,8 @@
 'use strict';
 
 angular
-  .module('myApp', ['ngFileUpload','ui.router','ui.bootstrap','ngAnimate','uiSwitch','ngCookies','as.sortable','baiduMap','monospaced.qrcode'])
+  .module('myApp', ['ngFileUpload','ui.router','ui.bootstrap','ngAnimate','uiSwitch',
+        'ngCookies','as.sortable','baiduMap','monospaced.qrcode', 'permission'])
   .config(config)
   .run(run);
 
@@ -34,18 +35,26 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
 
     });
 
-    $urlRouterProvider.otherwise("/index");
+    //$urlRouterProvider.otherwise("/index");
+    $urlRouterProvider.otherwise( function($injector) {
+        var $state = $injector.get("$state");
+        $state.go('index');
+    });
 
-  $stateProvider
+    $stateProvider
     .state('index', {
-      url: "/index",
-      views:{
+        url: "/index",
+        views:{
         'main':{
           templateUrl: "controllers/index/index.view.html",
           controller:"indexController"
         }
-      }
-      
+        },
+        data: {
+            permissions: {
+              except: []
+            }
+        }
     })
       .state('brand', {
           url: "/brand",
@@ -53,6 +62,11 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
               'main':{
                   templateUrl: "controllers/brand/brand.view.html",
                   controller:"brandController"
+              }
+          },
+          data: {
+              permissions: {
+                  except: []
               }
           }
 
@@ -64,7 +78,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
                   templateUrl: "controllers/audit/audit.view.html",
                   controller:"auditController"
               }
-          }
+          },
+            data: {
+                permissions: {
+                    except: []
+                }
+            }
 
       })
 
@@ -75,7 +94,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
           templateUrl: "controllers/login/login.view.html",
           controller:"loginController"
         }
-      }
+      },
+            data: {
+                permissions: {
+                    except: []
+                }
+            }
       
     })
     .state('register', {
@@ -85,7 +109,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
           templateUrl: "controllers/register/register.view.html",
           controller:"registerController",
         }
-      }
+      },
+            data: {
+                permissions: {
+                    except: []
+                }
+            }
       
     })
       .state('resetPassword', {
@@ -95,7 +124,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
             templateUrl: "controllers/password/resetpassword.view.html",
             controller:"resetPasswordController"
           }
-        }
+        },
+            data: {
+                permissions: {
+                    except: []
+                }
+            }
 
       })
       .state('resetAccount', {
@@ -105,7 +139,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
             templateUrl: "controllers/password/resetaccount.view.html",
             controller:"resetAccountController"
           }
-        }
+        },
+            data: {
+                permissions: {
+                    except: []
+                }
+            }
       })
 
     .state('main', {
@@ -119,7 +158,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
           templateUrl: "controllers/content/content.view.html",
           controller:"contentController"
         }
-      }
+      },
+            data: {
+                permissions: {
+                    only: ['user']
+                }
+            }
       
     })
 
@@ -134,7 +178,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
           templateUrl: "controllers/create_modified/create_modified.view.html",
           controller:"modifiedController"
         }
-      }
+      },
+            data: {
+                permissions: {
+                    only: ['user']
+                }
+            }
       
     })
     .state('main.modified', {
@@ -148,7 +197,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
           templateUrl: "controllers/create_modified/create_modified.view.html",
           controller:"modifiedController"
         }
-      }
+      },
+            data: {
+                permissions: {
+                    only: ['user']
+                }
+            }
       
     })
       .state('main.advertisement', {
@@ -162,7 +216,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
                   templateUrl: "controllers/advertisement/advertisement.view.html",
                   controller:"advertisementController"
               }
-          }
+          },
+            data: {
+                permissions: {
+                    only: ['user']
+                }
+            }
 
       })
     .state('main.information', {
@@ -176,7 +235,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
           templateUrl: "controllers/forms/information.view.html",
           controller:"informationController"
         }
-      }
+      },
+            data: {
+                permissions: {
+                    only: ['user']
+                }
+            }
       
     })
     .state('main.password', {
@@ -190,7 +254,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
           templateUrl: "controllers/password/updatepassword.view.html",
           controller:"updatePasswordController"
         }
-      }
+      },
+            data: {
+                permissions: {
+                    only: ['user']
+                }
+            }
       
     })
     .state('main.account', {
@@ -204,7 +273,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
             templateUrl: "controllers/password/resetaccount.view.html",
             controller:"resetAccountController"
         }
-      }
+      },
+            data: {
+                permissions: {
+                    only: ['user']
+                }
+            }
       
     })
       .state('admin', {
@@ -218,7 +292,13 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
                   templateUrl: "controllers/admin/merchants/merchants.view.html",
                   controller:"merchantsController"
               }
-          }
+          },
+            data: {
+                permissions: {
+                    only: ['admin'],
+                    redirectTo: 'admin_login'
+                }
+            }
       })
       .state('admin_login', {
           url: "/admin/login",
@@ -227,7 +307,13 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
                   templateUrl: "controllers/admin/login/login.view.html",
                   controller:"adminLoginController"
               }
-          }
+          },
+            data: {
+                permissions: {
+                    except: [],
+                    //redirectTo: 'admin_login'
+                }
+            }
       })
       .state('admin.merchants', {
           url: "/merchants",
@@ -240,7 +326,13 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
                   templateUrl: "controllers/admin/merchants/merchants.view.html",
                   controller:""
               }
-          }
+          },
+            data: {
+                permissions: {
+                    only: ['admin'],
+                    redirectTo: 'admin_login'
+                }
+            }
 
       })
       .state('admin.products', {
@@ -254,14 +346,20 @@ function config($stateProvider, $urlRouterProvider, $httpProvider){
                   templateUrl: "controllers/admin/products/products.view.html",
                   controller:""
               }
-          }
+          },
+            data: {
+                permissions: {
+                    only: ['admin'],
+                    redirectTo: 'admin_login'
+                }
+            }
 
       });
 }
 
-run.$inject = ['$rootScope', '$location', '$cookieStore', '$http','$state', 'DataService'];
+run.$inject = ['$rootScope', '$location', '$cookieStore', '$http','$state', 'DataService','Permission','UserService'];
 
-function run($rootScope, $location, $cookies, $http, $state, DataService) {
+function run($rootScope, $location, $cookies, $http, $state, DataService, Permission, UserService) {
 
         // keep user logged in after page refresh
 
@@ -306,6 +404,24 @@ function run($rootScope, $location, $cookies, $http, $state, DataService) {
 
         });
         */
+    //TODO: add getAccessLevel function in UserService;
+    Permission
+        .defineRole('user', function (stateParams) {
+            var accessLevel = UserService.getAccessLevel();
+            if(accessLevel == 'user'){
+                return true;
+            }else{
+                return false;
+            }
+        })
+        .defineRole('admin', function (stateParams) {
+            var accessLevel = UserService.getAccessLevel();
+            if(accessLevel == 'admin'){
+                return true;
+            }else{
+                return false;
+            }
+        });
     }
 
 })();

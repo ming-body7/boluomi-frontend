@@ -7,7 +7,7 @@ angular.module('myApp')
         $scope.list = {};
         var page = 0;
         var pageSize = 10;
-        $scope.deleteProduct = deleteProduct;
+        //$scope.GetProductList = GetProductList;
         DataService.GetProductList(page, pageSize, function(response){
             if (response.success) {
                 $scope.list = response.data.list;
