@@ -23,6 +23,8 @@
         service.GetMerchantInfo = GetMerchantInfo;
         service.EditMerchant = EditMerchant;
         service.DelProduct = DelProduct;
+
+        service.AdminGetMerchantList = AdminGetMerchantList;
         return service;
 
         function GetProductList(page, pageSize, callback){
@@ -268,6 +270,30 @@
 
             });
         }
+        function AdminGetMerchantList(page, pageSize, callback){
+            $http({
+                method: 'POST',
+                url: baseUrl+'/v1/manager/business/list',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: {page:page, pageSize:pageSize}
+
+            }).success(function (response) {
+                if(response.type == 2){
+                    callback({success: true, data: response.result});
+                }else{
+                    callback({success: false, data:"error"});
+                }
+
+            });
+        }
+
+
 
     }
 

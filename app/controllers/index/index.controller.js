@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('indexController', indexController);
 
-    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService'];
-    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService) {
+    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService','UserService'];
+    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService,UserService) {
 
         $rootScope.admin = false;
         $scope.login = login;
@@ -20,6 +20,7 @@
 
         function checkLoginStatus(){
             if($rootScope.globals.loggedIn == true){
+                UserService.setAccessLevel('user');
                 $state.go('main');
                 return true;
             }else{
@@ -29,6 +30,7 @@
         }
         function login() {
             if($rootScope.globals!=null && $rootScope.globals.loggedIn == true){
+                UserService.setAccessLevel('user');
                 $state.go('main');
             }else{
                 AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
@@ -62,6 +64,7 @@
                                 $state.go('main');
                                 break;
                         }; */
+                        UserService.setAccessLevel('user');
                         $state.go('main');
 
                     } else {
