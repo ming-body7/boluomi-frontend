@@ -2,16 +2,13 @@
     'use strict';
 	angular
         .module('myApp')
-        .controller('mainController', ['$scope','$rootScope',function($scope, $rootScope){
-            $scope.admin = $rootScope.admin;
-            //$scope.admin = true;
-            //$scope.user = $rootScope.User;
-            $scope.$watch(function() {
-                return $rootScope.admin;
-            }, function() {
-                //$scope.loggedIn = $rootScope.globals.loggedIn;
-                //$scope.user = $rootScope.globals.account;
-                $scope.user = $rootScope.admin;
+        .controller('mainController', ['$scope','$rootScope', 'UserService',function($scope, $rootScope, UserService){
+            $scope.permission = UserService.getAccessLevel();
+            $scope.$watch(function(){
+                return UserService.getAccessLevel();
+            }, function(newVal){
+                $scope.permission = newVal;
             }, true);
+
         }]);    
 })();

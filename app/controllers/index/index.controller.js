@@ -8,18 +8,18 @@
     indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService','UserService'];
     function indexController(AuthenticationService,$scope, $rootScope, $state, DataService,UserService) {
 
-        $rootScope.admin = false;
+
         $scope.login = login;
         $scope.checkLoginStatus = checkLoginStatus;
 
         (function initController() {
             //AuthenticationService.ClearCredentials();
-            //AuthenticationService.GetCredentials();
+            AuthenticationService.GetCredentials();
 
         })();
 
         function checkLoginStatus(){
-            if($rootScope.globals.loggedIn == true){
+            if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
                 UserService.setAccessLevel('user');
                 $state.go('main');
                 return true;
@@ -29,7 +29,7 @@
 
         }
         function login() {
-            if($rootScope.globals!=null && $rootScope.globals.loggedIn == true){
+            if($rootScope.globals!=null && $rootScope.globals.role != 'anonymous'){
                 UserService.setAccessLevel('user');
                 $state.go('main');
             }else{
@@ -39,12 +39,11 @@
                         DataService.GetMerchantInfo(function(response){
                             if(response.success){
                                 $rootScope.User = response.data.detail;
-                                //$state.go('main');
                             }else{
 
                             }
                         });
-                        AuthenticationService.SetCredentials($scope.account, response.data.auth_key, response.data.id);
+                        AuthenticationService.SetCredentials($scope.account, response.data.auth_key, response.data.id, 'user');
                         var status = response.data.status;
                         /*switch(status){
                             case 9: //信息未完成  去完善信息
@@ -64,6 +63,7 @@
                                 $state.go('main');
                                 break;
                         }; */
+
                         UserService.setAccessLevel('user');
                         $state.go('main');
 

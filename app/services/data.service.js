@@ -273,7 +273,8 @@
         function AdminGetMerchantList(page, pageSize, callback){
             $http({
                 method: 'POST',
-                url: baseUrl+'/v1/manager/business/list',
+                //url: baseUrl+'/v1/manager/business/list',
+                url: "http://www.boluomi1314.com:8082/manager/business/list",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 transformRequest: function(obj) {
                     var str = [];

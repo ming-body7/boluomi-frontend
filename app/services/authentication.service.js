@@ -142,18 +142,18 @@
         }
 
         function ClearCredentials() {
-            $rootScope.globals = {loggedIn: false, account:"null",
-                authKey:"null"};
+            $rootScope.globals = {role:'anonymous', account:"null",
+                authKey:"null", id:null};
 
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic ';
         }
 
-        function SetCredentials(account, authKey, id) {
+        function SetCredentials(account, authKey, id, role) {
 
  
             $rootScope.globals = {
-                loggedIn:true,
+                role:role,
                 account:account,
                 authKey:authKey,
                 id:id
@@ -165,7 +165,7 @@
 
 
         function GetCredentials(){
-            $rootScope.globals = $cookies.get('globals');
+            $rootScope.globals = JSON.parse($cookies.get('globals'));
         }
 
 

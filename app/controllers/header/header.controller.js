@@ -3,7 +3,7 @@
 
     angular
         .module('myApp')
-        .controller('headerController', ['$scope','$rootScope','AuthenticationService','$location',function($scope, $rootScope,AuthenticationService,$location){
+        .controller('headerController', ['$scope','$rootScope','AuthenticationService','$location', 'UserService',function($scope, $rootScope,AuthenticationService,$location, UserService){
 
             $scope.loggedIn = $rootScope.globals.loggedIn;
             //$scope.user = $rootScope.globals.account;
@@ -11,8 +11,6 @@
             $scope.$watch(function() {
                 return $rootScope.User;
             }, function() {
-                //$scope.loggedIn = $rootScope.globals.loggedIn;
-                //$scope.user = $rootScope.globals.account;
                 $scope.user = $rootScope.User;
             }, true);
 
@@ -23,6 +21,7 @@
                     if (response.success) {
                         AuthenticationService.ClearCredentials();
                         $location.path('/index');
+                        UserService.setAccessLevel('anonymous');
                     } else {
 
 

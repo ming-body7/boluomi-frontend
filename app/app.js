@@ -159,7 +159,8 @@
                 },
                 data: {
                     permissions: {
-                        only: ['user']
+                        only: ['user'],
+                        redirectTo: 'index'
                     }
                 }
 
@@ -179,7 +180,8 @@
                 },
                 data: {
                     permissions: {
-                        only: ['user']
+                        only: ['user'],
+                        redirectTo: 'index'
                     }
                 }
 
@@ -198,26 +200,8 @@
                 },
                 data: {
                     permissions: {
-                        only: ['user']
-                    }
-                }
-
-            })
-            .state('main.advertisement', {
-                url: "/ad",
-                views: {
-                    'main': {
-                        templateUrl: "controllers/main/main.view.html",
-                        controller: ""
-                    },
-                    'content@main': {
-                        templateUrl: "controllers/advertisement/advertisement.view.html",
-                        controller: "advertisementController"
-                    }
-                },
-                data: {
-                    permissions: {
-                        only: ['user']
+                        only: ['user'],
+                        redirectTo: 'index'
                     }
                 }
 
@@ -236,7 +220,8 @@
                 },
                 data: {
                     permissions: {
-                        except: []
+                        only: ['user'],
+                        redirectTo: 'index'
                     }
                 }
 
@@ -255,7 +240,8 @@
                 },
                 data: {
                     permissions: {
-                        only: ['user']
+                        only: ['user'],
+                        redirectTo: 'index'
                     }
                 }
 
@@ -274,26 +260,24 @@
                 },
                 data: {
                     permissions: {
-                        only: ['user']
+                        only: ['user'],
+                        redirectTo: 'index'
                     }
                 }
 
             })
-            .state('main.preview', {
+            .state('preview', {
                 url: "/preview",
                 views: {
                     'main': {
-                        templateUrl: "controllers/main/main.view.html",
-                        controller: ""
-                    },
-                    'content@main': {
                         templateUrl: "controllers/preview/preview.view.html",
                         controller: ""
                     }
                 },
                 data: {
                     permissions: {
-                        except: []
+                        only: ['user'],
+                        redirectTo: 'index'
                     }
                 }
 
@@ -327,8 +311,7 @@
                 },
                 data: {
                     permissions: {
-                        except: [],
-                        //redirectTo: 'admin_login'
+                        except: []
                     }
                 }
             })
@@ -378,11 +361,6 @@
 
     function run($rootScope, $location, $cookies, $http, $state, DataService, Permission, UserService) {
 
-        // keep user logged in after page refresh
-
-
-        $rootScope.admin = false;
-
         $rootScope.globals = $cookies.get('globals') || {};
         //$rootScope.globals.loggedIn = true;
         /*
@@ -419,8 +397,15 @@
 
          });
          */
-        //TODO: add getAccessLevel function in UserService;
         Permission
+            .defineRole('user', function (stateParams) {
+                var accessLevel = UserService.getAccessLevel();
+                if (accessLevel == 'anonymous') {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
             .defineRole('user', function (stateParams) {
                 var accessLevel = UserService.getAccessLevel();
                 if (accessLevel == 'user') {

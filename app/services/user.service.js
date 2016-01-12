@@ -13,7 +13,13 @@
 
 
         var service = {};
-        service.accessLevel = '';
+
+        /***
+         *
+         * @accessLevel 3 roles {anonymous, user, admin}
+         * role based routing and layout
+         */
+        service.accessLevel = 'anonymous';
         service.Create = Create;
         service.getAccessLevel = getAccessLevel;
         service.setAccessLevel = setAccessLevel;
@@ -47,7 +53,6 @@
         }
         function setAccessLevel(accessLevel){
             service.accessLevel = accessLevel;
-            $rootScope.admin = true;
         }
 
     }

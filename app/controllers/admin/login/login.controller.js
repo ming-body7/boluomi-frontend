@@ -20,9 +20,11 @@
             $scope.dataLoading = true;
             AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                 if (response.success) {
-                    $rootScope.admin = true;
+
                     AuthenticationService.SetCredentials($scope.account, response.data.auth_key);
+
                     UserService.setAccessLevel('admin');
+
                     $state.go('admin.merchants');
                 } else {
 

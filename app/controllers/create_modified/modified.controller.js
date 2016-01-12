@@ -2,7 +2,8 @@
  * Created by body7 on 10/21/15.
  */
 angular.module('myApp')
-    .controller('modifiedController', ['$rootScope','$timeout','Upload','$scope','$state', '$stateParams','DataService',function($rootScope, $timeout, Upload, $scope, $state, $stateParams, DataService){
+    .controller('modifiedController', ['$rootScope','$timeout','Upload','$scope','$state', '$stateParams','DataService', '$modal', '$log',
+        function($rootScope, $timeout, Upload, $scope, $state, $stateParams, DataService, $modal, $log){
 
 
         $scope.sortableOptions = {
@@ -259,4 +260,54 @@ angular.module('myApp')
         };
 
 
+
+
+        //modal related code
+        /*$scope.items = ['item1', 'item2', 'item3'];
+
+        $scope.animationsEnabled = true;
+
+        $scope.open = function (size) {
+
+            var modalInstance = $modal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'myModalContent.html',
+                controller: 'ModalInstanceCtrl',
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
+        $scope.toggleAnimation = function () {
+            $scope.animationsEnabled = !$scope.animationsEnabled;
+        };  */
+
     }]);
+
+/*
+angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items[0]
+    };
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+    */
