@@ -276,7 +276,7 @@
                 },
                 data: {
                     permissions: {
-                        only: ['user'],
+                        only: ['user', 'admin'],
                         redirectTo: 'index'
                     }
                 }

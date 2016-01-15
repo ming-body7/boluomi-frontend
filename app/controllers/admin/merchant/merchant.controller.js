@@ -7,8 +7,9 @@
     'use strict';
     angular
         .module('myApp')
-        .controller('merchantController', ['$scope', '$rootScope', 'Upload', '$timeout', 'DataService', '$window','GeoCoderService',
-            function($scope, $rootScope, Upload, $timeout, DataService, $window, GeoCoderService){
+        .controller('merchantController', ['$scope', '$rootScope', 'Upload', '$timeout', 'DataService', '$window','$stateParams',
+'GeoCoderService',
+            function($scope, $rootScope, Upload, $timeout, DataService, $window, $stateParams,GeoCoderService){
 
 
                 var App = $rootScope.App;

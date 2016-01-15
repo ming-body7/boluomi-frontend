@@ -16,7 +16,7 @@ angular.module('myApp')
 
 
 
-        DataService.GetProductList(page, pageSize, function(response){
+        DataService.AdminGetProductList(page, pageSize, function(response){
             if (response.success) {
                 $scope.list = response.data.list;
             }

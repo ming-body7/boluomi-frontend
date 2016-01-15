@@ -13,7 +13,7 @@
 
         var App = window.App;
         var baseUrl = App.baseUrl;
-        var adminBaseUrl = "";
+        var adminBaseUrl = "http://www.boluomi1314.com:8082";
 
 
         var service = {};
