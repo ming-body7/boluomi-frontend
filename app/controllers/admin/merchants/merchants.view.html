@@ -2,13 +2,22 @@
 
     <table class="table">
         <thead>
-        商户管理
+        <td>ID</td>
+        <td>LOGO</td>
+        <td>商家名称</td>
+        <td>营业执照</td>
+        <td>浏览</td>
+        <td>分享</td>
+        <td>电话</td>
+        <td>创建日期</td>
+        <td>状态</td>
+        <td>操作</td>
         </thead>
         <tbody>
         <tr ng-repeat="x in list">
             <td>{{x.id}}</td>
-            <td ui-sref="admin.view({id: x.id})">
-                <img ng-src="{{x.}}" alt="Logo" />
+            <td ui-sref="admin.merchant({merchant_id: x.id})">
+                <img ng-src="{{x.logo}}" alt="Logo" />
             </td>
             <td>{{x.name}}</td>
             <td>{{x.licence}}</td>
@@ -17,14 +26,10 @@
             <td>分享:{{x.share_num}}</td>
 
             <td>{{x.phone}}</td>
-            <td>{{x.description}}</td>
             <td>创建时间：{{x.created_at}}</td>
-            <td>{{x.status}}</td>
+            <td>{{statusList[x.status]}}</td>
 
-
-            <td><button class="btn" type="button" ng-click="deleteProduct(x)">Delete</button></td>
-        </tr>
-
+            <td><button class="btn" type="button" ng-click="functionList[x.status](x.id)">{{methodList[x.status]}}</button></td>
         </tr>
         </tbody>
     </table>

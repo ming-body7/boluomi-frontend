@@ -165,7 +165,13 @@
 
 
         function GetCredentials(){
-            $rootScope.globals = JSON.parse($cookies.get('globals'));
+            var globals = $cookies.get('globals');
+            if(globals != null){
+                $rootScope.globals = JSON.parse(globals);
+            }else{
+                $rootScope.globals = null;
+            }
+
         }
 
 

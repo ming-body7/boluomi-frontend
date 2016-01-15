@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 
 <html ng-app="myApp">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>菠萝蜜官网</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>菠萝蜜官网</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet/less" type="text/css" href="css/main.less">
-    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet/less" type="text/css" href="css/base.less">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/base_info.css">
     <link rel="stylesheet" href="css/manage_brand.css">
     <link rel="stylesheet" href="css/new_brand.css">
     <link rel="stylesheet" href="css/change_account.css">
-
-
-
 
 
     <link rel="stylesheet" href="bower_components/angular-ui-switch/angular-ui-switch.min.css"/>
@@ -36,72 +37,73 @@
 
 </head>
 
-      <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-      <script src="bower_components/angular-animate/angular-animate.js"></script>
-      <script src="bower_components/angular-ui-switch/angular-ui-switch.min.js"></script>
-      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/ng-file-upload/ng-file-upload-all.js"></script>
-      <script src="bower_components/BaiduMapForAngularJS/baiduMap.js"></script>
-      <script type="text/javascript" src="bower_components/ng-sortable/dist/ng-sortable.min.js"></script>
-      <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
-      <script src="bower_components/qrcode-generator/js/qrcode_UTF8.js"></script>
-      <script src="bower_components/angular-qrcode/angular-qrcode.js"></script>
-      <script src="bower_components/angular-permission/dist/angular-permission.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-ui-switch/angular-ui-switch.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload-all.js"></script>
+<script src="bower_components/BaiduMapForAngularJS/baiduMap.js"></script>
+<script type="text/javascript" src="bower_components/ng-sortable/dist/ng-sortable.min.js"></script>
+<script src="bower_components/qrcode-generator/js/qrcode.js"></script>
+<script src="bower_components/qrcode-generator/js/qrcode_UTF8.js"></script>
+<script src="bower_components/angular-qrcode/angular-qrcode.js"></script>
+<script src="bower_components/angular-permission/dist/angular-permission.js"></script>
 
 
-      <link rel="stylesheet" type="text/css" href="bower_components/ng-sortable/dist/ng-sortable.min.css">
+<link rel="stylesheet" type="text/css" href="bower_components/ng-sortable/dist/ng-sortable.min.css">
 
 
-      <script src="config.js"></script>
-      <script src="app.js"></script>
-      <script src="controllers/app/app.controller.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="controllers/app/app.controller.js"></script>
 
 
-      <script src="services/authentication.service.js"></script>
-      <script src="services/flash.service.js"></script>
-      <script src="services/data.service.js"></script>
-      <script src="services/user.service.js"></script>
-      <script src="services/geocoder.service.js"></script>
+<script src="services/authentication.service.js"></script>
+<script src="services/flash.service.js"></script>
+<script src="services/data.service.js"></script>
+<script src="services/user.service.js"></script>
+<script src="services/geocoder.service.js"></script>
 
-      <script src="components/version/version.js"></script>
-      <script src="components/version/version-directive.js"></script>
-      <script src="components/version/interpolate-filter.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
 
-      <script src="controllers/header/header.controller.js"></script>
-      <script src="controllers/index/index.controller.js"></script>
-      <script src="controllers/login/login.controller.js"></script>
-      <script src="controllers/register/register.controller.js"></script>
-      <script src="controllers/content/content.controller.js"></script>
-      <script src="controllers/sidebar/sidebar.controller.js"></script>
-      <script src="controllers/create_modified/create.controller.js"></script>
-      <script src="controllers/create_modified/modified.controller.js"></script>
-      <script src="controllers/brand/brand.controller.js"></script>
-      <script src="controllers/audit/audit.controller.js"></script>
-      <script src="controllers/main/main.controller.js"></script>
-      <script src="controllers/hot/hot.controller.js"></script>
-      <script src="controllers/password/resetPassword.controller.js"></script>
-      <script src="controllers/password/resetAccount.controller.js"></script>
-      <script src="controllers/password/updatePassword.controller.js"></script>
-      <script src="controllers/admin/login/login.controller.js"></script>
-      <script src="controllers/admin/merchants/merchants.controller.js"></script>
-      <script src="controllers/admin/products/products.controller.js"></script>
-      <script src="controllers/forms/information.controller.js"></script>
-      <script src="controllers/advertisement/advertisement.controller.js"></script>
+<script src="controllers/header/header.controller.js"></script>
+<script src="controllers/index/index.controller.js"></script>
+<script src="controllers/login/login.controller.js"></script>
+<script src="controllers/register/register.controller.js"></script>
+<script src="controllers/content/content.controller.js"></script>
+<script src="controllers/sidebar/sidebar.controller.js"></script>
+<script src="controllers/create_modified/create.controller.js"></script>
+<script src="controllers/create_modified/modified.controller.js"></script>
+<script src="controllers/brand/brand.controller.js"></script>
+<script src="controllers/audit/audit.controller.js"></script>
+<script src="controllers/main/main.controller.js"></script>
+<script src="controllers/hot/hot.controller.js"></script>
+<script src="controllers/password/resetPassword.controller.js"></script>
+<script src="controllers/password/resetAccount.controller.js"></script>
+<script src="controllers/password/updatePassword.controller.js"></script>
+<script src="controllers/forms/information.controller.js"></script>
+<script src="controllers/advertisement/advertisement.controller.js"></script>
+<script src="controllers/admin/login/login.controller.js"></script>
+<script src="controllers/admin/merchants/merchants.controller.js"></script>
+<script src="controllers/admin/products/products.controller.js"></script>
+<script src="controllers/admin/product/product.controller.js"></script>
+<script src="controllers/admin/merchant/merchant.controller.js"></script>
 
-
-    <body>
-      <!--[if lt IE 7]>
-          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]-->
-
-
-
-        <div ng-controller="appController">
-            <div ui-view='main'></div>
-        </div>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
 
 
-    </body>
+<div ng-controller="appController">
+    <div ui-view='main'></div>
+</div>
+
+
+</body>
 </html>

@@ -5,8 +5,14 @@
         .module('myApp')
         .controller('headerController', ['$scope','$rootScope','AuthenticationService','$location', 'UserService',function($scope, $rootScope,AuthenticationService,$location, UserService){
 
-            $scope.loggedIn = $rootScope.globals.loggedIn;
-            //$scope.user = $rootScope.globals.account;
+            $scope.permission = UserService.getAccessLevel();
+            $scope.$watch(function(){
+                return UserService.getAccessLevel();
+            }, function(newVal){
+                $scope.permission = newVal;
+            }, true);
+
+
             $scope.user = $rootScope.User;
             $scope.$watch(function() {
                 return $rootScope.User;

@@ -2,7 +2,7 @@
 <div>
     <div class="base_info">
         <div class="curmb">
-            <a href="">设置</a> > <a href="">基本信息</a>
+            <a ui-sref="admin.merchants">商家管理</a> > <a href="">{{merchant.name}}</a>
         </div>
         <!--<div class="page_tips">
             <i></i>本页为必填页
@@ -11,12 +11,31 @@
         <ul>
             <li class="row">
                 <div class="col-md-2">
+                    <span class="key">商家状态：</span>
+                </div>
+                <div class="col-md-10">
+                    <p>{{statusList[merchant.status]}}</p>
+                </div>
+            </li>
+            <li class="row">
+                <div class="col-md-2">
+                    <span class="key">商家账号：</span>
+                </div>
+                <div class="col-md-10">
+                    <p>{{merchant.id}}</p>
+                </div>
+            </li>
+
+            <!-- 密码？ -->
+            <li class="row">
+                <div class="col-md-2">
                     <span class="key">商家名称：</span>
                 </div>
                 <div class="col-md-10">
-                    <input ng-model="merchant.name" id="brand_name" class="ipt" type="text">
+                    <input ng-model="merchant.name" id="name" class="ipt" type="text">
                 </div>
             </li>
+
             <li class="row">
                 <div class="col-md-2">
                     <span class="key">联系方式：</span>
@@ -25,14 +44,7 @@
                     <input ng-model="merchant.phone" id="contact_phone" class="ipt" type="text" maxlength="11">
                 </div>
             </li>
-            <li class="row">
-                <div class="col-md-2">
-                    <span class="key">默认网址：</span>
-                </div>
-                <div class="col-md-10">
-                    <input ng-model="merchant.webPage" id="web_page" class="ipt" type="text">
-                </div>
-            </li>
+
             <li class="row">
                 <div class="col-md-2">
                     <span class="key">商家LOGO：</span>
@@ -153,6 +165,7 @@
             </li>
         </ul>
         <a class="save_btn" ng-click="saveBrandInfo()">保存</a>
+        <a class="save_btn" ng-click="functionList[merchant.status]">{{methodList[merchant.status]}}</a>
     </div>
 
 </div>

@@ -324,7 +324,27 @@
                     },
                     'content@admin': {
                         templateUrl: "controllers/admin/merchants/merchants.view.html",
-                        controller: ""
+                        controller: "merchantsController"
+                    }
+                },
+                data: {
+                    permissions: {
+                        only: ['admin'],
+                        redirectTo: 'admin_login'
+                    }
+                }
+
+            })
+            .state('admin.merchant', {
+                url: "/merchant/{merchant_id}",
+                views: {
+                    'main': {
+                        templateUrl: "controllers/main/main.view.html",
+                        controller: "mainController"
+                    },
+                    'content@admin': {
+                        templateUrl: "controllers/admin/merchant/merchant.view.html",
+                        controller: "merchantController"
                     }
                 },
                 data: {
@@ -344,7 +364,27 @@
                     },
                     'content@admin': {
                         templateUrl: "controllers/admin/products/products.view.html",
-                        controller: ""
+                        controller: "productsController"
+                    }
+                },
+                data: {
+                    permissions: {
+                        only: ['admin'],
+                        redirectTo: 'admin_login'
+                    }
+                }
+
+            })
+            .state('admin.product', {
+                url: "/product/{product_id}",
+                views: {
+                    'main': {
+                        templateUrl: "controllers/main/main.view.html",
+                        controller: "mainController"
+                    },
+                    'content@admin': {
+                        templateUrl: "controllers/admin/product/product.view.html",
+                        controller: "productController"
                     }
                 },
                 data: {
@@ -362,41 +402,13 @@
     function run($rootScope, $location, $cookies, $http, $state, DataService, Permission, UserService) {
 
         $rootScope.globals = $cookies.get('globals') || {};
-        //$rootScope.globals.loggedIn = true;
-        /*
-         if ($rootScope.globals.currentUser) {
-         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-         }
+
 
 
          $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-         // redirect to login page if not logged in and trying to access a restricted page
-         var admin = $rootScope.admin;
-         if(!admin){
-         if(toState.name === 'admin'){
-         event.preventDefault();
-         $state.go('admin_login');
-         }else{
-         var restrictedState = (["index","login", "register","resetpassword"].indexOf(toState.name) === -1);
-         var loggedIn = $rootScope.globals.loggedIn;
-         if (restrictedState && !loggedIn) {
-         $state.go('index');
-         }
-         }
-         }else{
-         var restrictedState = (["admin", "admin.merchants","admin.products"].indexOf(toState.name) === -1);
-
-         if (restrictedState) {
-         $state.go('admin');
-         }
-         }
-
-         if(fromState.name == 'create' || fromState.name == 'modified'){
-         //confirmation dialog
-         }
-
+            var x = 1;
          });
-         */
+
         Permission
             .defineRole('user', function (stateParams) {
                 var accessLevel = UserService.getAccessLevel();
