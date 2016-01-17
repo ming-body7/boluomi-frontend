@@ -50,7 +50,7 @@ $(function(){
 			}
 		};
 
-		def.resolve(d);
+		//def.resolve(d);
 
 		//后台返回h5数据
 		def.done(function(d){

@@ -1,20 +1,39 @@
 $(function(){
 	var viewScale = $(window).width()/$(window).height();
 	var def = $.Deferred();
+
+
+	var getUrlParameter = function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+			sURLVariables = sPageURL.split('&'),
+			sParameterName,
+			i;
+
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	};
+
+	var pid = getUrlParameter('pid');
+
 	//h5首页数据接口
-	// $.ajax({
-		// 	url : 'http://182.92.194.42:8083/info/data/view',
-		// 	type : 'POST',
-		// 	dataType : 'json',
-		// 	data : {pid : 19},
-		// 	success : function(data){
-		// 		console.log(data)
-		// 		def.resolve(data);
-		// 	},
-		// 	error : function(data){
-		// 		def.reject(data);
-		// 	}
-	// })
+	 $.ajax({
+		 	url : 'http://www.boluomi1314.com:8083/info/data/view',
+		 	type : 'GET',
+		 	dataType : 'json',
+		 	data : {pid : pid},
+		 	success : function(data){
+				console.log(data)
+				def.resolve(data);
+		 	},
+		 	error : function(data){
+		 		def.reject(data);
+		 	}
+	 });
 	var d = {
 			result : {
 				serImg : [{
@@ -40,7 +59,7 @@ $(function(){
 			}
 		};
 
-		def.resolve(d);
+		//def.resolve(d);
 
 	
 
