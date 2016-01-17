@@ -18,6 +18,7 @@ angular.module('myApp')
 
 
         var pid = $stateParams.pid;
+        $scope.pid = pid;
 
         $scope.options = [{
             name: '上下切换',

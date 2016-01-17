@@ -267,11 +267,11 @@
 
             })
             .state('preview', {
-                url: "/preview",
+                url: "/preview/{pid}",
                 views: {
                     'main': {
                         templateUrl: "controllers/preview/preview.view.html",
-                        controller: ""
+                        controller: "previewController"
                     }
                 },
                 data: {

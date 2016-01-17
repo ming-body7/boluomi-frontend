@@ -447,7 +447,7 @@
 
         function AdminGetMerchantList(page, pageSize, callback){
             $http({
-                method: 'POST',
+                method: 'GET',
                 url: adminBaseUrl+"/manager/business/list",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 transformRequest: function(obj) {

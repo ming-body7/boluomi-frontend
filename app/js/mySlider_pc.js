@@ -3,20 +3,27 @@ $(function(){
 	var viewScale = page_wrap.width()/page_wrap.height();
 	var def = $.Deferred();
 
+	function getPreviewProductIdFromAngular(){
+		return angular.element(document.getElementById('web_share')).scope().getPreviewProductId();
+	}
 	//h5首页数据接口
-	// $.ajax({
-		// 	url : 'http://182.92.194.42:8083/info/data/view',
-		// 	type : 'POST',
-		// 	dataType : 'json',
-		// 	data : {pid : 19},
-		// 	success : function(data){
-		// 		console.log(data)
-		// 		def.resolve(data);
-		// 	},
-		// 	error : function(data){
-		// 		def.reject(data);
-		// 	}
-	// })
+
+	var pid = getPreviewProductIdFromAngular();
+
+
+	 $.ajax({
+		 	url : 'http://www.boluomi1314.com:8083/info/data/view',
+		 	type : 'GET',
+		 	dataType : 'json',
+		 	data : {pid : pid},
+		 	success : function(data){
+		 		console.log(data)
+		 		def.resolve(data);
+		 	},
+		 	error : function(data){
+		 		def.reject(data);
+		 	}
+	 });
 
 	var d = {
 			result : {
