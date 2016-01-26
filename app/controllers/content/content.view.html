@@ -11,10 +11,16 @@
 			</li>
 
 			<li class="item" ng-repeat="x in list">
-				<div class="img_box">
-					<img class="banner_pic" ng-src="{{x.banner_pic}}" alt="pic">
-					<p>{{transferTime(x.updated_at)}}</p>
+				<div class="pic">
+					<div class="img_box">
+						<img class="banner_pic" ng-src="{{x.banner_pic}}" alt="pic">
+						<p>{{transferTime(x.updated_at)}}</p>
+					</div>
+					<div class="qr_code">
+						<qrcode class="qr_img" version="{{4}}" error-correction-level="{{M}}" size="{{240}}" data="{{getQRUrl(x)}}" href="{{getQRUrl(x)}}"></qrcode>
+					</div>
 				</div>
+
 				<h4>{{x.title}}</h4>
 				<div class="pic_status">
 					<span>浏览</span>
@@ -26,9 +32,7 @@
 					<a class="edit" ui-sref="main.modified({pid: x.id})">编辑</a>
 					<a class="delete" ng-click="deleteProduct(x)">删除</a>
 				</div>
-				<div class="qr_code">
-					<qrcode class="qr_img" version="{{4}}" error-correction-level="{{M}}" size="{{274}}" data="{{getQRUrl(x)}}" download></qrcode>
-				</div>
+
 			</li>
 		</ul>
 		<nav class="mana_page">
@@ -55,24 +59,44 @@
 		background-color: #fe325f;
 		border-color: #fe325f;
 	}
+	.edit_zone  .item  a{
+		margin:0 0 0 0px;
+		text-indent:0px;
+	}
+
 	.banner_pic{
 		width:100%;
 		height:100%;
 	}
-	.item > .qr_code{
+	.pic{
+		width:240px;
+		height:240px;
+	}
+	.pic > .qr_code{
 		display:none;
 	}
-	.item:hover > .qr_code{
+	.pic > .img_box{
+
+		display:block;
+		position:relative;
+	}
+	.pic:hover >.qr_code{
+		display:block;
+	}
+	.pic:hover > .img_box{
+		display:none;
+	}
+	/*.item:hover > .qr_code{
 		display:block;
 		position:absolute;
 		top:50%;
 		left:50%;
-		margin-top:-50px; /* this is half the height of your div*/
-		margin-left:-100px; /*this is half of width of your div*/
+		margin-top:-50px;
+		margin-left:-100px;
 		z-index: 2147483647;
-	}
+	}*/
 	.qr_img{
-		width:100px;
-		height:100px;
+		width:100%;
+		height:100%;
 	}
 </style>
