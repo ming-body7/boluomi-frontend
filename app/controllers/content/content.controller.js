@@ -9,7 +9,7 @@ angular.module('myApp')
 		var page = 0;
 		var pageSize = 10;
 
-		$scope.demo_base_url = "www.boluomi1314.com/demo/?pid=";
+		$scope.demo_base_url = "http://www.boluomi1314.com/demo/?pid=";
 		$scope.deleteProduct = deleteProduct;
 		$scope.goPage = goPage;
 		$scope.transferTime = transferTime;
