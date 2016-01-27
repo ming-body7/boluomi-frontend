@@ -106,9 +106,15 @@ angular.module('myApp')
                 music.upload.then(function (response) {
                     $timeout(function () {
                         //file.result = response.data;
-                        $scope.product.music = uploadFolder+response.data.url;
-                        $scope.musicButton = "更改";
-                        $scope.musicName = music.name;
+                        if(response.data.error == 1){
+                            alert("上传失败，"+response.data.message);
+                        }else{
+                            $scope.product.music = uploadFolder+response.data.url;
+                            $scope.musicButton = "更改";
+                            $scope.musicName = music.name;
+                            alert("上传成功");
+                        }
+
                     });
                 }, function (response) {
                     //$scope.product.banner_pic = baseUrl+response.data.url;
