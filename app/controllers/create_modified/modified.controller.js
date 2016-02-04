@@ -84,7 +84,7 @@ angular.module('myApp')
         }
         function initProduct(){
             $scope.product.title = "";
-            $scope.product.banner_pic = "images/create/default-cover.png";
+            $scope.product.banner_pic = "img/default-cover.png";
             $scope.product.description = "";
             $scope.product.is_brand = 0;
             $scope.product.is_home = 0;

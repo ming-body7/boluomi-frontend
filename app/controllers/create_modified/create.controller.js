@@ -5,7 +5,7 @@
         var product = {};
 
         product.title = "你是我一生的守候";
-        product.banner_pic = "images/create/default-cover.png";
+        product.banner_pic = "img/default-cover.png";
         product.description = "赵奋斗&李美丽";
         product.is_brand = 0;
         product.is_home = 0;

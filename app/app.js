@@ -119,7 +119,7 @@
                 url: "/resetpassword",
                 views: {
                     'main': {
-                        templateUrl: "controllers/password/resetpassword.view.html",
+                        templateUrl: "controllers/reset_password/resetpassword.view.html",
                         controller: "resetPasswordController"
                     }
                 },
@@ -134,7 +134,7 @@
                 url: "/resetaccount",
                 views: {
                     'main': {
-                        templateUrl: "controllers/password/resetaccount.view.html",
+                        templateUrl: "controllers/reset_account/resetaccount.view.html",
                         controller: "resetAccountController"
                     }
                 },
@@ -234,7 +234,7 @@
                         controller: "mainController"
                     },
                     'content@main': {
-                        templateUrl: "controllers/password/updatepassword.view.html",
+                        templateUrl: "controllers/update_password/updatepassword.view.html",
                         controller: "updatePasswordController"
                     }
                 },
@@ -254,7 +254,7 @@
                         controller: ""
                     },
                     'content@main': {
-                        templateUrl: "controllers/password/resetaccount.view.html",
+                        templateUrl: "controllers/reset_account/resetaccount.view.html",
                         controller: "resetAccountController"
                     }
                 },
@@ -397,9 +397,9 @@
             });
     }
 
-    run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', '$state', 'DataService', 'Permission', 'UserService'];
+    run.$inject = ['$rootScope', '$cookieStore', 'Permission', 'UserService'];
 
-    function run($rootScope, $location, $cookies, $http, $state, DataService, Permission, UserService) {
+    function run($rootScope, $cookies, Permission, UserService) {
 
         $rootScope.globals = $cookies.get('globals') || {};
 
