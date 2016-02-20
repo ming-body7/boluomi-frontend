@@ -22,7 +22,7 @@
         </div>
         <div class="infoR code-zone">
             <input  ng-model="user.code" class="ipt" placeholder="验证码" type="text" data-empty="请填写验证码~" data-error="验证码有误~">
-            <span id="get_code" class="get-code">获取验证码</span>
+            <span id="get_code" class="get-code">{{default.passcodeText}}</span>
             <div class="error"></div>
         </div>
     </li>
@@ -32,7 +32,7 @@
             <span>设置密码：</span>
         </div>
         <div class="infoR">
-            <input ng-model="user.password" class="ipt" placeholder="密码" type="text"  data-empty="请填写密码~" data-error="两次密码不一样~">
+            <input ng-model="user.password" class="ipt" placeholder="密码（6-20位字母或数字" type="text"  data-empty="请填写密码~" data-error="两次密码不一样~">
             <div class="error"></div>
         </div>
     </li>
@@ -42,7 +42,7 @@
             <span>确认密码：</span>
         </div>
         <div class="infoR">
-            <input ng-model="user.rePassword" class="ipt" placeholder="确认密码" type="text" data-empty="请填写确认密码~" data-error="两次密码不一样~">
+            <input ng-model="user.rePassword" class="ipt" placeholder="确认密码(6-20位字母或数字）" type="text" data-empty="请填写确认密码~" data-error="两次密码不一样~">
             <div class="error"></div>
         </div>
     </li>

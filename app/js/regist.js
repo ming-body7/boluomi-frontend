@@ -63,20 +63,25 @@ var myEvent = {
 var handler = {
 	get_codeClick : function(){
 		var _this = $(this);
-		var second = 60;
-		if(util.code_on_off){
-			util.code_on_off = false;
-			_this.html('60秒')
-			var timer = setInterval(function(){
-				_this.html( --second+'秒')
-				if(second == 0){
-					clearInterval(timer);
-					_this.html('获取验证码');
-					util.code_on_off = true;
-				}
-			},1000)
+		var ipts = _this.siblings('.ipt-zone').find('.ipt');
+
+		//获取数据
+		var phone = ipts.eq(0).val();
+		var code = ipts.eq(1).val();
+		var password = ipts.eq(2).val();
+		var confirmpassword = ipts.eq(3).val();
+
+		//校验手机号
+		if(G.isEmpty( phone ) ){
+			alert('手机号不能为空');
+			return false;
 		}
-		//TODO调接口 获取验证码
+		if(!G.isMobile(phone)){
+			alert('手机号有误');
+			return false;
+		}
+
+		angular.element('#registerForm').scope().getPasscode();
 	},
 	ipt_sFocus : function(){
 

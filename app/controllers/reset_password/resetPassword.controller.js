@@ -26,7 +26,7 @@
                     $scope.dataLoading = false;
                 }
             });
-        };
+        }
     }
 
 })();
