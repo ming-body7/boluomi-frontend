@@ -3,22 +3,13 @@
  */
 (function(){
     'use strict';
-    angular.module('myApp.admin', [])
+    angular.module('myApp.admin', ['ui.router'])
         .config(config)
         .run(run);
 
-    config.$inject = [];
+    config.$inject = ["$stateProvider", "$urlRouterProvider"];
 
-    function config() {
-
-        var App;
-        App = angular.copy(Config);
-        window.App = App;
-
-
-        $httpProvider.defaults.withCredentials = true;
-
-
+    function config($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.rule(function ($injector, $location) {
 
             var path = $location.path();
@@ -39,39 +30,6 @@
         });
 
         $stateProvider
-            .state('admin', {
-                url: "/admin",
-                views: {
-                    'main': {
-                        templateUrl: "controllers/main/main.view.html",
-                        controller: "mainController"
-                    },
-                    'content@admin': {
-                        templateUrl: "controllers/admin/merchants/merchants.view.html",
-                        controller: "merchantsController"
-                    }
-                },
-                data: {
-                    permissions: {
-                        only: ['admin'],
-                        redirectTo: 'admin_login'
-                    }
-                }
-            })
-            .state('admin_login', {
-                url: "/admin/login",
-                views: {
-                    'main': {
-                        templateUrl: "controllers/admin/login/login.view.html",
-                        controller: "adminLoginController"
-                    }
-                },
-                data: {
-                    permissions: {
-                        except: []
-                    }
-                }
-            })
             .state('admin.merchants', {
                 url: "/merchants",
                 views: {
@@ -154,42 +112,8 @@
             });
     }
 
-    run.$inject = ['$rootScope', '$cookieStore', 'Permission', 'UserService'];
+    run.$inject = [];
 
-    function run($rootScope, $cookies, Permission, UserService) {
-
-        $rootScope.globals = $cookies.get('globals') || {};
-
-
-
-        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-            var x = 1;
-        });
-
-        Permission
-            .defineRole('user', function (stateParams) {
-                var accessLevel = UserService.getAccessLevel();
-                if (accessLevel == 'anonymous') {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-            .defineRole('user', function (stateParams) {
-                var accessLevel = UserService.getAccessLevel();
-                if (accessLevel == 'user') {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-            .defineRole('admin', function (stateParams) {
-                var accessLevel = UserService.getAccessLevel();
-                if (accessLevel == 'admin') {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+    function run() {
     }
 })();

@@ -2,7 +2,7 @@
     'use strict';
 	angular
         .module('myApp')
-        .controller('mainController', ['$scope','$rootScope', 'UserService',function($scope, $rootScope, UserService){
+        .controller('mainController', ['$scope','$rootScope', '$state', 'UserService',function($scope, $rootScope,$state, UserService){
             $scope.permission = UserService.getAccessLevel();
             $scope.$watch(function(){
                 return UserService.getAccessLevel();

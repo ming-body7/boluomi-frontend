@@ -1,0 +1,30 @@
+<div>
+
+    <div class="header" ng-include="'controllers/header/header.view.html'"></div>
+
+    <div class="mana_main">
+        <div class="container">
+            <div class="row">
+                <div>
+
+                    <ul class="nav nav-list">
+
+                        <li><a ui-sref="admin.merchants">商家管理</a></li>
+                        <li><a ui-sref="admin.products">作品管理</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-9 col_cont">
+                    <div ui-view></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div ng-include="'views/footer.view.html'"></div>
+    </div>
+
+
+</div>

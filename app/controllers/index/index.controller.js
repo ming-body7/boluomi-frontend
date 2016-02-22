@@ -26,7 +26,7 @@
         function checkLoginStatus(){
             if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
                 UserService.setAccessLevel('user');
-                $state.go('main');
+                $state.go('main.content');
                 return true;
             }else{
                 return false;
@@ -36,7 +36,7 @@
         function login() {
             if($rootScope.globals!=null && $rootScope.globals.role != 'anonymous'){
                 UserService.setAccessLevel('user');
-                $state.go('main');
+                $state.go('main.content');
             }else{
                 AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                     if (response.success) {
@@ -65,12 +65,12 @@
                             case 1: //已通过
                                 //TODO登录成功的跳转页面待定
                                 //alert('登录成功');
-                                $state.go('main');
+                                $state.go('main.content');
                                 break;
                         }; */
 
                         UserService.setAccessLevel('user');
-                        $state.go('main');
+                        $state.go('main.content');
 
 
                     } else {

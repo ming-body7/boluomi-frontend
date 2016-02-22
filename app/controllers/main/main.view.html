@@ -7,11 +7,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-					<div ng-if="permission == 'user'" ng-include="'controllers/sidebar/sidebar.view.html'"></div>
-					<div ng-if="permission == 'admin'" ng-include="'controllers/admin/sidebar/adminSidebar.view.html'"></div>
+					<div>
+						<div class="set_wrap">
+							<dl>
+								<dt>婚纱照</dt>
+								<dd ui-sref="main.content" ui-sref-active="cur">分享</dd>
+							</dl>
+							<dl>
+								<dt class="set_tit">设置</dt>
+								<dd ui-sref="main.information" ui-sref-active="cur">基本信息</dd>
+								<dd ui-sref="main.password" ui-sref-active="cur">修改密码</dd>
+								<dd ui-sref="main.account" ui-sref-active="cur">修改账号</dd>
+							</dl>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-9 col_cont">
-					<div ui-view="content"></div>
+					<div ui-view></div>
 				</div>
 			</div>
 		</div>

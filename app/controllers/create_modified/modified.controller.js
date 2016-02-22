@@ -173,7 +173,7 @@ angular.module('myApp')
             if(pid != null){
                 DataService.EditProduct(pid, $rootScope.globals.authKey, $scope.product, function(response){
                     if(response.success){
-                        //$state.go('main');
+                        //$state.go('main.content');
                         alert("保存成功！");
 
                     }
@@ -181,7 +181,7 @@ angular.module('myApp')
             }else{
                 DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
                     if(response.success){
-                        //$state.go('main');
+                        //$state.go('main.content');
                         pid = response.data.id;
                         alert("保存成功！");
                     }
@@ -202,7 +202,7 @@ angular.module('myApp')
                     if(response.success){
                         //
                         alert("保存成功！");
-                        $state.go('main');
+                        $state.go('main.content');
 
                     }
                 });
@@ -212,7 +212,7 @@ angular.module('myApp')
                         //
                         pid = response.data.id;
                         alert("保存成功！");
-                        $state.go('main');
+                        $state.go('main.content');
                     }
                 });
             }
