@@ -31,6 +31,17 @@
 
         $stateProvider
             .state('main.content', {
+                url: "/content",
+                template: "<ui-view></ui-view>",
+                redirectTo: "main.content.content",
+                data: {
+                    permissions: {
+                        only: ['user'],
+                        redirectTo: 'index'
+                    }
+                }
+            })
+            .state('main.content.content', {
                 url: "",
                 templateUrl: "controllers/content/content.view.html",
                 controller: "contentController",
@@ -41,7 +52,7 @@
                     }
                 }
             })
-            .state('main.create', {
+            .state('main.content.create', {
                 url: "/create",
                 templateUrl: "controllers/create_modified/create_modified.view.html",
                 controller: "modifiedController",
@@ -53,7 +64,7 @@
                 }
 
             })
-            .state('main.modified', {
+            .state('main.content.modified', {
                 url: "/modified/{pid}",
                 templateUrl: "controllers/create_modified/create_modified.view.html",
                 controller: "modifiedController",

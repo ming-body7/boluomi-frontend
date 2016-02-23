@@ -14,6 +14,7 @@
 
         $scope.login = login;
         $scope.checkLoginStatus = checkLoginStatus;
+        $scope.redirectToMain = redirectToMain;
         $scope.resetPassword = resetPassword;
         $scope.getPasscode = getPasscode;
 
@@ -25,18 +26,21 @@
 
         function checkLoginStatus(){
             if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
-                UserService.setAccessLevel('user');
-                $state.go('main.content');
                 return true;
             }else{
                 return false;
             }
 
         }
+
+        function redirectToMain(){
+            UserService.setAccessLevel('user');
+            $state.go('main.content.content');
+        }
         function login() {
             if($rootScope.globals!=null && $rootScope.globals.role != 'anonymous'){
                 UserService.setAccessLevel('user');
-                $state.go('main.content');
+                $state.go('main.content.content');
             }else{
                 AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                     if (response.success) {
@@ -65,12 +69,12 @@
                             case 1: //已通过
                                 //TODO登录成功的跳转页面待定
                                 //alert('登录成功');
-                                $state.go('main.content');
+                                $state.go('main.content.content');
                                 break;
                         }; */
 
                         UserService.setAccessLevel('user');
-                        $state.go('main.content');
+                        $state.go('main.content.content');
 
 
                     } else {

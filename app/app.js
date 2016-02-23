@@ -137,17 +137,20 @@
             });
     }
 
-    run.$inject = ['$rootScope', '$cookieStore', 'Permission', 'UserService'];
+    run.$inject = ['$rootScope', '$cookieStore', 'Permission', 'UserService', '$state'];
 
-    function run($rootScope, $cookies, Permission, UserService) {
+    function run($rootScope, $cookies, Permission, UserService, $state) {
 
         $rootScope.globals = $cookies.get('globals') || {};
 
 
 
-         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-            var x = 1;
-         });
+        $rootScope.$on('$stateChangeStart', function(evt, to, params) {
+            if (to.redirectTo) {
+                evt.preventDefault();
+                $state.go(to.redirectTo, params)
+            }
+        });
 
         Permission
             .defineRole('user', function (stateParams) {

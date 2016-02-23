@@ -1,11 +1,11 @@
 <div>
 	<div class="curmb">
-		<a ui-sref="main">婚纱照分享</a>
+		<a ui-sref="main.content">婚纱照分享</a>
 
 	</div>
 	<div class="edit_wrap">
 		<ul class="edit_zone">
-			<li ui-sref="main.create" class="new_pic">
+			<li ui-sref="main.content.create" class="new_pic">
 				<i></i>
 				<p>点击新建</p>
 			</li>
@@ -29,7 +29,7 @@
 					<strong>{{x.share_num}}</strong>
 				</div>
 				<div class="btn_zone">
-					<a class="edit" ui-sref="main.modified({pid: x.id})">编辑</a>
+					<a class="edit" ui-sref="main.content.modified({pid: x.id})">编辑</a>
 					<a class="delete" ng-click="deleteProduct(x)">删除</a>
 				</div>
 

@@ -271,12 +271,14 @@ var handler = {
 		$obj.mask.fadeOut();
 	},
 	sign_in_btn_click : function(){
-		var loginStatus = angular.element('#loginForm').scope().checkLoginStatus();
+		var scope = angular.element('#loginForm').scope();
+		var loginStatus = scope.checkLoginStatus();
 		if(loginStatus == false){
 			$obj.login_zone.fadeIn();
 			$obj.mask.fadeIn();
+		}else{
+			scope.redirectToMain();
 		}
-
 	}
 }
 
