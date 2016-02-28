@@ -32,16 +32,8 @@
         $stateProvider
             .state('admin.merchants', {
                 url: "/merchants",
-                views: {
-                    'main': {
-                        templateUrl: "controllers/main/main.view.html",
-                        controller: "mainController"
-                    },
-                    'content@admin': {
-                        templateUrl: "controllers/admin/merchants/merchants.view.html",
-                        controller: "merchantsController"
-                    }
-                },
+                template:"<ui-view></ui-view>",
+                redirectTo: "admin.merchants.list",
                 data: {
                     permissions: {
                         only: ['admin'],
@@ -50,18 +42,22 @@
                 }
 
             })
-            .state('admin.merchant', {
-                url: "/merchant/{merchant_id}",
-                views: {
-                    'main': {
-                        templateUrl: "controllers/main/main.view.html",
-                        controller: "mainController"
-                    },
-                    'content@admin': {
-                        templateUrl: "controllers/admin/merchant/merchant.view.html",
-                        controller: "merchantController"
+            .state('admin.merchants.list', {
+                url: "",
+                templateUrl: "controllers/admin/merchants/merchants.view.html",
+                controller: "merchantsController",
+                data: {
+                    permissions: {
+                        only: ['admin'],
+                        redirectTo: 'admin_login'
                     }
-                },
+                }
+
+            })
+            .state('admin.merchants.merchant', {
+                url: "/merchant/{merchant_id}",
+                templateUrl: "controllers/admin/merchant/merchant.view.html",
+                controller: "merchantController",
                 data: {
                     permissions: {
                         only: ['admin'],
@@ -72,16 +68,8 @@
             })
             .state('admin.products', {
                 url: "/products",
-                views: {
-                    'main': {
-                        templateUrl: "controllers/main/main.view.html",
-                        controller: "mainController"
-                    },
-                    'content@admin': {
-                        templateUrl: "controllers/admin/products/products.view.html",
-                        controller: "productsController"
-                    }
-                },
+                template:"<ui-view></ui-view>",
+                redirectTo: "admin.products.list",
                 data: {
                     permissions: {
                         only: ['admin'],
@@ -90,18 +78,22 @@
                 }
 
             })
-            .state('admin.product', {
-                url: "/product/{product_id}",
-                views: {
-                    'main': {
-                        templateUrl: "controllers/main/main.view.html",
-                        controller: "mainController"
-                    },
-                    'content@admin': {
-                        templateUrl: "controllers/admin/product/product.view.html",
-                        controller: "productController"
+            .state('admin.products.list', {
+                url: "",
+                templateUrl: "controllers/admin/products/products.view.html",
+                controller: "productsController",
+                data: {
+                    permissions: {
+                        only: ['admin'],
+                        redirectTo: 'admin_login'
                     }
-                },
+                }
+
+            })
+            .state('admin.products.product', {
+                url: "/product/{product_id}",
+                templateUrl: "controllers/admin/product/product.view.html",
+                controller: "productController",
                 data: {
                     permissions: {
                         only: ['admin'],

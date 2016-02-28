@@ -14,7 +14,7 @@
         var App = window.App;
         var baseUrl = App.baseUrl;
         var adminBaseUrl = "http://www.boluomi1314.com:8082";
-
+        //var adminBaseUrl = "http://boluomi.dev:8082";
 
         var service = {};
         service.GetProductList = GetProductList;

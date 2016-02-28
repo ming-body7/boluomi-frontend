@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('indexController', indexController);
 
-    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService','UserService'];
-    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService,UserService) {
+    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService','UserService','$cookies'];
+    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService,UserService,$cookies) {
 
         $scope.default = {
           passcodeText:"获取验证码"
@@ -21,6 +21,7 @@
         (function initController() {
             //AuthenticationService.ClearCredentials();
             AuthenticationService.GetCredentials();
+            //initLastState();
 
         })();
 
@@ -31,6 +32,15 @@
                 return false;
             }
 
+        }
+
+        function initLastState(){
+            var currentStateString = JSON.parse($cookies.get('currentState')||{});
+            var currentState = JSON.parse(currentStateString||{});
+            if(currentState && currentState.toStateName!="index"){
+                //$state.go(currentState.toStateName, currentState.toParams);
+                $state.go("main.content", currentState.toParams);
+            }
         }
 
         function redirectToMain(){

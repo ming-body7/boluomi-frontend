@@ -149,8 +149,21 @@
             if (to.redirectTo) {
                 evt.preventDefault();
                 $state.go(to.redirectTo, params)
+
             }
         });
+
+        /*$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            var currentState = {
+                toStateName: toState.name,
+                toParams: toParams,
+                time: new Date()
+            };
+            if(currentState.toStateName != 'index'){
+                $cookies.put('currentState', JSON.stringify(currentState));
+            }
+
+        });*/
 
         Permission
             .defineRole('user', function (stateParams) {
