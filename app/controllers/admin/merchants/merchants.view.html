@@ -16,7 +16,7 @@
         <tbody>
         <tr ng-repeat="x in list">
             <td>{{x.id}}</td>
-            <td ui-sref="admin.merchant({merchant_id: x.id})">
+            <td ui-sref="admin.merchants.merchant({merchant_id: x.id})">
                 <img ng-src="{{x.logo}}" alt="Logo" />
             </td>
             <td>{{x.name}}</td>

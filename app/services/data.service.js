@@ -600,7 +600,7 @@
                     return str.join("&");
                 },
                 data: {
-                    id:product_id,
+                    pid:product_id,
                     status:product_status
                 }
 

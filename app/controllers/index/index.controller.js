@@ -88,10 +88,7 @@
 
 
                     } else {
-                        //TODO:确认后端功能实现
-                        //如果用户名不存在，提示账户不存在，请先注册
-                        //如果用户名存在，密码不对，提示密码错误
-                        if(response.type == 1){
+                        if(response.data.account != null){
                             alert("用户名不存在，请先注册");
                         }else{
                             alert("用户名或密码错误");

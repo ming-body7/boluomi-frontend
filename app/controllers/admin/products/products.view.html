@@ -14,8 +14,8 @@
         </thead>
         <tbody>
         <tr ng-repeat="x in list">
-            <td ui-sref="admin.product({product_id: x.id})">{{x.id}}</td>
-            <td ui-sref="admin.product({product_id: x.id})">
+            <td ui-sref="admin.products.product({product_id: x.id})">{{x.id}}</td>
+            <td ui-sref="admin.products.product({product_id: x.id})">
                 <img ng-src="{{x.banner_pic}}" alt="pic" />
             </td>
             <td ui-sref="admin.product({product_id: x.id})">{{x.title}}</td>
@@ -29,7 +29,7 @@
                 </div>
             </td>
 
-            <td><button class="btn" type="button" ng-click="methodList[x.status](x.id)">{{methodList[x.status]}}</button></td>
+            <td><button class="btn" type="button" ng-click="functionList[x.status](x.id)">{{methodList[x.status]}}</button></td>
         </tr>
         </tbody>
     </table>

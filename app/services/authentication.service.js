@@ -41,9 +41,9 @@
                 data: {account: account, password: password, rememberMe: rememberMe}
             }).success(function (response) {
                 if(response.type == 0){
-                    callback({success: false, data: response.result});
+                    callback({success: false, data: response.msg});
                 }else{
-                    callback({success: true, data:response.result});
+                    callback({success: true, data:response.msg});
                 }
 
             });
