@@ -186,7 +186,7 @@ var handler = {
 		$obj.forget_zone.fadeIn();
 	},
 	forget_code_click : function(){
-		var _this = $(this);
+		var _this = $(this).parent();
 		var ipts = _this.siblings('.ipt-zone').find('.ipt');
 
 		//获取数据
@@ -283,3 +283,5 @@ var handler = {
 }
 
 $(myEvent.bind);
+
+//@ sourceURL=index.js

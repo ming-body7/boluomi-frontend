@@ -43,7 +43,7 @@
                 if(response.type == 0){
                     callback({success: false, data: response.msg});
                 }else{
-                    callback({success: true, data:response.msg});
+                    callback({success: true, data:response.result});
                 }
 
             });
@@ -80,7 +80,7 @@
 
 
         function ResetPassword(account, code, password, rePassword, callback){
-            $http.post('http://boluomi.rjl.com/v1/register/resetpassword',
+            $http.post(baseUrl+'/v1/register/resetpassword',
                 {account: account, code:code, password: password, repassword:rePassword})
                 .success(function (response) {
                     if(response.type == 2){

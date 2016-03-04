@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('indexController', indexController);
 
-    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService','UserService','$cookies'];
-    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService,UserService,$cookies) {
+    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService','UserService','$cookies','$timeout'];
+    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService,UserService,$cookies, $timeout) {
 
         $scope.default = {
           passcodeText:"获取验证码"
@@ -118,18 +118,18 @@
         }
 
         function countDownClock(){
-            $scope.counter = 60;
+            $scope.counter = 120;
             $scope.countDown = function(){
                 $scope.counter--;
                 if($scope.counter >= 0){
                     $timeout($scope.countDown,1000);
-                    $scope.default.passcodeText = counter;
+                    $scope.default.passcodeText = $scope.counter;
                 }else{
                     alert("请重新获取验证码！");
                     $scope.default.passcodeText = "获取验证码";
                 }
             }
-            $timeout(countDown, 1000);
+            $timeout($scope.countDown, 1000);
 
         }
     }
