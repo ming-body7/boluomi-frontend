@@ -1,23 +1,19 @@
-
-
 <div class="main">
     <div class="banner">
         <div class="inner">
             <h1 class="web_logo">
                 <a href="#"></a>
             </h1>
-            <a id="sign_in_btn" class="sign-in-btn" href="#">登录</a>
+            <a id="sign_in_btn" class="sign-in-btn" ng-click="checkLoginStatus()">登录</a>
             <div class="txt"></div>
             <div class="t_wrap">
                 <p class="t1">将客照一键制作成易于手机传播的H5页面，引导客户分享到朋友圈，</p>
                 <p class="t2">轻松获得品牌曝光，带来大量潜在订单</p>
-
             </div>
             <div class="btn_wrap">
                 <a class="view-case-btn" href="#">查看案例</a>
                 <a class="free-register-btn" ui-sref="register">免费注册</a>
             </div>
-
         </div>
     </div>
     <div class="content">
@@ -46,43 +42,10 @@
         </div>
     </div>
 </div>
-<div class="footer">
-    <a class="contact-we" href="#">联系我们：fankui@boluomi1314.com</a>
-    <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
-</div>
-
-
-<!-- <form id="loginForm" name="form"  ng-submit="login()"> -->
-<form id="loginForm" name="form">
-    <div id="login_zone" class="tipsBox login-zone">
-
-        <input ng-model="account" placeholder="账号（手机号）" class="ipt J_account" type="text" name="account"
-                required ng-minlength="11" ng-maxlength="11">
-        <input ng-model="password" placeholder="密码" class="ipt J_password" type="password" name="" id="">
-        <a class="login-btn J_login_btn" href="javascript:;">登录</a>
-
-        <div class="info">
-
-            <input ng-model="rememberMe" ng-true-value="1" ng-false-value="0"  id="remember_me" type="checkbox" name="" id="">
-            30天内自动登录
-            <a id="forget_link" class="forget-link" href="#">忘记密码</a>
-        </div>
-
-        <a ui-sref="register" class="brand-regist-btn">商家免费注册</a>
-        <i class="close-btn J_close_btn"></i>
-    </div>
-
-</form>
-<div id="forget_zone" class="tipsBox forget-zone">
-    <div class="ipt-zone"><input class="ipt" type="text" name="" placeholder="账号（手机号）" maxlength="11"></div>
-    <div class="ipt-zone"><input class="ipt" type="text" name="" placeholder="验证码"><span class="get-code">{{default.passcodeText}}</span></div>
-    <div class="ipt-zone"><input class="ipt" type="password" name="" placeholder="密码（6-20位字母或数字）"></div>
-    <div class="ipt-zone"><input class="ipt" type="password" name="" placeholder="确认密码（6-20位字母或数字）"></div>
-
-    <a id="finish_btn" href="javascript:;" class="finish-btn">完成</a>
-    <i class="close-btn J_close_btn"></i>
-</div>
-
+<div ng-include="'views/footer.view.html'"></div>
+<login-forget-zone ng-show="loginForgetZoneVisible"></login-forget-zone>
+<mask></mask>
+<linkBox></linkBox>
 <!-- 移动端提示弹窗 -->
 <div id="link-box" class="link-box">
     <a class="link-a" href="www.boluomi1314.com">www.boluomi1314.com</a>
@@ -91,7 +54,4 @@
 
 <div id="mask" class="mask"></div>
 
-
-<script src="js/myEvent.js"></script>
-<script src="js/index.js"></script>
 

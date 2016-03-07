@@ -14,8 +14,22 @@
 
                 }
             });
+                $scope.$on('$viewContentLoaded', function(){
+                    //Here your view content is fully loaded !!
+                    //initLastState();
+                });
 
-
+                function initLastState(){
+                    var currentStateString = $cookies.get('currentState')||{};
+                    var currentState = null;
+                    if(currentStateString.length>0){
+                        currentState = JSON.parse(currentStateString);
+                    }
+                    if(currentState && currentState.toStateName!="index"){
+                        //$state.go(currentState.toStateName, currentState.toParams);
+                        $state.go("main.content.content", currentState.toParams);
+                    }
+                }
 
         }]);
 })();

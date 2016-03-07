@@ -50,13 +50,13 @@ var $obj = {
 var myEvent = {
 	bind : function(){
 		//点击注册
-		$obj.submit_btn.on('click',handler.submit_btnClick);
+		//$obj.submit_btn.on('click',handler.submit_btnClick);
 
 		//输入框获得焦点、失去焦点
-		$obj.ipt_s.on('focus',handler.ipt_sFocus);
+		//$obj.ipt_s.on('focus',handler.ipt_sFocus);
 
 		//后台获取验证码
-		$obj.get_code.on('click',handler.get_codeClick);
+		//$obj.get_code.on('click',handler.get_codeClick);
 	}
 };
 

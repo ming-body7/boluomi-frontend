@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="css/finishbrandinfo.css" />
 
 <!-- <form name="form" ng-submit="register()" role="form"> -->
-<form name="form" id="registerForm">
+<form name="registerForm" id="registerForm">
 <div class="banner regist-bg"></div>
 <ul class="main">
     <li>
@@ -11,8 +11,12 @@
             <span>手机号码：</span>
         </div>
         <div class="infoR">
-            <input ng-model="user.account" class="ipt" placeholder="手机号" type="text" maxlength="11" data-empty="请填写手机号~" data-error="手机号有误~">
-            <div class="error"></div>
+            <input ng-model="user.account" name="account" class="ipt" placeholder="手机号" type="text" ng-maxlength="11"
+                   ng-pattern="/^1{1}[3-9]{1}[0-9]{9}$/" required>
+            <div class="error" ng-messages="registerForm.account.$dirty&&registerForm.account.$error">
+                <div ng-message="required">请填写手机号~</div>
+                <div ng-message="pattern">手机号有误~</div>
+            </div>
         </div>
     </li>
     <li>
@@ -21,9 +25,11 @@
             <span>短信验证码：</span>
         </div>
         <div class="infoR code-zone">
-            <input  ng-model="user.code" class="ipt" placeholder="验证码" type="text" data-empty="请填写验证码~" data-error="验证码有误~">
-            <span id="get_code" class="get-code">{{default.passcodeText}}</span>
-            <div class="error"></div>
+            <input  ng-model="user.code" name="code" class="ipt" placeholder="验证码" type="text" required>
+            <span id="get_code" class="get-code" ng-click="getPasscode()">{{default.passcodeText}}</span>
+            <div class="error" ng-messages="registerForm.code.$dirty&&registerForm.code.$error">
+                <div ng-message="required">请填写验证码~</div>
+            </div>
         </div>
     </li>
     <li>
@@ -32,8 +38,11 @@
             <span>设置密码：</span>
         </div>
         <div class="infoR">
-            <input ng-model="user.password" class="ipt" placeholder="密码（6-20位字母或数字" type="text"  data-empty="请填写密码~" data-error="两次密码不一样~">
-            <div class="error"></div>
+            <input ng-model="user.password" name="password" class="ipt" placeholder="密码（6-20位字母或数字)" type="text"
+                   data-empty="请填写密码~" data-error="两次密码不一样~" required>
+            <div class="error" ng-messages="registerForm.password.$dirty&&registerForm.password.$error">
+                <div ng-message="required">请填写密码~</div>
+            </div>
         </div>
     </li>
     <li>
@@ -42,13 +51,16 @@
             <span>确认密码：</span>
         </div>
         <div class="infoR">
-            <input ng-model="user.rePassword" class="ipt" placeholder="确认密码(6-20位字母或数字）" type="text" data-empty="请填写确认密码~" data-error="两次密码不一样~">
-            <div class="error"></div>
+            <input ng-model="user.rePassword" name="rePassword" class="ipt" placeholder="确认密码(6-20位字母或数字）" type="text"
+                   data-empty="请填写确认密码~" data-error="两次密码不一样~" required>
+            <div class="error" ng-messages="registerForm.rePassword.$dirty&&registerForm.rePassword.$error">
+                <div ng-message="required">请填写确认密码~</div>
+            </div>
         </div>
     </li>
 </ul>
 
-<a id="submit_btn" class="submit-btn" href="javascript:;">下一步</a>
+<input type="submit" id="submit_btn" class="submit-btn" >下一步</input>
 <!--    <button type="submit" id="submit_btn" class="submit-btn">下一步</button> -->
 
 <div class="footer">

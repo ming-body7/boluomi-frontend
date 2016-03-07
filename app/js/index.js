@@ -68,18 +68,18 @@ var $obj = {
 var myEvent = {
 	bind : function(){
 		//弹出登录浮层
-		$obj.sign_in_btn.on('click',handler.sign_in_btn_click);
+		//$obj.sign_in_btn.on('click',handler.sign_in_btn_click);
 
 		//登录窗口关闭按钮
-		$obj.login_close_btn.on('click',handler.login_close_btn_click);
+		//$obj.login_close_btn.on('click',handler.login_close_btn_click);
 
 		//登录按钮
-		$obj.login_btn.on('click',handler.login_btn_click);
+		//$obj.login_btn.on('click',handler.login_btn_click);
 
 		//忘记密码
-		$obj.forget_link.on('click',handler.forget_link_click);
+		//$obj.forget_link.on('click',handler.forget_link_click);
 
-		$obj.forget_code_btn.on('click', handler.forget_code_click);
+		//$obj.forget_code_btn.on('click', handler.forget_code_click);
 
 		//忘记密码弹窗确定按钮
 		$obj.finish_btn.on('click',handler.finish_btn_click);

@@ -5,44 +5,41 @@
         .module('myApp')
         .controller('indexController', indexController);
 
-    indexController.$inject = ['AuthenticationService','$scope','$rootScope', '$state','DataService','UserService','$cookies','$timeout'];
-    function indexController(AuthenticationService,$scope, $rootScope, $state, DataService,UserService,$cookies, $timeout) {
+    indexController.$inject = ['UtilsService','AuthenticationService','$scope','$rootScope', '$state','DataService','UserService','$cookies','$timeout'];
+    function indexController(UtilsService, AuthenticationService,$scope, $rootScope, $state, DataService,UserService,$cookies, $timeout) {
 
         $scope.default = {
           passcodeText:"获取验证码"
         };
+        $scope.loginForgetZoneVisible =false;
+
 
         $scope.login = login;
+        $scope.checkLoginStatus = checkLoginStatus;
+        $scope.closeLoginAndForgetZone = closeLoginAndForgetZone;
+        $scope.openLoginAndForgetZone = openLoginAndForgetZone;
         $scope.checkLoginStatus = checkLoginStatus;
         $scope.redirectToMain = redirectToMain;
         $scope.resetPassword = resetPassword;
         $scope.getPasscode = getPasscode;
 
         (function initController() {
-            //AuthenticationService.ClearCredentials();
             AuthenticationService.GetCredentials();
-            //initLastState();
-
         })();
-
+        function openLoginAndForgetZone(){
+            $scope.loginForgetZoneVisible = true;
+            $scope.loginFormVisible = true;
+        }
+        function closeLoginAndForgetZone(){
+            $scope.loginForgetZoneVisible = false;
+        }
         function checkLoginStatus(){
             if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
-                return true;
+                redirectToMain();
             }else{
-                return false;
-            }
-
-        }
-
-        function initLastState(){
-            var currentStateString = JSON.parse($cookies.get('currentState')||{});
-            var currentState = JSON.parse(currentStateString||{});
-            if(currentState && currentState.toStateName!="index"){
-                //$state.go(currentState.toStateName, currentState.toParams);
-                $state.go("main.content", currentState.toParams);
+                openLoginAndForgetZone();
             }
         }
-
         function redirectToMain(){
             UserService.setAccessLevel('user');
             $state.go('main.content.content');
@@ -96,17 +93,20 @@
                     }
                 });
             }
-
-
-        };
-
+        }
         function getPasscode(){
             //TODO:调用获取passcode的接口,倒计时
+            if(!getPasscodeCheck($scope.account)){
+                return;
+            }
             countDownClock();
             alert("已为您发送语音验证码，请注意接听电话，谢谢!");
         }
         function resetPassword() {
             $scope.dataLoading = true;
+            if(!resetPasswordCheck($scope.account, $scope.code, $scope.password, $scope.rePassword)){
+                return;
+            }
             AuthenticationService.ResetPassword($scope.account, $scope.code, $scope.password, $scope.rePassword, function (response) {
                 if (response.success) {
                     //AuthenticationService.SetCredentials($scope.username, $scope.password);
@@ -116,7 +116,6 @@
                 }
             });
         }
-
         function countDownClock(){
             $scope.counter = 120;
             $scope.countDown = function(){

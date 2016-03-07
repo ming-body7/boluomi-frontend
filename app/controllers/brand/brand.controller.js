@@ -42,6 +42,7 @@
                     $scope.logoButton = "上传";
                     $scope.licenceButton = "上传";
                     $scope.uploadOption = "logo";
+                    $scope.process = 0;
                     $scope.smallMap = {
                         center: {
                             longitude: 116.404,
@@ -62,7 +63,7 @@
                 }
 
                 function uploadSingleFile(file) {
-
+                    $scope.process = 0;
                     if (file) {
                         file.upload = Upload.upload({
                             url: uploadAPI,
@@ -84,10 +85,11 @@
 
                             });
                         }, function (response) {
-
+                            $scope.process = 100;
                         }, function (evt) {
                             file.progress = Math.min(100, parseInt(100.0 *
                                 evt.loaded / evt.total));
+                            $scope.process = file.process;
                         });
                     }
                 }

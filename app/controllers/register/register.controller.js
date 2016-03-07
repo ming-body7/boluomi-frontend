@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('registerController', registerController);
  
-    registerController.$inject = ['UserService', '$location','$scope', 'AuthenticationService'];
-    function registerController(UserService, $location, $scope, AuthenticationService) {
+    registerController.$inject = ['UtilsService','UserService', '$location','$scope', 'AuthenticationService'];
+    function registerController(UtilsService,UserService, $location, $scope, AuthenticationService) {
 
         $scope.register = register;
         $scope.getPasscode = getPasscode;
@@ -25,7 +25,6 @@
                 }
             });
         }
-
         function getPasscode(){
             //TODO:调用获取passcode的接口,倒计时
             countDownClock();

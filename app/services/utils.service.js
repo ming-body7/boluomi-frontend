@@ -6,7 +6,7 @@
 
     angular
         .module('myApp')
-        .factory('UtilsService', GeoCoderService);
+        .factory('UtilsService', UtilsService);
 
     UtilsService.$inject = ['$rootScope'];
     function UtilsService($rootScope) {
@@ -24,6 +24,7 @@
         }
 
         function isEmpty(val){
+            if(val == null) return true;
             var re = /\S/;
             if(re.test(val)){//有内容
                 return false;

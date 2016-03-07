@@ -3,131 +3,137 @@
 
 
 <div class="banner"></div>
-<ul id="brandForm" class="main">
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>商家名称：</span>
-        </div>
-        <div class="infoR">
-            <input ng-model="merchant.name" id="brand_name" class="ipt" type="text">
-            <div class="error" data-empty="请填写商家名">格式不对</div>
-        </div>
-    </li>
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>联系方式：</span>
-        </div>
-        <div class="infoR">
-            <input ng-model="merchant.phone" id="contact_phone" class="ipt" type="text" maxlength="11">
-            <div class="error" data-empty="请填写联系方式" data-error="手机格式有误" >格式不对</div>
-        </div>
-    </li>
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>商家LOGO：</span>
-        </div>
+<form name="brandForm">
+    <ul id="brandForm" class="main">
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>商家名称：</span>
+            </div>
+            <div class="infoR">
+                <input ng-model="merchant.name" name="name" id="brand_name" class="ipt" type="text"
+                       ng-focus="brandForm.name.$setDirty()" ng-blur="brandForm.name.$setPristine()" required>
+                <div class="error" ng-messages="brandForm.name.$dirty&&brandForm.name.$error" data-empty="请填写商家名">
+                    <div ng-message="required">请输入商家的名称，如北京金夫人婚纱影楼</div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>联系方式：</span>
+            </div>
+            <div class="infoR">
+                <input ng-model="merchant.phone" name="phone" id="contact_phone" class="ipt" type="text" maxlength="11"
+                       ng-focus="brandForm.phone.$setDirty()" ng-blur="brandForm.phone.$setPristine()" required>
+                <div class="error" ng-messages="brandForm.phone.$dirty&&brandForm.phone.$error" data-empty="请填写商家名">
+                    <div ng-message="required">请输入电话，方便客户联系到您</div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>商家LOGO：</span>
+            </div>
 
-        <div class="infoR">
-            <!-- <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="{{merchant.logo}}">{{logoButton}}</a> -->
-            <button id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
-                    class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-                    accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                {{logoButton}}</button>
-        </div>
-        <div>
-            <img ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
-        </div>
-
-
-    </li>
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>商家类型：</span>
-        </div>
-        <div id="brand_type" class="infoR" data-type="">
-            <label for="type1"><input ng-model="merchant.type" id="type1" data-type="1" name="type" type="radio">影楼</label>
-            <label for="type2"><input ng-model="merchant.type" id="type2" data-type="2" name="type" type="radio">工作室</label>
-        </div>
-    </li>
-
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>商家地址：</span>
-        </div>
-        <div class="infoR">
-            <select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
-                    ng-change="merchant.city='';merchant.area='';">
-                <option value="">省</option>
-            </select>
-
-            <select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
-                     ng-change="merchant.area='';">
-                <option value="">市</option>
-            </select>
-            <select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
-                <option value="">区</option>
-            </select>
-        </div>
-    </li>
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>详细地址：</span>
-        </div>
-        <div class="infoR">
-            <input ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
-            <div class="error">格式不对</div>
-        </div>
-    </li>
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>地图标注：</span>
-        </div>
-        <div class="infoR">
-            <a id="map_mark" href="javacript:;"  data-position="">标注</a>
-        </div>
-
-    </li>
-
-    <!--<li>
-        <div>
-            <div ng-show="merchant.location!=null && merchant.location!='' " id="smallMap" class="smallMap"></div>
-        </div>
-    </li> -->
-    <li class="row">
-        <div ng-show="merchant.location!=null && merchant.location!=''" class="col-md-offset-2 map_preview">
-            <baidu-map  options="smallMap"></baidu-map>
-        </div>
-    </li>
-    <li>
-        <div class="infoL">
-            <i>*</i>
-            <span>营业执照：</span>
-        </div>
-        <div class="infoR">
-            <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
-            <button id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
-                    class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-                    accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
-                {{licenceButton}}</button>
-        </div>
-        <div>
-            <img ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
-        </div>
+            <div class="infoR">
+                <!-- <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="{{merchant.logo}}">{{logoButton}}</a> -->
+                <button id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
+                        class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+                        accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                    {{logoButton}}</button>
+                <progressbar animate="true" value="process" type="success"><b>{{process}}%</b></progressbar>
+            </div>
+            <div>
+                <img ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
+            </div>
 
 
-    </li>
-</ul>
+        </li>
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>商家类型：</span>
+            </div>
+            <div id="brand_type" class="infoR" data-type="">
+                <label for="type1"><input ng-model="merchant.type" id="type1" data-type="1" name="type" type="radio">影楼</label>
+                <label for="type2"><input ng-model="merchant.type" id="type2" data-type="2" name="type" type="radio">工作室</label>
+            </div>
+        </li>
+
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>商家地址：</span>
+            </div>
+            <div class="infoR">
+                <select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
+                        ng-change="merchant.city='';merchant.area='';">
+                    <option value="">省</option>
+                </select>
+
+                <select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
+                         ng-change="merchant.area='';">
+                    <option value="">市</option>
+                </select>
+                <select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
+                    <option value="">区</option>
+                </select>
+            </div>
+        </li>
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>详细地址：</span>
+            </div>
+            <div class="infoR">
+                <input ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
+                <div class="error">格式不对</div>
+            </div>
+        </li>
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>地图标注：</span>
+            </div>
+            <div class="infoR">
+                <a id="map_mark" href="javacript:;"  data-position="">标注</a>
+            </div>
+
+        </li>
+
+        <!--<li>
+            <div>
+                <div ng-show="merchant.location!=null && merchant.location!='' " id="smallMap" class="smallMap"></div>
+            </div>
+        </li> -->
+        <li class="row">
+            <div ng-show="merchant.location!=null && merchant.location!=''" class="col-md-offset-2 map_preview">
+                <baidu-map  options="smallMap"></baidu-map>
+            </div>
+        </li>
+        <li>
+            <div class="infoL">
+                <i>*</i>
+                <span>营业执照：</span>
+            </div>
+            <div class="infoR">
+                <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
+                <button id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
+                        class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+                        accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
+                    {{licenceButton}}</button>
+            </div>
+            <div>
+                <img ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
+            </div>
 
 
-<a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a>
-
+        </li>
+    </ul>
+    <a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a>
+</form>
 
 <div class="footer">
     <a class="contact-we" href="#">联系我们：fankui@boluomi1314.com</a>

@@ -2,7 +2,8 @@
     'use strict';
 
     angular
-        .module('myApp', ['myApp.content', 'myApp.admin','ngFileUpload', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch',
+        .module('myApp', ['myApp.directive','myApp.content', 'myApp.admin','ngMessages','ngFileUpload',
+            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch',
             'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad'])
         .config(config)
         .run(run);
@@ -153,7 +154,7 @@
             }
         });
 
-        /*$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
             var currentState = {
                 toStateName: toState.name,
                 toParams: toParams,
@@ -163,7 +164,7 @@
                 $cookies.put('currentState', JSON.stringify(currentState));
             }
 
-        });*/
+        });
 
         Permission
             .defineRole('user', function (stateParams) {
