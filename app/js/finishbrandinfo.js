@@ -71,28 +71,28 @@ var $obj = {
 var myEvent = {
 	bind : function(){
 		// 提交审核
-		$obj.submit_audit.on('click',handler.submit_audit_click);
+		//$obj.submit_audit.on('click',handler.submit_audit_click);
 
 		//地图标注
-		$obj.map_mark.on('click',handler.map_mark_click);
+		//$obj.map_mark.on('click',handler.map_mark_click);
 
 		//商家类型选择
-		$obj.brand_type.find('input').on('click',handler.brand_type_input_click);
+		//$obj.brand_type.find('input').on('click',handler.brand_type_input_click);
 
 		//input输入框获得焦点隐藏错误信息
-		$obj.main_ipts.on('focus',handler.main_ipts_focus);
+		//$obj.main_ipts.on('focus',handler.main_ipts_focus);
 
 		//上传logo
-		$obj.brand_logo.on('click',handler.brand_logo_click);
+		//$obj.brand_logo.on('click',handler.brand_logo_click);
 
 		//上传营业执照
-		$obj.licence_pic.on('click',handler.licence_pic_click);
+		//$obj.licence_pic.on('click',handler.licence_pic_click);
 
 		//图片上传控件渲染
 		//handler.rander_load_img($obj.load_img_wrap)
 
 		//取消上传
-		$obj.cancle_btn.on('click',handler.cancle_btn_click);
+		//$obj.cancle_btn.on('click',handler.cancle_btn_click);
 
 	}
 };

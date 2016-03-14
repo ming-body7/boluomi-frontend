@@ -78,7 +78,8 @@
         return {
             restrict: 'E',
             scope: {
-                'options': '='
+                'options': '=',
+                'control':'='
             },
             link: function($scope, element, attrs) {
 
@@ -91,7 +92,7 @@
                 };
 
                 var opts = $scope.options;
-
+                $scope.internalAPI = $scope.control || {};
                 defaults(opts, defaultOpts);
 
                 checkMandatory(opts.center, 'options.center must be set');
@@ -162,6 +163,25 @@
 
                         // add marker to the map
                         map.addOverlay(marker2);
+                        marker2.enableDragging();
+
+                        marker2.addEventListener("dragend", function(e){
+                            console.log("当前位置：" + e.point.lng + ", " + e.point.lat);
+                            var marker = {
+                                longitude: e.point.lng,
+                                latitude: e.point.lat,
+                                icon: 'img/mappiont.png',
+                                width: 49,
+                                height: 60,
+                                //title: 'Where',
+                                //content: 'Put description here'
+                            }
+                            $scope.$apply(function(){
+
+                                $scope.options.markers[0] = marker;
+                            });
+
+                        })
                         previousMarkers.push(marker2);
 
                         if (!marker.title && !marker.content) {
@@ -175,16 +195,23 @@
                 };
 
                 mark();
-
+                $scope.internalAPI.mark = function(){
+                    mark();
+                }
+                $scope.internalAPI.centerAndMark = function(){
+                    opts = $scope.options;
+                    map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
+                }
                 $scope.$watch('options.center', function(newValue, oldValue) {
 
                     opts = $scope.options;
                     map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
-                    mark();
+                    //mark();
 
                 }, true);
 
                 $scope.$watch('options.markers', function(newValue, oldValue) {
+                    opts = $scope.options;
                     mark();
                 }, true);
 

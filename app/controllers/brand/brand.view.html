@@ -11,7 +11,7 @@
                 <span>商家名称：</span>
             </div>
             <div class="infoR">
-                <input ng-model="merchant.name" name="name" id="brand_name" class="ipt" type="text"
+                <input ng-model="localMerchant.name" name="name" id="brand_name" class="ipt" type="text"
                        ng-focus="brandForm.name.$setDirty()" ng-blur="brandForm.name.$setPristine()" required>
                 <div class="error" ng-messages="brandForm.name.$dirty&&brandForm.name.$error" data-empty="请填写商家名">
                     <div ng-message="required">请输入商家的名称，如北京金夫人婚纱影楼</div>
@@ -24,7 +24,7 @@
                 <span>联系方式：</span>
             </div>
             <div class="infoR">
-                <input ng-model="merchant.phone" name="phone" id="contact_phone" class="ipt" type="text" maxlength="11"
+                <input ng-model="localMerchant.phone" name="phone" id="contact_phone" class="ipt" type="text" maxlength="11"
                        ng-focus="brandForm.phone.$setDirty()" ng-blur="brandForm.phone.$setPristine()" required>
                 <div class="error" ng-messages="brandForm.phone.$dirty&&brandForm.phone.$error" data-empty="请填写商家名">
                     <div ng-message="required">请输入电话，方便客户联系到您</div>
@@ -38,15 +38,15 @@
             </div>
 
             <div class="infoR">
-                <!-- <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="{{merchant.logo}}">{{logoButton}}</a> -->
-                <button id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
+                <!-- <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="{{localMerchant.logo}}">{{logoButton}}</a> -->
+                <button id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{localMerchant.logo}}"
                         class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
                         accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
                     {{logoButton}}</button>
-                <progressbar animate="true" value="process" type="success"><b>{{process}}%</b></progressbar>
+                <progressbar  animate="true" value="logo_process" type="success"><b>{{logo_process}}%</b></progressbar>
             </div>
             <div>
-                <img ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
+                <img ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
             </div>
 
 
@@ -57,8 +57,8 @@
                 <span>商家类型：</span>
             </div>
             <div id="brand_type" class="infoR" data-type="">
-                <label for="type1"><input ng-model="merchant.type" id="type1" data-type="1" name="type" type="radio">影楼</label>
-                <label for="type2"><input ng-model="merchant.type" id="type2" data-type="2" name="type" type="radio">工作室</label>
+                <label for="type1"><input ng-model="localMerchant.type" id="type1" data-type="1" name="type" type="radio">影楼</label>
+                <label for="type2"><input ng-model="localMerchant.type" id="type2" data-type="2" name="type" type="radio">工作室</label>
             </div>
         </li>
 
@@ -68,16 +68,16 @@
                 <span>商家地址：</span>
             </div>
             <div class="infoR">
-                <select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
-                        ng-change="merchant.city='';merchant.area='';">
+                <select required=""  ng-model="localMerchant.province" ng-options="key as key for (key,value) in division"
+                        ng-change="localMerchant.city='';localMerchant.area='';">
                     <option value="">省</option>
                 </select>
 
-                <select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
-                         ng-change="merchant.area='';">
+                <select  ng-model="localMerchant.city" ng-options="key as key for (key,value) in division[localMerchant.province]"
+                         ng-change="localMerchant.area='';">
                     <option value="">市</option>
                 </select>
-                <select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
+                <select  ng-model="localMerchant.area" ng-options="value as value for value in division[localMerchant.province][localMerchant.city]">
                     <option value="">区</option>
                 </select>
             </div>
@@ -88,7 +88,7 @@
                 <span>详细地址：</span>
             </div>
             <div class="infoR">
-                <input ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
+                <input ng-model="localMerchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
                 <div class="error">格式不对</div>
             </div>
         </li>
@@ -98,19 +98,19 @@
                 <span>地图标注：</span>
             </div>
             <div class="infoR">
-                <a id="map_mark" href="javacript:;"  data-position="">标注</a>
+                <a id="map_mark"  ng-click="openMapModal()">标注</a>
             </div>
 
         </li>
 
         <!--<li>
             <div>
-                <div ng-show="merchant.location!=null && merchant.location!='' " id="smallMap" class="smallMap"></div>
+                <div ng-show="localMerchant.location!=null && localMerchant.location!='' " id="smallMap" class="smallMap"></div>
             </div>
         </li> -->
         <li class="row">
-            <div ng-show="merchant.location!=null && merchant.location!=''" class="col-md-offset-2 map_preview">
-                <baidu-map  options="smallMap"></baidu-map>
+            <div ng-show="mapModalOpened||localMerchant.marked" aria-hidden="false" style="display: block;" class="col-md-offset-2 map_preview">
+                <baidu-map options="smallMap" control="smallMapControl"></baidu-map>
             </div>
         </li>
         <li>
@@ -119,14 +119,14 @@
                 <span>营业执照：</span>
             </div>
             <div class="infoR">
-                <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
-                <button id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
+                <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> -->
+                <button id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
                         class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
                         accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
                     {{licenceButton}}</button>
             </div>
             <div>
-                <img ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
+                <img ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
             </div>
 
 
@@ -152,8 +152,8 @@
         <input id="hidden_btn" type="button" value="">
     </div>
     <div class="img_box">
-        <img ng-if="uploadOption == 'logo'" ng-src="{{merchant.logo}}" alt="">
-        <img ng-if="uploadOption == 'licence'" ng-src="{{merchant.licence}}" alt="">
+        <img ng-if="uploadOption == 'logo'" ng-src="{{localMerchant.logo}}" alt="">
+        <img ng-if="uploadOption == 'licence'" ng-src="{{localMerchant.licence}}" alt="">
     </div>
     <div class="pro_wrap">
         <div id="progress" class="progress"></div>
@@ -161,6 +161,29 @@
 
 </div>
 <div id="mask" class="mask"></div>
+
+<div>
+    <div class="modal fade in" aria-hidden="false" style="display: block;" ng-show="showModal">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">I'm a modal!</h3>
+                </div>
+                <div class="modal-body" style="height: 600px">
+                    <baidu-map control="mapModalControl" options="mapOptions"></baidu-map>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="closeMapModal()">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="dismissMapModal()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 
 <style>
     .infoL{
@@ -171,15 +194,19 @@
         width: 200px;
         height: 200px;
     }
+    .map-outer {
+        overflow: hidden;
+        position: relative;
+        height: 400px;
+        width: 400px;
+    }
+
+    .map-inner {
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        right: -400px;
+        top: 50px;
+    }
 </style>
-
-
-<script src="js/linkageCity.js"></script>
-<script src="js/myEvent.js"></script>
-<script src="js/finishbrandinfo.js"></script>
-<!--<script src="http://api.map.baidu.com/api?v=1.5&ak=5U8M51SeGixHSOHsMzKLt1NG" type="text/javascript"></script> -->
-<!--<script src="js/linkageCity.js"></script>
-<script src="js/myEvent.js"></script>
- <script src="js/finishbrandinfo.js"></script> -->
-<!-- <script src="js/script.js"></script> -->
 

@@ -14,23 +14,37 @@
 
 
         var service = {};
+        var myGeo = new BMap.Geocoder();
 
-        service.geocode=function(point, outerCallback) {
-            var myGeo = new BMap.Geocoder();
-            myGeo.getLocation(point, function(rs){//通过经纬度解析地址
-                if(rs){
-                    var addComp = rs.addressComponents;
-                    //address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
-                    outerCallback({
+        service.getAddressByLocation = getAddressByLocation;
+        service.getLocationByAddress = getLocationByAddress;
+
+        function getLocationByAddress(city, address, callback){
+            myGeo.getPoint(address, function(point){
+                if (point) {
+                    callback({
                         success: true,
-                        results: {city:addComp.city}
+                        results: {point:point}
                     });
                 }else{
-                    outerCallback({success: false, results: "您选择地址没有解析到结果!"});
+                    callback({success: false, results: "您选择地址没有解析到结果!"});
                 }
+            }, city);
+        }
 
+        function getAddressByLocation(location, callback){
+            myGeo.getLocation(new BMap.Point(location.longitude, location.latitude), function(result){
+                if (result){
+                    callback({
+                        success: true,
+                        results: {address:result.address}
+                    });
+                }else{
+                    callback({success: false, results: "您选择地址没有解析到结果!"});
+                }
             });
-        };
+        }
+
         return service;
 
     }
