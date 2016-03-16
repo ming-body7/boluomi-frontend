@@ -30,6 +30,7 @@
 
                 function initController(){
                     $scope.division = UtilsService.getLinkCity();
+                    $scope.submitted = false;
                     $scope.merchant = {
                         name:"",
                         phone:"",
@@ -46,7 +47,7 @@
                         name:"",
                         phone:"",
                         logo:"",
-                        type:0,
+                        type:"",
                         province:"",
                         area:"",
                         address:"",
@@ -102,7 +103,11 @@
                 }
 
                 function uploadSingleFile(file) {
-                    $scope.process = 0;
+                    if($scope.uploadOption == "logo"){
+                        $scope.logo_process = 0;
+                    }else{
+                        $scope.licence_process = 0;
+                    }
                     if (file) {
                         file.upload = Upload.upload({
                             url: uploadAPI,
@@ -113,13 +118,13 @@
 
 
                                 if($scope.uploadOption == "logo"){
-                                    $scope.merchant.logo = uploadFolder+response.data.url;
-                                    $scope.logoButton = "上传成功";
+                                    $scope.localMerchant.logo = uploadFolder+response.data.url;
+                                    $scope.logoButton = "重新上传";
                                     $scope.logo_process = 100;
 
                                 }else{
-                                    $scope.merchant.licence = uploadFolder+response.data.url;
-                                    $scope.licenceButton = "上传成功";
+                                    $scope.localMerchant.licence = uploadFolder+response.data.url;
+                                    $scope.licenceButton = "重新成功";
                                     $scope.licence_process = 100;
                                 }
                  }, function (response) {
@@ -137,13 +142,37 @@
                 }
 
                 function addBrandInfo(){
-                    $scope.merchant.location = $scope.merchant.location.lng + ',' + $scope.merchant.location.lat;
+                    $scope.submitted = true;
+                    if(!$scope.brandForm.$error === {}){
+                        return;
+                    }
+                    if($scope.localMerchant.logo == ""){
+                        return;
+                    }
+                    if($scope.localMerchant.licence == ""){
+                        return;
+                    }
+                    if($scope.localMerchant.marked){
+                        return;
+                    }
+                    $scope.merchant = {
+                        name:$scope.localMerchant.name,
+                        phone:$scope.localMerchant.phone,
+                        logo:$scope.localMerchant.logo,
+                        type:$scope.localMerchant.type,
+                        province:$scope.localMerchant.province,
+                        city:$scope.localMerchant.city,
+                        area:$scope.localMerchant.area,
+                        address:$scope.localMerchant.address,
+                        licence:$scope.localMerchant.licence,
+                        location:$scope.localMerchant.longitude + ',' + $scope.localMerchant.latitude
+                    };
                     DataService.AddMerchant($scope.merchant, function(response){
                         if(response.success){
                             $state.go('audit');
                         }else{
                             //品牌信息修改失败callback
-
+                            alert("error");
                         }
                     });
                 }
@@ -151,6 +180,10 @@
 
 
                 function openMapModal(){
+                    $scope.markOnMap = true;
+                    if($scope.brandForm.address.$error.required!=null){
+                        return;
+                    }
                     GeoCoderService.getLocationByAddress($scope.localMerchant.city,$scope.localMerchant.address,
                         function(response){
                             if(response.success){
@@ -159,7 +192,12 @@
                                     updateModalMap(location, $scope.localMerchant.city);
                                 });
                             }else{
-                                alert(response.result);
+                                //alert(response.result);
+
+                                $scope.$apply(function(){
+                                    $scope.showModal = false;
+                                    $scope.mapModalOpened = false;
+                                })
                             }
                     });
                     $scope.mapModalOpened = true;
