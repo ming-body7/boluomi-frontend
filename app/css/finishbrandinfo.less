@@ -52,6 +52,7 @@ body{
 			border: 1px solid #cdcbcd;
 			background:#f2f2f2;
 			color:#000;
+			cursor:pointer;
 		}
 		label{
 			display:inline-block;
@@ -94,6 +95,13 @@ body{
 			text-align: center;
 			border:1px solid #cdcbcd;
 			cursor:pointer;
+			background:#fff;
+			&:hover{
+				background-color:#d9d9d9;
+			};
+			&:active{
+				background-color:#bfbfbf;
+			};
 		}
 	}
 }
@@ -234,4 +242,12 @@ body{
 	position:absolute;
 	top:10px;
 	left:100px;
+}
+.b_state_a{
+	&:hover{
+		background-color:#e51f4b;
+	};
+	&:active{
+		background-color:#d3143e;
+	};
 }

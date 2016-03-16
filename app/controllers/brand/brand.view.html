@@ -32,10 +32,10 @@
 
         <div class="infoR">
             <!-- <a ng-click="uploadOption = 'logo'" id="brand_logo" href="javascript:;" data-logo-src="{{merchant.logo}}">{{logoButton}}</a> -->
-            <button id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
+            <a id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
                     class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
                     accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                {{logoButton}}</button>
+                {{logoButton}}</a>
         </div>
         <div>
             <img ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
@@ -112,10 +112,10 @@
         </div>
         <div class="infoR">
             <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
-            <button id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
+            <a id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
                     class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
                     accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
-                {{licenceButton}}</button>
+                {{licenceButton}}</a>
         </div>
         <div>
             <img ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
@@ -126,7 +126,7 @@
 </ul>
 
 
-<a id="submit_audit" class="submit-btn" href="javascript:;">提交审核</a>
+<span id="submit_audit" class="submit-btn b_state_a" href="javascript:;">提交审核</span>
 
 
 <div class="footer">
