@@ -16,6 +16,13 @@
         };
 
         function register() {
+            angular.forEach($scope.registerForm.$error.required, function(field) {
+                field.$setDirty();
+            });
+            if(!($scope.registerForm.$error === {})){
+                return;
+            }
+
             UserService.Create($scope.user, function(response){
                 if (response.success) {
                     AuthenticationService.SetCredentials($scope.user.account, response.data.auth_key, response.data.id);

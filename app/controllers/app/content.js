@@ -32,7 +32,7 @@
         $stateProvider
             .state('main.content', {
                 url: "/content",
-                template: "<ui-view></ui-view>",
+                template: "<div ui-view></div>",
                 redirectTo: "main.content.content",
                 data: {
                     permissions: {

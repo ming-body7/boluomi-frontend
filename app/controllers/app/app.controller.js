@@ -14,10 +14,6 @@
 
                 }
             });
-                $scope.$on('$viewContentLoaded', function(){
-                    //Here your view content is fully loaded !!
-                    //initLastState();
-                });
 
                 function initLastState(){
                     var currentStateString = $cookies.get('currentState')||{};
