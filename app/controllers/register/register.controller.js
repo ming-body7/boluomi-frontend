@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('registerController', registerController);
  
-    registerController.$inject = ['UtilsService','UserService', '$location','$scope', 'AuthenticationService'];
-    function registerController(UtilsService,UserService, $location, $scope, AuthenticationService) {
+    registerController.$inject = ['UtilsService','UserService', '$location','$scope', 'AuthenticationService', '$timeout'];
+    function registerController(UtilsService,UserService, $location, $scope, AuthenticationService, $timeout) {
 
         $scope.register = register;
         $scope.getPasscode = getPasscode;
