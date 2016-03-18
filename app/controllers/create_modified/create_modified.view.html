@@ -45,7 +45,7 @@
 	</ul>
 	<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
 	<!-- <a class="i_btn face_btn" >本地上传</a> -->
-	<div class="i_btn face_btn" ngf-drop ngf-select ng-model="files"
+	<div class="i_btn face_btn b_state_e" ngf-drop ngf-select ng-model="files"
 		 ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
 		 accept="image/*,application/pdf"
 		 ngf-pattern="'image/*,application/pdf'">本地上传</div>
@@ -63,9 +63,9 @@
 	</div>
 
 
-	<button class="i_btn save_btn" ng-click="saveChanges()">保存</button><a class="i_btn pre_view" ui-sref="preview({pid:pid})">预览</a>
+	<button class="i_btn save_btn b_state_e" ng-click="saveChanges()">保存</button><a class="i_btn pre_view b_state_f" ui-sref="preview({pid:pid})">预览</a>
 	<!-- <button type="button" class="btn btn-default" ng-click="open()">Open me!</button> -->
-	<button class="i_btn save_btn" ng-click="saveChangesAndExit()">保存并退出</button>
+	<button class="i_btn save_btn b_state_e" ng-click="saveChangesAndExit()">保存并退出</button>
 </div>
 <!--
 <script type="text/ng-template" id="myModalContent.html">

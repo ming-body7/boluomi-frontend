@@ -3,6 +3,7 @@
 
 
 <div class="banner"></div>
+<<<<<<< HEAD
 <form name="brandForm" ng-submit="addBrandInfo()">
     <ul id="brandForm" class="main">
         <li>
@@ -149,35 +150,10 @@
 
         </li>
     </ul>
-    <a id="submit_audit" class="submit-btn" type="submit" ng-click="addBrandInfo()">提交审核</a>
+    <a id="submit_audit" class="submit-btn b_state_a" type="submit" ng-click="addBrandInfo()">提交审核</a>
 </form>
 
-<div class="footer">
-    <a class="contact-we" href="#">联系我们：fankui@boluomi1314.com</a>
-    <p class="copyRight">Copyright © 2014—2015 boluomi1314.com  京ICP备14053981号-1</p>
-</div>
-
-<div id="load_img_wrap" class="load_img_wrap">
-    <div class="btn_wrap">
-        <!--<input id="load_btn" class="upload_btn" type="button" value="上传"> -->
-
-        <button class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-                accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-            上传</button>
-
-        <input id="cancle_btn" class="upload_btn" type="button" value="关闭" >
-        <input id="hidden_btn" type="button" value="">
-    </div>
-    <div class="img_box">
-        <img ng-if="uploadOption == 'logo'" ng-src="{{localMerchant.logo}}" alt="">
-        <img ng-if="uploadOption == 'licence'" ng-src="{{localMerchant.licence}}" alt="">
-    </div>
-    <div class="pro_wrap">
-        <div id="progress" class="progress"></div>
-    </div>
-
-</div>
-<div id="mask" class="mask"></div>
+<div ng-include="'views/footer.view.html'"></div>
 
 <div>
     <div class="modal fade in" aria-hidden="false" style="display: block;" ng-show="showModal">
