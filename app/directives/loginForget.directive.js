@@ -7,6 +7,8 @@ angular.module('myApp').directive('loginForgetZone', function () {
         templateUrl: "views/loginForget.view.html",
         scope:false,
         link: function ($scope, element, attrs) {
+            $scope.loginSubmitted = false;
+            $scope.forgetSubmitted = false;
             $scope.loginFormVisible = true;
             $scope.forget = function(){
                 $scope.loginFormVisible = false;

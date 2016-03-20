@@ -32,6 +32,8 @@
         }
         function closeLoginAndForgetZone(){
             $scope.loginForgetZoneVisible = false;
+            $scope.loginSubmitted = false;
+            $scope.forgetSubmitted =false;
         }
         function checkLoginStatus(){
             if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
@@ -45,6 +47,10 @@
             $state.go('main.content.content');
         }
         function login() {
+            $scope.loginSubmitted = true;
+            if(!($scope.loginForm.$error === {})){
+                return;
+            }
             if($rootScope.globals!=null && $rootScope.globals.role != 'anonymous'){
                 UserService.setAccessLevel('user');
                 $state.go('main.content.content');
@@ -103,7 +109,11 @@
             alert("已为您发送语音验证码，请注意接听电话，谢谢!");
         }
         function resetPassword() {
-            $scope.dataLoading = true;
+            $scope.forgetSubmitted = true;
+            if(!($scope.forgetForm.$error === {})){
+                return;
+            }
+
             if(!resetPasswordCheck($scope.account, $scope.code, $scope.password, $scope.rePassword)){
                 return;
             }

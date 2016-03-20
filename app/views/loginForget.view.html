@@ -2,14 +2,14 @@
     <div id="login_zone" class="tipsBox login-zone" ng-show="loginFormVisible">
         <input ng-model="account" name="account" placeholder="账号（手机号）" class="ipt J_account" type="text"
                ng-pattern="/^1{1}[3-9]{1}[0-9]{9}$/" ng-maxlength="11" required>
-        <div class="error" ng-messages="loginForm.account.$dirty&&loginForm.account.$error">
+        <div class="error" ng-show="loginSubmitted" ng-messages="loginForm.account.$error">
             <div ng-message="required">请输入手机号</div>
             <div ng-message="pattern">请输入正确的手机号</div>
             <div ng-message="maxlength">请输入正确的手机号</div>
         </div>
         <input ng-model="password" name="password" placeholder="密码" class="ipt J_password" type="password"
                 ng-minlength="6" ng-maxlength="10" required>
-        <div class="error" ng-messages="loginForm.password.$dirty&&loginForm.password.$error">
+        <div class="error" ng-show="loginSubmitted" ng-messages="loginForm.password.$error">
             <div ng-message="required">请填写密码</div>
         </div>
         <a class="login-btn J_login_btn" ng-click="login()">登录</a>
@@ -28,7 +28,7 @@
             <input ng-model="account" class="ipt" type="text" name="account" placeholder="账号（手机号）" maxlength="11"
                    ng-pattern="/^1{1}[3-9]{1}[0-9]{9}$/" ng-maxlength="11" required>
         </div>
-        <div class="error" ng-messages="forgetForm.account.$dirty&&forgetForm.account.$error">
+        <div class="error" ng-show="forgetSubmitted" ng-messages="forgetForm.account.$error">
             <div ng-message="required">请输入账号~</div>
             <div ng-message="pattern">请输入正确的手机号</div>
             <div ng-message="maxlength">请输入正确的手机号</div>
@@ -38,21 +38,21 @@
                    required>
             <span class="get-code" ng-click="getPasscode()">{{default.passcodeText}}</span>
         </div>
-        <div class="error" ng-messages="forgetForm.code.$dirty&&forgetForm.code.$error">
+        <div class="error" ng-show="forgetSubmitted" ng-messages="forgetForm.code.$error">
             <div ng-message="required">请输入验证码</div>
         </div>
         <div class="ipt-zone">
             <input ng-model="password" class="ipt" type="password" name="password" placeholder="密码（6-20位字母或数字）"
                    required>
         </div>
-        <div class="error" ng-messages="forgetForm.password.$dirty&&forgetForm.password.$error">
+        <div class="error" ng-show="forgetSubmitted" ng-messages="forgetForm.password.$error">
             <div ng-message="required">请输入密码</div>
         </div>
         <div class="ipt-zone">
             <input ng-model="rePassword" class="ipt" type="password" name="rePassword" placeholder="确认密码（6-20位字母或数字）"
                    required>
         </div>
-        <div class="error" ng-messages="forgetForm.rePassword.$dirty&&forgetForm.rePassword.$error">
+        <div class="error" ng-show="forgetSubmitted" ng-messages="forgetForm.rePassword.$error">
             <div ng-message="required">请再次输入密码</div>
         </div>
         <a id="finish_btn" class="finish-btn" ng-click="resetPassword()">完成</a>
