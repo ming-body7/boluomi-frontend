@@ -13,10 +13,13 @@
 
 
         $scope.resetAccount = resetAccount;
-
+        $scope.submitted = false;
 
         function resetAccount() {
-            $scope.dataLoading = true;
+            $scope.submitted = true;
+            if(!(Object.keys($scope.resetAccountForm.$error).length == 0)){
+                return;
+            }
             AuthenticationService.ResetAccount($rootScope.globals.authKey,  $scope.password, $scope.newAccount, $scope.code,function (response) {
                 if (response.success) {
                     alert("successful");

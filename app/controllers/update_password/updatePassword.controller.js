@@ -16,7 +16,7 @@
 
 
         function updatePassword() {
-            $scope.dataLoading = true;
+            $scope.submitted = true;
             AuthenticationService.UpdatePassword($rootScope.globals.authKey, $scope.oldPassword, $scope.newPassword, $scope.reNewPassword, function (response) {
                 if (response.success) {
                     alert("successful");

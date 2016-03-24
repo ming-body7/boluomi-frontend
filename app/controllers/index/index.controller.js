@@ -48,7 +48,7 @@
         }
         function login() {
             $scope.loginSubmitted = true;
-            if(!($scope.loginForm.$error === {})){
+            if(!(Object.keys($scope.loginForm.$error).length  == 0)){
                 return;
             }
             if($rootScope.globals!=null && $rootScope.globals.role != 'anonymous'){
@@ -110,13 +110,10 @@
         }
         function resetPassword() {
             $scope.forgetSubmitted = true;
-            if(!($scope.forgetForm.$error === {})){
+            if(!(Object.keys($scope.forgetForm.$error).length == 0)){
                 return;
             }
 
-            if(!resetPasswordCheck($scope.account, $scope.code, $scope.password, $scope.rePassword)){
-                return;
-            }
             AuthenticationService.ResetPassword($scope.account, $scope.code, $scope.password, $scope.rePassword, function (response) {
                 if (response.success) {
                     //AuthenticationService.SetCredentials($scope.username, $scope.password);

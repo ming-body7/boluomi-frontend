@@ -4,155 +4,154 @@
 		<div class="curmb">
 			<a href="">设置</a> > <a href="">基本信息</a>
 		</div>
-		<!--<div class="page_tips">
-			<i></i>本页为必填页
-		</div> -->
-
-		<ul>
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">商家名称：</span>
-				</div>
-				<div class="col-md-10">
-					<input ng-model="merchant.name" id="brand_name" class="ipt" type="text">
-				</div>
-			</li>
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">联系方式：</span>
-				</div>
-				<div class="col-md-10">
-					<input ng-model="merchant.phone" id="contact_phone" class="ipt" type="text" maxlength="11">
-				</div>
-			</li>
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">默认网址：</span>
-				</div>
-				<div class="col-md-10">
-					<input ng-model="merchant.webPage" id="web_page" class="ipt" type="text">
-				</div>
-			</li>
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">商家LOGO：</span>
-				</div>
-
-				<!--<div class="col-md-10">
-					<a ng-click="uploadOption = 'logo'" id="brand_logo"
-					   href="javascript:;" data-logo-src="" class="base_btn"  role="button">{{logoButton}}</a>
-				</div> -->
-
-				<div class="col-md-10">
-					<button id="brand_logo" class="base_btn"  role="button"
-							ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
-							class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-							accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-						{{logoButton}}</button>
-				</div>
-
-
-			</li>
-			<li class="row">
-				<div class="col-md-2 col-md-offset-2">
-					<img class="logo_img" ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
-				</div>
-			</li>
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">商家头图：</span>
-				</div>
-
-				<div class="col-md-10">
-					<a class="base_btn"  role="button">上传</a>
-				</div>
-
-			</li>
-
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">商家类型：</span>
-				</div>
-				<div id="brand_type" class="col-md-10" data-type="">
-					<div class="radio_zone">
-						<input ng-model="merchant.type" ng-checked="merchant.type==0" id="type1" data-type="1" class="rad" type="radio" name="type" id="">影楼
-						<input ng-model="merchant.type" ng-checked="merchant.type==1" id="type2" data-type="2" class="rad" type="radio" name="type" id="">工作室
+		<form name="informationForm">
+			<ul>
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">商家名称：</span>
 					</div>
-				</div>
+					<div class="col-md-10">
+						<input ng-model="merchant.name" id="brand_name" class="ipt" type="text">
+					</div>
+				</li>
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">联系方式：</span>
+					</div>
+					<div class="col-md-10">
+						<input ng-model="merchant.phone" id="contact_phone" class="ipt" type="text" maxlength="11">
+					</div>
+				</li>
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">默认网址：</span>
+					</div>
+					<div class="col-md-10">
+						<input ng-model="merchant.webPage" id="web_page" class="ipt" type="text">
+					</div>
+				</li>
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">商家LOGO：</span>
+					</div>
 
-			</li>
+					<!--<div class="col-md-10">
+                        <a ng-click="uploadOption = 'logo'" id="brand_logo"
+                           href="javascript:;" data-logo-src="" class="base_btn"  role="button">{{logoButton}}</a>
+                    </div> -->
 
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">所在区域：</span>
-				</div>
-				<div class="col-md-10">
-					<!--<select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
-					<select ng-model="merchant.city" class="J_city" name="" id=""><option value="-1">请选择</option></select>
-					<select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select> -->
-					<select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
-							ng-change="merchant.city='';merchant.area='';">
-						<option value="">省</option>
-					</select>
-
-					<select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
-							ng-change="merchant.area='';">
-						<option value="">市</option>
-					</select>
-					<select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
-						<option value="">区</option>
-					</select>
-				</div>
-			</li>
-
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">详细地址：</span>
-				</div>
-				<div class="col-md-10">
-					<input id="detail_address" ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
-				</div>
-			</li>
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">地图标注：</span>
-				</div>
-				<div class="col-md-10">
-					<a class="base_btn" role="button" id="map_mark" href="javacript:;" data-position="">重新标注</a>
-					<div class="area"></div>
-				</div>
-			</li>
-			<li class="row">
-				<div class="col-md-offset-2 map_preview">
-					<baidu-map  options="smallMap"></baidu-map>
-				</div>
-			</li>
-			<li class="row">
-				<div class="col-md-2">
-					<span class="key">营业执照：</span>
-				</div>
-				<!--<div class="col-md-10">
-					 <a class="base_btn" role="button" ng-click="uploadOption = 'licence'" id="licence_pic"
-					   href="javacript:;" data-licence-src="">{{licenceButton}}</a>
-				</div>-->
-				<div class="col-md-10">
-					<!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
-					<button id="licence_pic" class="base_btn" role="button"
-							ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
-							class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-							accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
-						{{licenceButton}}</button>
-				</div>
+					<div class="col-md-10">
+						<button id="brand_logo" class="base_btn"  role="button"
+								ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
+								class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+								accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+							{{logoButton}}</button>
+					</div>
 
 
-			</li>
-			<li class="row">
-				<div class="col-md-2 col-md-offset-2">
-					<img class="licence_img" ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
-				</div>
-			</li>
-		</ul>
-		<a class="save_btn b_state_e" ng-click="saveBrandInfo()">保存</a>
+				</li>
+				<li class="row">
+					<div class="col-md-2 col-md-offset-2">
+						<img class="logo_img" ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
+					</div>
+				</li>
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">商家头图：</span>
+					</div>
+
+					<div class="col-md-10">
+						<a class="base_btn"  role="button">上传</a>
+					</div>
+
+				</li>
+
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">商家类型：</span>
+					</div>
+					<div id="brand_type" class="col-md-10" data-type="">
+						<div class="radio_zone">
+							<input ng-model="merchant.type" ng-checked="merchant.type==0" id="type1" data-type="1" class="rad" type="radio" name="type" id="">影楼
+							<input ng-model="merchant.type" ng-checked="merchant.type==1" id="type2" data-type="2" class="rad" type="radio" name="type" id="">工作室
+						</div>
+					</div>
+
+				</li>
+
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">所在区域：</span>
+					</div>
+					<div class="col-md-10">
+						<!--<select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
+                        <select ng-model="merchant.city" class="J_city" name="" id=""><option value="-1">请选择</option></select>
+                        <select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select> -->
+						<select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
+								ng-change="merchant.city='';merchant.area='';">
+							<option value="">省</option>
+						</select>
+
+						<select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
+								 ng-change="merchant.area='';">
+							<option value="">市</option>
+						</select>
+						<select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
+							<option value="">区</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">详细地址：</span>
+					</div>
+					<div class="col-md-10">
+						<input id="detail_address" ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
+					</div>
+				</li>
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">地图标注：</span>
+					</div>
+					<div class="col-md-10">
+						<a class="base_btn" role="button" id="map_mark" href="javacript:;" data-position="">重新标注</a>
+						<div class="area"></div>
+					</div>
+				</li>
+				<li class="row">
+					<div class="col-md-offset-2 map_preview">
+						<baidu-map  options="smallMap"></baidu-map>
+					</div>
+				</li>
+				<li class="row">
+					<div class="col-md-2">
+						<span class="key">营业执照：</span>
+					</div>
+					<!--<div class="col-md-10">
+                         <a class="base_btn" role="button" ng-click="uploadOption = 'licence'" id="licence_pic"
+                           href="javacript:;" data-licence-src="">{{licenceButton}}</a>
+                    </div>-->
+					<div class="col-md-10">
+						<!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
+						<button id="licence_pic" class="base_btn" role="button"
+								ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
+								class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+								accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
+							{{licenceButton}}</button>
+					</div>
+
+
+				</li>
+				<li class="row">
+					<div class="col-md-2 col-md-offset-2">
+						<img class="licence_img" ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
+					</div>
+				</li>
+			</ul>
+			<a class="save_btn b_state_e" ng-click="saveBrandInfo()">保存</a>
+		</form>
+
 	</div>
 
 </div>
