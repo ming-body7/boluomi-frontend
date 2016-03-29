@@ -3,7 +3,7 @@
 
     angular
         .module('myApp', ['myApp.directive','myApp.content', 'myApp.admin','ngMessages','ngFileUpload',
-            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap',
+            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','uiRouterStyles',
             'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad'])
         .config(config)
         .run(run);
@@ -48,7 +48,8 @@
                 data: {
                     permissions: {
                         except: []
-                    }
+                    },
+                    css: 'css/main.css'
                 }
             })
             .state('brand', {
@@ -58,7 +59,8 @@
                 data: {
                     permissions: {
                         except: []
-                    }
+                    },
+                    css: 'css/finishbrandinfo.css'
                 }
             })
             .state('audit', {
@@ -88,7 +90,8 @@
                 data: {
                     permissions: {
                         except: []
-                    }
+                    },
+                    css: 'css/finishbrandinfo.css'
                 }
             })
             .state('main', {
