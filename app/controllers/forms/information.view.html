@@ -11,7 +11,7 @@
 						<span class="key">商家名称：</span>
 					</div>
 					<div class="col-md-10">
-						<input ng-model="merchant.name" id="brand_name" class="ipt" type="text">
+						<input ng-model="localMerchant.name" id="brand_name" class="ipt" type="text">
 					</div>
 				</li>
 				<li class="row">
@@ -19,7 +19,7 @@
 						<span class="key">联系方式：</span>
 					</div>
 					<div class="col-md-10">
-						<input ng-model="merchant.phone" id="contact_phone" class="ipt" type="text" maxlength="11">
+						<input ng-model="localMerchant.phone" id="contact_phone" class="ipt" type="text" maxlength="11">
 					</div>
 				</li>
 				<li class="row">
@@ -27,7 +27,7 @@
 						<span class="key">默认网址：</span>
 					</div>
 					<div class="col-md-10">
-						<input ng-model="merchant.webPage" id="web_page" class="ipt" type="text">
+						<input ng-model="localMerchant.webPage" id="web_page" class="ipt" type="text">
 					</div>
 				</li>
 				<li class="row">
@@ -35,26 +35,25 @@
 						<span class="key">商家LOGO：</span>
 					</div>
 
-					<!--<div class="col-md-10">
-                        <a ng-click="uploadOption = 'logo'" id="brand_logo"
-                           href="javascript:;" data-logo-src="" class="base_btn"  role="button">{{logoButton}}</a>
-                    </div> -->
-
 					<div class="col-md-10">
 						<button id="brand_logo" class="base_btn"  role="button"
-								ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
+								ng-click="uploadOption = 'logo'" data-logo-src="{{localMerchant.logo}}"
 								class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
 								accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
 							{{logoButton}}</button>
 					</div>
-
-
+				</li>
+				<li class="row">
+					<div class="col-md-10">
+						<progressbar  animate="true" value="logo_process" type="success"><b>{{logo_process}}%</b></progressbar>
+					</div>
 				</li>
 				<li class="row">
 					<div class="col-md-2 col-md-offset-2">
-						<img class="logo_img" ng-if="merchant.logo!=null && merchant.logo!= ''" ng-src="{{merchant.logo}}" alt="">
+						<img class="logo_img" ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
 					</div>
 				</li>
+
 				<li class="row">
 					<div class="col-md-2">
 						<span class="key">商家头图：</span>
@@ -72,8 +71,8 @@
 					</div>
 					<div id="brand_type" class="col-md-10" data-type="">
 						<div class="radio_zone">
-							<input ng-model="merchant.type" ng-checked="merchant.type==0" id="type1" data-type="1" class="rad" type="radio" name="type" id="">影楼
-							<input ng-model="merchant.type" ng-checked="merchant.type==1" id="type2" data-type="2" class="rad" type="radio" name="type" id="">工作室
+							<input ng-model="localMerchant.type" ng-checked="localMerchant.type==0" id="type1" data-type="1" class="rad" type="radio" name="type" value="0">影楼
+							<input ng-model="localMerchant.type" ng-checked="localMerchant.type==1" id="type2" data-type="2" class="rad" type="radio" name="type" value="1">工作室
 						</div>
 					</div>
 
@@ -81,22 +80,19 @@
 
 				<li class="row">
 					<div class="col-md-2">
-						<span class="key">所在区域：</span>
+						<span class="key">商家地址：</span>
 					</div>
 					<div class="col-md-10">
-						<!--<select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
-                        <select ng-model="merchant.city" class="J_city" name="" id=""><option value="-1">请选择</option></select>
-                        <select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select> -->
-						<select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
-								ng-change="merchant.city='';merchant.area='';">
+						<select required=""  ng-model="localMerchant.province" ng-options="key as key for (key,value) in division"
+								ng-change="localMerchant.city='';localMerchant.area='';">
 							<option value="">省</option>
 						</select>
 
-						<select  ng-model="merchant.city" ng-options="key as key for (key,value) in division[merchant.province]"
-								 ng-change="merchant.area='';">
+						<select  ng-model="localMerchant.city" ng-options="key as key for (key,value) in division[localMerchant.province]"
+								 ng-change="localMerchant.area='';">
 							<option value="">市</option>
 						</select>
-						<select  ng-model="merchant.area" ng-options="value as value for value in division[merchant.province][merchant.city]">
+						<select  ng-model="localMerchant.area" ng-options="value as value for value in division[localMerchant.province][localMerchant.city]">
 							<option value="">区</option>
 						</select>
 					</div>
@@ -107,7 +103,7 @@
 						<span class="key">详细地址：</span>
 					</div>
 					<div class="col-md-10">
-						<input id="detail_address" ng-model="merchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
+						<input id="detail_address" ng-model="localMerchant.address" id="detail_address" class="ipt" type="text" name="" id="" data-empty="请填写详细地址">
 					</div>
 				</li>
 				<li class="row">
@@ -115,37 +111,30 @@
 						<span class="key">地图标注：</span>
 					</div>
 					<div class="col-md-10">
-						<a class="base_btn" role="button" id="map_mark" href="javacript:;" data-position="">重新标注</a>
-						<div class="area"></div>
+						<a ng-click="openMapModal()" class="base_btn" role="button" id="map_mark" >重新标注</a>
 					</div>
 				</li>
 				<li class="row">
 					<div class="col-md-offset-2 map_preview">
-						<baidu-map  options="smallMap"></baidu-map>
+						<baidu-map  options="smallMap" control="smallMapControl"></baidu-map>
 					</div>
 				</li>
 				<li class="row">
 					<div class="col-md-2">
 						<span class="key">营业执照：</span>
 					</div>
-					<!--<div class="col-md-10">
-                         <a class="base_btn" role="button" ng-click="uploadOption = 'licence'" id="licence_pic"
-                           href="javacript:;" data-licence-src="">{{licenceButton}}</a>
-                    </div>-->
 					<div class="col-md-10">
-						<!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
+						<!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> -->
 						<button id="licence_pic" class="base_btn" role="button"
-								ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
+								ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
 								class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
 								accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
 							{{licenceButton}}</button>
 					</div>
-
-
 				</li>
 				<li class="row">
 					<div class="col-md-2 col-md-offset-2">
-						<img class="licence_img" ng-if="merchant.licence!=null && merchant.licence!= ''" ng-src="{{merchant.licence}}" alt="">
+						<img class="licence_img" ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
 					</div>
 				</li>
 			</ul>
@@ -156,6 +145,27 @@
 
 </div>
 <div id="mask" class="mask"></div>
+
+<div>
+	<div class="modal fade in" aria-hidden="false" style="display: block;" ng-show="showModal">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h3 class="modal-title">I'm a modal!</h3>
+				</div>
+				<div class="modal-body" style="height: 600px">
+					<baidu-map control="mapModalControl" options="mapOptions"></baidu-map>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" type="button" ng-click="closeMapModal()">OK</button>
+					<button class="btn btn-warning" type="button" ng-click="dismissMapModal()">Cancel</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
 
 <style>
 	.map_preview{
@@ -171,13 +181,22 @@
 		height: 200px;
 	}
 
+	.map-outer {
+		overflow: hidden;
+		position: relative;
+		height: 400px;
+		width: 400px;
+	}
+
+	.map-inner {
+		position: absolute;
+		height: 400px;
+		width: 400px;
+		right: -400px;
+		top: 50px;
+	}
+
 	.allmap{position:fixed !important;left:50%;top:0;box-shadow:1px 1px 2px 1px rgba(0,0,0,0.5);z-index:999 !important}
 	.closeBtn{position:fixed;right:10px;top:10px;font-size:20px;font-style:normal;cursor:pointer;font-size:50px;z-index:1000;color:#fff}
 	.mask{position:fixed;top:0;left:0;bottom:0;right:0;background:#000;opacity:.5;filter:alpha(opacity=50);z-index:998;display:none}
 </style>
-
-
-<script src="js/linkageCity.js"></script>
-<script src="js/myEvent.js"></script>
-<!--<script src="js/finishbrandinfo.js"></script> -->
-<script src="js/updateinformation.js"></script>

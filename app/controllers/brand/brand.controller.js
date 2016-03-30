@@ -117,16 +117,16 @@
                         file.upload.then(function (response) {
 
 
-                                if($scope.uploadOption == "logo"){
-                                    $scope.localMerchant.logo = uploadFolder+response.data.url;
-                                    $scope.logoButton = "重新上传";
-                                    $scope.logo_process = 100;
+                            if($scope.uploadOption == "logo"){
+                                $scope.localMerchant.logo = uploadFolder+response.data.url;
+                                $scope.logoButton = "上传成功";
+                                $scope.logo_process = 100;
 
-                                }else{
-                                    $scope.localMerchant.licence = uploadFolder+response.data.url;
-                                    $scope.licenceButton = "重新成功";
-                                    $scope.licence_process = 100;
-                                }
+                            }else{
+                                $scope.localMerchant.licence = uploadFolder+response.data.url;
+                                $scope.licenceButton = "上传成功";
+                                $scope.licence_process = 100;
+                            }
                  }, function (response) {
 
                         }, function (evt) {
@@ -188,7 +188,11 @@
                         function(response){
                             if(response.success){
                                 $scope.$apply(function(){
-                                    var location = response.results.point;
+                                    var point = response.results.point;
+                                    var location = {
+                                        longitude:point.lng,
+                                        latitude:point.lat
+                                    };
                                     updateModalMap(location, $scope.localMerchant.city);
                                 });
                             }else{
@@ -246,14 +250,14 @@
                 function updateModalMap(location,city) {
                     $scope.mapOptions = {
                         center: {
-                            longitude: location.lng,
-                            latitude: location.lat,
+                            longitude: location.longitude,
+                            latitude: location.latitude
                         },
                         zoom: 17,
                         city: city,
                         markers: [{
-                            longitude: location.lng,
-                            latitude: location.lat,
+                            longitude: location.longitude,
+                            latitude: location.latitude,
                             icon: 'img/mappiont.png',
                             width: 49,
                             height: 60,
