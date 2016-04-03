@@ -14,8 +14,8 @@ angular.module('myApp')
             }
         };
 
-
-
+        $scope.banner_progress = 0;
+        $scope.music_prgress = 0;
 
         var pid = $stateParams.pid;
         $scope.pid = pid;
@@ -121,6 +121,7 @@ angular.module('myApp')
                 }, function (evt) {
                     music.progress = Math.min(100, parseInt(100.0 *
                         evt.loaded / evt.total));
+                    $scope.music_prgress = music.progress;
                 });
             }
         }
@@ -152,10 +153,12 @@ angular.module('myApp')
                         $scope.product.banner_pic = uploadFolder+response.data.url;
                     });
                 }, function (response) {
-
+                    $scope.banner_process = 100;
                 }, function (evt) {
                     file.progress = Math.min(100, parseInt(100.0 *
                         evt.loaded / evt.total));
+                    $scope.banner_process = file.progress/100;
+                    //$scope.banner_progress = 0.5;
                 });
             }
         }

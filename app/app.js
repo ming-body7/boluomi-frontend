@@ -3,7 +3,7 @@
 
     angular
         .module('myApp', ['myApp.directive','myApp.content', 'myApp.admin','ngMessages','ngFileUpload',
-            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','uiRouterStyles',
+            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','uiRouterStyles','progressButton',
             'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad'])
         .config(config)
         .run(run);

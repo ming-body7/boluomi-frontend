@@ -6,10 +6,9 @@
 	<div class="page_face">
 		<div class="img_box">
 			<img class="banner_pic"  ng-src="{{product.banner_pic}}" alt="封面图片"/>
-			<p type="file" ngf-select="uploadFiles($file, $invalidFiles)"
-					accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-				更改封面</p>
-
+			<p type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="100MB">
+			<a id="banner_progress_button" progress-button value="banner_progress" in-progress="上传中。。。" complete="666">更改封面</a>
+			</p>
 		</div>
 		<input type="text" placeholder="快给作品起个名字吧"  ng-model = "product.title"/>
 		<textarea placeholder="加点摘要说明，发送到朋友圈，点开的可能性更大哟~" ng-model = "product.description"></textarea>
@@ -22,9 +21,11 @@
 		<li>
 			<span>背景音乐：</span>
 			{{musicName}}
-			<button class="base_btn" type="file"
+			<p class="base_btn" type="file"
 					ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="4MB">
-				{{musicButton}}</button>
+
+				<a progress-button value="music_progress" in-progress="上传中。。。" complete="重新上传">上传</a>
+			</p>
 			<em class="tips">（只能上传MP3格式的，不超过4M ）</em>
 		</li>
 
@@ -45,13 +46,10 @@
 	</ul>
 	<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
 	<!-- <a class="i_btn face_btn" >本地上传</a> -->
-	<div class="i_btn face_btn b_state_e" ngf-drop ngf-select ng-model="files"
-		 ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-		 accept="image/*,application/pdf"
-		 ngf-pattern="'image/*,application/pdf'">本地上传</div>
+
 	<div class="upload_zone">
 		<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
-			<div ng-show="product.pics.length == 0">请上传图片</div>
+
 			<li ng-repeat="item in product.pics" as-sortable-item>
 				<div as-sortable-item-handle ngf-as-background="true">
 					<img ng-src="{{item}}" alt="{{percent}}" width="150" height="236">
@@ -59,198 +57,27 @@
 				</div>
 				<div class="pro"></div>
 			</li>
+			<li>
+				<div ngf-drop ngf-select ng-model="files"
+					 ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+					 accept="image/*,application/pdf"
+					 ngf-pattern="'image/*,application/pdf'">
+					<a ng-if="product.pics.length == 0">请上传图片</a>
+					<a ng-if="product.pics.length != 0">添加图片</a>
+				</div>
+			</li>
 		</ul>
 	</div>
 
 
 	<button class="i_btn save_btn b_state_e" ng-click="saveChanges()">保存</button><a class="i_btn pre_view b_state_f" ui-sref="preview({pid:pid})">预览</a>
-	<!-- <button type="button" class="btn btn-default" ng-click="open()">Open me!</button> -->
 	<button class="i_btn save_btn b_state_e" ng-click="saveChangesAndExit()">保存并退出</button>
 </div>
-<!--
-<script type="text/ng-template" id="myModalContent.html">
-	<div class="modal-header">
-		<h3 class="modal-title">I'm a modal!</h3>
-	</div>
-	<div class="modal-body">
-
-		<div class="web_share">
-			<div class="cont">
-				<div class="phone_mode">
-					<div class="page_wrap" id="page_wrap">
-						<div class="loading"></div>
-						<div id="iSlider-wrapper"></div>
-
-						<div id="audio_btn" class="audioIocn audio-on">
-							<audio loop="loop" src="./img/marry you.mp3" id="audio" autoplay="autoplay" preload="preload"></audio>
-						</div>
-
-						<div id="iSlider-arrow"><img src="img/btn_arrow.png" /></div>
-						<div id="prev_btn" class="prev_btn left"></div>
-						<div id="next_btn" class="next_btn right"></div>
-					</div>
-				</div>
-				<div class="sweep_wrap">
-					<h3><img src="./img/web_share_txt.png" alt=""></h3>
-					<div class="code"><img src="./img/code.png" alt=""></div>
-					<a class="free_creation" href="javascript:;">免费创作</a>
-				</div>
-			</div>
-			<div class="footer">
-				<h1><img src="./img/web_logo.jpg" alt=""></h1>
-				<p>Copyright © 2014 boluomi1314.com  京ICP备14053981号-1</p>
-			</div>
-		</div>
-
-
-		<link href="css/islider.css" rel="stylesheet">
-		<link href="css/Animation.css" rel="stylesheet">
-		<link href="css/mySlider.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/main.css" />
-
-
-
-
-</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-		<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-	</div>
-</script>
-
-
-<script src="js/jquery.js"></script>
-<script src="js/islider.js"></script>
-<script src="http://api.map.baidu.com/api?v=1.5&ak=5U8M51SeGixHSOHsMzKLt1NG" type="text/javascript"></script>
-<script src="js/mySlider_pc.js"></script>
-
--->
-<!--
-<div class="row">
-	<div>婚纱照分享 > 你是我一生的守候</div>
-
-	<hr/>
-	<br/>
-	<div class="col-md-12">
-
-        <div class="row">
-            <div class="col-md-3">
-                <div id="coverContainer">
-                    <img ng-src="{{product.banner_pic}}" alt="封面图片" width="150" height="150"/>
-                    <button id="coverChangeBtn">更改封面</button>
-					<button id="coverChangeBtn" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
-							accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-						更改封面</button>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-12">
-                        <textarea type="text" ng-model = "product.title" rows="1" cols="20"/>
-                    </div>
-                    <div class="col-md-12">
-                        <textarea ng-model = "product.description" rows="4" cols="50"/>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-		<div class="col-md-3">
-
-		</div>
-
-
-	</div>
-
-
-	<div id="settings-container">
-		<div id="brand-tail" class="row">
-			<p class="col-md-2">尾页品牌</p>
-			<switch id="brand" name="enabled" ng-model="product.is_brand" class="green col-md-2"></switch>
-			<p class="col-md-6">作品最后一页展示商家品牌</p>
-		</div>
-			<div id="business-mainpage" class="row">
-			<p class="col-md-2">商家主页</p>
-			<switch class="col-md-2" id="home" name="enabled" ng-model="product.is_home" class="green"></switch>
-			<p class="col-md-6">作品展示在商家主页上</p>
-		</div>
-		<div id="backgroud music" class="row">
-			<p class="col-md-2">背景音乐：</p>
-			<p class="col-md-2">{{musicName}}</p>
-			<div class="col-md-6">
-				<button class="btn btn-default" type="file" ngf-select="uploadMusic($file)" ngf-max-size="3MB">
-					{{musicButton}}</button>
-			</div>
-
-			
-		</div>
-		<div id="page-settings" class="row">
-			<p class="col-md-2">页面切换</p>
-
-			<select ng-model="product.change_status">
-				<option ng-selected="product.change_status == item.value" ng-repeat="item in options" ng-value="item.value">{{item.name}}</option>
-			</select>
-
-
-		</div>
-
-
-		<div id="image" class="col-md-8">
-			<h4>上传照片 （960*1080， jpg、png、gif格式，大小不超过3M）</h4>
-
-			<div id="imageUpload" class="row">
-                <div class="col-md-12">
-                    <div ngf-drop ngf-select ng-model="files" class="jumbotron"
-                         ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-                         accept="image/*,application/pdf"
-                         ngf-pattern="'image/*,application/pdf'">
-
-
-						<div class="jumbotron">
-
-							<div class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics">
-								<div ng-repeat="item in product.pics" as-sortable-item>
-									<div as-sortable-item-handle ngf-as-background="true">
-										<img  ng-src="{{item}}" alt="图片" width="200" height="200"  />
-										<button ng-click="product.pics.splice($index,1); $event.stopPropagation()">删除</button>
-
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-
-
-
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-4">
-                                <button class="btn btn-danger" width="100%">上传照片</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-				<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-			</div>
-
-            <br>
-            <br>
-
-			<div id="action">
-				<button class="btn btn-default" ng-click="saveChanges()">保存</button>
-				<button class="btn btn-default">预览</button>
-			</div>
-		</div>
-	</div>
-	</div>   -->
 <style>
-
+	#banner_progress_button {
+		width:100%;
+		height:100%;
+	}
 	.banner_pic {
 		max-width: 100%;
 		max-height: 100%;
