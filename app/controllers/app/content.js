@@ -49,7 +49,8 @@
                     permissions: {
                         only: ['user'],
                         redirectTo: 'index'
-                    }
+                    },
+                    css: 'css/main.css'
                 }
             })
             .state('main.content.create', {

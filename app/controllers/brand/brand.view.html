@@ -45,7 +45,9 @@
                 <div class="error" ng-show="submitted&&!localMerchant.logo">
                     请上传商家LOGO，只支持jpg、png、gif格式，大小不超过3M
                 </div>
-                <progressbar  animate="true" value="logo_process" type="success"><b>{{logo_process}}%</b></progressbar>
+                <div ng-show="logo_uploading">
+                    <progressbar  animate="true" value="logo_process" type="success"><b>{{logo_process}}%</b></progressbar>
+                </div>
             </div>
             <div>
                 <img ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
@@ -139,6 +141,9 @@
                     {{licenceButton}}</button>
                 <div class="error" ng-show="submitted&&!localMerchant.logo">
                     请上传营业执照
+                </div>
+                <div ng-show="licence_uploading">
+                    <progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
                 </div>
             </div>
             <div>

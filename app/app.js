@@ -70,7 +70,8 @@
                 data: {
                     permissions: {
                         except: []
-                    }
+                    },
+                    css: 'css/finishbrandinfo.css'
                 }
             })
             .state('login', {

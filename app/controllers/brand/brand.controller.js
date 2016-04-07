@@ -63,6 +63,8 @@
                     $scope.uploadOption = "logo";
                     $scope.logo_process = 0;
                     $scope.licence_process = 0;
+                    $scope.logo_uploading = false;
+                    $scope.licence_uploading = false;
 
                     $scope.smallMap = {
                         center: {
@@ -121,11 +123,13 @@
                                 $scope.localMerchant.logo = uploadFolder+response.data.url;
                                 $scope.logoButton = "上传成功";
                                 $scope.logo_process = 100;
+                                $scope.logo_uploading = false;
 
                             }else{
                                 $scope.localMerchant.licence = uploadFolder+response.data.url;
                                 $scope.licenceButton = "上传成功";
                                 $scope.licence_process = 100;
+                                $scope.licence_uploading = false;
                             }
                  }, function (response) {
 
@@ -134,8 +138,10 @@
                                 evt.loaded / evt.total));
                             if($scope.uploadOption == "logo"){
                                 $scope.logo_process = file.process;
+                                $scope.logo_uploading = true;
                             }else{
                                 $scope.licence_process = file.process;
+                                $scope.licence_uploading = true;
                             }
                         });
                     }
