@@ -82,11 +82,13 @@
                         }]
                     };
 
-                    $scope.logoButton = "重新上传";
-                    $scope.licenceButton = "重新上传";
+                    $scope.logoButton = "更改";
+                    $scope.licenceButton = "更改";
                     $scope.uploadOption = "logo";
                     $scope.logo_process = 0;
                     $scope.licence_process = 0;
+                    $scope.logo_uploading = false;
+                    $scope.licence_uploading = false;
 
                     DataService.GetMerchantInfo(function(response){
                         if(response.success){
@@ -130,11 +132,14 @@
                         marked:true
                     }
                 }
+
                 function uploadSingleFile(file) {
                     if($scope.uploadOption == "logo"){
                         $scope.logo_process = 0;
+                        $scope.logo_uploading = false;
                     }else{
                         $scope.licence_process = 0;
+                        $scope.licence_uploading = false;
                     }
                     if (file) {
                         file.upload = Upload.upload({
@@ -147,13 +152,15 @@
 
                                 if($scope.uploadOption == "logo"){
                                     $scope.localMerchant.logo = uploadFolder+response.data.url;
-                                    $scope.logoButton = "上传成功";
+                                    $scope.logoButton = "重新上传";
                                     $scope.logo_process = 100;
+                                    $scope.logo_uploading = false;
 
                                 }else{
                                     $scope.localMerchant.licence = uploadFolder+response.data.url;
-                                    $scope.licenceButton = "上传成功";
+                                    $scope.licenceButton = "重新上传";
                                     $scope.licence_process = 100;
+                                    $scope.licence_uploading = false;
                                 }
 
                             });
@@ -164,8 +171,10 @@
                                 evt.loaded / evt.total));
                             if($scope.uploadOption == "logo"){
                                 $scope.logo_process = file.process;
+                                $scope.logo_uploading = true;
                             }else{
                                 $scope.licence_process = file.process;
+                                $scope.logo_uploading = true;
                             }
                         });
                     }

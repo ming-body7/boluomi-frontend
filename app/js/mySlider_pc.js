@@ -1,3 +1,4 @@
+//@ sourceURL=mySlider_pc.js
 $(function(){
 	var page_wrap = $('#page_wrap');
 	var viewScale = page_wrap.width()/page_wrap.height();
@@ -8,10 +9,11 @@ $(function(){
 	}
 	//h5首页数据接口
 
-	var pid = getPreviewProductIdFromAngular();
-
-
-	 $.ajax({
+	//var pid = getPreviewProductIdFromAngular();
+	var $body = angular.element(document.body);   // 1
+	var $rootScope = $body.scope().$root;
+	var pid = $rootScope.previewPid;
+	$.ajax({
 		 	url : 'http://www.boluomi1314.com:8083/info/data/view',
 		 	type : 'GET',
 		 	dataType : 'json',

@@ -34,7 +34,6 @@
 					<div class="col-md-2">
 						<span class="key">商家LOGO：</span>
 					</div>
-
 					<div class="col-md-10">
 						<button id="brand_logo" class="base_btn"  role="button"
 								ng-click="uploadOption = 'logo'" data-logo-src="{{localMerchant.logo}}"
@@ -43,8 +42,8 @@
 							{{logoButton}}</button>
 					</div>
 				</li>
-				<li class="row">
-					<div class="col-md-10">
+				<li ng-show="logo_uploading" class="row">
+					<div class="col-md-6 col-md-offset-2">
 						<progressbar  animate="true" value="logo_process" type="success"><b>{{logo_process}}%</b></progressbar>
 					</div>
 				</li>
@@ -124,12 +123,16 @@
 						<span class="key">营业执照：</span>
 					</div>
 					<div class="col-md-10">
-						<!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> -->
 						<button id="licence_pic" class="base_btn" role="button"
 								ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
 								class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
 								accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
 							{{licenceButton}}</button>
+					</div>
+				</li>
+				<li ng-show="licence_uploading" class="row">
+					<div class="col-md-6 col-md-offset-2">
+						<progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
 					</div>
 				</li>
 				<li class="row">
@@ -152,7 +155,7 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h3 class="modal-title">I'm a modal!</h3>
+					<h3 class="modal-title">地图标注</h3>
 				</div>
 				<div class="modal-body" style="height: 600px">
 					<baidu-map control="mapModalControl" options="mapOptions"></baidu-map>

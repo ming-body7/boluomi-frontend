@@ -54,7 +54,7 @@
             })
             .state('main.content.create', {
                 url: "/create",
-                templateUrl: "controllers/create_modified/create_modified.view.html",
+                templateUrl: "controllers/detail/detail.view.html",
                 controller: "modifiedController",
                 data: {
                     permissions: {
@@ -66,7 +66,7 @@
             })
             .state('main.content.modified', {
                 url: "/modified/{pid}",
-                templateUrl: "controllers/create_modified/create_modified.view.html",
+                templateUrl: "controllers/detail/detail.view.html",
                 controller: "modifiedController",
                 data: {
                     permissions: {
@@ -78,7 +78,7 @@
             })
             .state('main.information', {
                 url: "/information",
-                templateUrl: "controllers/forms/information.view.html",
+                templateUrl: "controllers/information/information.view.html",
                 controller: "informationController",
                 data: {
                     permissions: {
