@@ -50,7 +50,7 @@
                         only: ['user'],
                         redirectTo: 'index'
                     },
-                    css: 'css/main.css'
+                    css: 'css/manage_brand.css'
                 }
             })
             .state('main.content.create', {
@@ -61,7 +61,8 @@
                     permissions: {
                         only: ['user'],
                         redirectTo: 'index'
-                    }
+                    },
+                    css: 'css/new_brand.css'
                 }
 
             })
@@ -73,7 +74,8 @@
                     permissions: {
                         only: ['user'],
                         redirectTo: 'index'
-                    }
+                    },
+                    css: 'css/new_brand.css'
                 }
 
             })
@@ -85,7 +87,8 @@
                     permissions: {
                         only: ['user'],
                         redirectTo: 'index'
-                    }
+                    },
+                    css: 'css/base_info.css'
                 }
 
             })
@@ -97,7 +100,8 @@
                     permissions: {
                         only: ['user'],
                         redirectTo: 'index'
-                    }
+                    },
+                    css: 'css/change_account.css'
                 }
 
             })
@@ -109,7 +113,8 @@
                     permissions: {
                         only: ['user'],
                         redirectTo: 'index'
-                    }
+                    },
+                    css: 'css/change_account.css'
                 }
 
             });

@@ -115,7 +115,8 @@
                     permissions: {
                         only: ['user', 'admin'],
                         redirectTo: 'index'
-                    }
+                    },
+                    css: ['css/main.css', 'css/islider.css', 'css/Animation.css', 'mySlider.css']
                 }
             })
             .state('admin', {
