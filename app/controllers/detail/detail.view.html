@@ -47,17 +47,17 @@
 	<div class="upload_zone">
 		<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
 
-			<li ng-repeat="item in product.pics" as-sortable-item>
+			<li ng-repeat="item in product.pics track by $index" as-sortable-item>
 				<div as-sortable-item-handle ngf-as-background="true">
-					<img ng-src="{{item}}" alt="{{percent}}" width="150" height="236">
+					<img ng-src="{{item}}" alt="loading..." width="150" height="236">
 					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 				</div>
 				<div class="pro">
-					<progressbar ng-if="$last&&uploading" animate="true" value="percent" type="success"><b>{{percent}}%</b></progressbar>
+					<progressbar ng-if="uploading[$index]" animate="true" value="progress[$index]" type="success"><b>{{progress[$index]}}%</b></progressbar>
 				</div>
 			</li>
 			<li>
-				<div ngf-select="upload($file, $invalidFiles)"
+				<div ngf-select="uploadFiles($files, $invalidFiles)" multiple
 					 accept="image/*,application/pdf"  ngf-pattern="'image/*,application/pdf'">
 					<a ng-if="product.pics.length == 0">请上传图片</a>
 					<a ng-if="product.pics.length != 0">添加图片</a>
@@ -67,7 +67,7 @@
 	</div>
 
 
-	<button class="i_btn save_btn b_state_e" ng-click="saveChanges()">保存</button>
+	<button class="i_btn save_btn b_state_e" ng-click="saveChanges()">{{saveButton}}</button>
 	<a class="i_btn pre_view b_state_f" ng-click="preview()">预览</a>
 	<button class="i_btn save_btn b_state_e" ng-click="saveChangesAndExit()">保存并退出</button>
 </div>
@@ -77,8 +77,8 @@
 		height:100%;
 	}
 	.banner_pic {
-		max-width: 100%;
-		max-height: 100%;
+		min-width: 100%;
+		min-height: 100%;
 		margin:auto;
 		display:block;
 		position: absolute;

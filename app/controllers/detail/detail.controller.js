@@ -42,7 +42,8 @@ angular.module('myApp')
             $scope.banner_progress = 0;
             $scope.music_progress = 0;
             $scope.music_uploading = false;
-            $scope.uploading = false;
+
+            $scope.saveButton = "保存";
 
             $scope.options = [{
                 name: '上下切换',
@@ -190,8 +191,7 @@ angular.module('myApp')
 
             function saveChanges(){
 
-                //TODO:add product返回pid
-
+                $scope.saveButton = "保存中。。。";
                 if($scope.product.is_brand == true){
                     $scope.product.is_brand = 1;
                 }else{
@@ -205,6 +205,7 @@ angular.module('myApp')
                             alert("保存成功！");
 
                         }
+                        $scope.saveButton = "保存";
                     });
                 }else{
                     DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
@@ -212,42 +213,21 @@ angular.module('myApp')
                             //$state.go('main.content');
                             pid = response.data.id;
                             alert("保存成功！");
+
                         }
+                        $scope.saveButton = "保存";
                     });
                 }
 
             }
 
             function saveChangesAndExit(){
-                if($scope.product.is_brand == true){
-                    $scope.product.is_brand = 1;
-                }else{
-                    $scope.product.is_brand = 0;
-                }
-
-                if(pid != null){
-                    DataService.EditProduct(pid, $rootScope.globals.authKey, $scope.product, function(response){
-                        if(response.success){
-                            //
-                            alert("保存成功！");
-                            $state.go('main.content');
-
-                        }
-                    });
-                }else{
-                    DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
-                        if(response.success){
-                            //
-                            pid = response.data.id;
-                            alert("保存成功！");
-                            $state.go('main.content');
-                        }
-                    });
-                }
+                saveChanges();
+                $state.go('main.content');
             }
 
             function preview(){
-                if($scope.product.is_brand == true){
+                /*if($scope.product.is_brand == true){
                     $scope.product.is_brand = 1;
                 }else{
                     $scope.product.is_brand = 0;
@@ -263,23 +243,42 @@ angular.module('myApp')
                     }else{
                         alert("生成失败");
                     }
-                });
-            }
-            $scope.$watch('files', function () {
-                $scope.upload($scope.files);
-            });
-            $scope.$watch('file', function () {
-                if ($scope.file != null) {
-                    $scope.files = [$scope.file];
+                });*/
+                $scope.saveButton = "保存中。。。";
+                if($scope.product.is_brand == true){
+                    $scope.product.is_brand = 1;
+                }else{
+                    $scope.product.is_brand = 0;
                 }
-            });
+
+                if(pid != null){
+                    DataService.EditProduct(pid, $rootScope.globals.authKey, $scope.product, function(response){
+                        if(response.success){
+                            //$state.go('main.content');
+                            alert("保存成功！");
+
+                        }
+                        $scope.saveButton = "保存";
+                    });
+                }else{
+                    DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
+                        if(response.success){
+                            //$state.go('main.content');
+                            pid = response.data.id;
+                            alert("保存成功！");
+                        }
+                        $scope.saveButton = "保存";
+                    });
+                }
+            }
+
 
 
             $scope.upload = function (file, errFiles) {
                 $scope.f = file;
                 $scope.errFile = errFiles && errFiles[0];
                 if (file) {
-                    var new_pic = {};
+                    var new_pic = "img/1.jpg";
                     $scope.product.pics.push(new_pic);
 
                     file.upload = Upload.upload({
@@ -305,4 +304,49 @@ angular.module('myApp')
                     });
                 }
             };
+
+
+            //pic upload
+            $scope.progress = [];
+            $scope.uploading = [];
+
+
+            $scope.uploadFiles = function(files, errFiles) {
+                $scope.files = files;
+                $scope.errFiles = errFiles;
+
+                var pics_length = $scope.product.pics.length;
+
+                angular.forEach(files, function(file, index) {
+                    var new_pic = "img/1.jpg";
+                    var new_progress = 0;
+                    var uploading = false;
+                    $scope.product.pics.push(new_pic);
+                    $scope.progress.push(new_progress);
+                    $scope.uploading.push(uploading);
+
+                    file.upload = Upload.upload({
+                        url: uploadAPI,
+                        data: {
+                            username: $scope.username,
+                            file: file
+                        }
+                    });
+
+                    file.upload.then(function (response) {
+                        //success
+                        $timeout(function () {
+                            $scope.product.pics[pics_length + index] = uploadFolder+response.data.url;
+                            $scope.uploading[pics_length + index] = false;
+                        });
+                    }, function (response) {
+                        //error
+                    }, function (evt) {
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+
+                        $scope.progress[pics_length + index] = progressPercentage;
+                        $scope.uploading[pics_length + index] = true;
+                    });
+                });
+            }
         }]);
