@@ -35,68 +35,14 @@
 
 			</li>
 		</ul>
-		<nav class="mana_page">
+		<nav class="mana_page">			
 			<pagination items-per-page = "pageSize" total-items="totalItems" ng-model="currentPage" max-size="maxSize"
 						class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"
 						previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页"></pagination>
 			<div class="go_zone">
-				第<input type="text" ng-model="page" name="" id="">页
+				第<input class="write_page" type="text" ng-model="page" name="" id="">页
 				<a ng-click="goPage(page)">GO</a>
 			</div>
 		</nav>
 	</div>
 </div>
-<style>
-	.pagination > .active > a,
-	.pagination > .active > span,
-	.pagination > .active > a:hover,
-	.pagination > .active > span:hover,
-	.pagination > .active > a:focus,
-	.pagination > .active > span:focus {
-		z-index: 2;
-		/* color: #fff; */
-		cursor: default;
-		background-color: #fe325f;
-		border-color: #fe325f;
-	}
-	.edit_zone  .item  a{
-		margin:0 0 0 0px;
-		text-indent:0px;
-	}
-
-	.banner_pic{
-		width:100%;
-		height:100%;
-	}
-	.pic{
-		width:240px;
-		height:240px;
-	}
-	.pic > .qr_code{
-		display:none;
-	}
-	.pic > .img_box{
-
-		display:block;
-		position:relative;
-	}
-	.pic:hover >.qr_code{
-		display:block;
-	}
-	.pic:hover > .img_box{
-		display:none;
-	}
-	/*.item:hover > .qr_code{
-		display:block;
-		position:absolute;
-		top:50%;
-		left:50%;
-		margin-top:-50px;
-		margin-left:-100px;
-		z-index: 2147483647;
-	}*/
-	.qr_img{
-		width:100%;
-		height:100%;
-	}
-</style>

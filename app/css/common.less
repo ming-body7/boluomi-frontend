@@ -54,9 +54,9 @@ a{
 	background:#fff;
 	padding:20px 0;
 	margin-bottom:40px;
+	box-shadow:0px 0px 2px 1px rgba(0,0,0,.2);
 	h1{
 		float:left;
-		padding-left:40px;
 		margin:0;
 	}
 	.b_logo{
@@ -69,13 +69,13 @@ a{
 	.brand_info{
 		float:right;
 		line-height: 46px;
-		padding-right:140px;
 	}
 	.user_photo{
 		float:left;
 		width:46px;
 		height:46px;
 		background:url(../img/photo.png);
+		border-radius:50%;
 		overflow: hidden;
 	}
 	h4{
@@ -90,22 +90,35 @@ a{
 		float:left;
 		font-size:14px;
 		color:#8d8d8d;
+		cursor:pointer;
+		&:hover{
+			color:#FC2453;
+		}
 	}
-
+}
+.user_info_wrap{
+	float:left;
+	&:hover{
+		color:#fc2453 !important;
+	}
+	&:focus{
+		color:#000;
+	}
 }
 .mana_main{
 	width:1200px;
 	margin:0 auto 50px;
-	background:#fff;
 	padding:0 0 50px;
+	background:#fff;
+	border:1px solid #dededd;
 }
 .set_wrap{
 	dt{
 		height:20px;
 		line-height: 20px;
-		text-indent:90px;
+		text-indent:110px;
 		background:url(../img/icon_1.png) no-repeat;
-		background-position:60px center;
+		background-position:86px center;
 		margin:16px 0;
 		color:#8d8d8d;
 		&.set_tit{
@@ -115,40 +128,48 @@ a{
 	dd{
 		height:42px;
 		line-height: 42px;
-		text-indent: 90px;
+		text-indent: 110px;
 		cursor:pointer;
 		&.cur{
+			background:-webkit-linear-gradient(left, #FB2252, #fe325f);
+			background:linear-gradient(left, #FB2252, #fe325f);
 			color:#fff;
-			background: -moz-linear-gradient(left, #ff7392,#fe325f);
-			background: -webkit-linear-gradient(left,#ff7392,#fe325f);
-			background: -o-linear-gradient(left, #ff7392,#fe325f);
-			background: linear-gradient(left, #ff7392,#fe325f);
+			&:hover{
+				background:-webkit-linear-gradient(left, #FB2252, #fe325f);
+				background:linear-gradient(left, #FB2252, #fe325f);
+				color:#fff;
+			};
 		}
 		&:hover{
-			background: -webkit-linear-gradient(left, #FD6183, #fe325f);
-			background: linear-gradient(left, #FD6183, #fe325f);
+			color:#383838;
+			background:#E0E0E0;
 		};
 		&:active{
 			background:-webkit-linear-gradient(left, #FB2252, #fe325f);
 			background:linear-gradient(left, #FB2252, #fe325f);
+			color:#fff;
 		};
 	}
 }
 .curmb{
-	padding:20px 0 22px 20px;
+	width:820px;
+	padding:20px 0 22px 0;
 	margin-bottom:30px;
-	border-bottom:1px solid #ccc;
+	margin-left:20px;
+	border-bottom:1px solid #dededd;
 	a{
 		color:#5A5959;
 	}
-}.footer{
+}
+.footer{
 	background:#404040;
 	text-align: center;
 	padding:45px 0;
 	p{
 		color:#808080;
+		padding-top:10px;
 	}
-	.contact{
+	.contact-we{
 		color:#fff;
 	}
 }
@@ -172,6 +193,17 @@ a{
 	};
 }
 .col_cont{
-	border-left:1px solid #ccc;
 	padding-left:0;
+	border-left:1px solid #dededd;
+}
+.inner{
+	width:1200px;
+	margin:0 auto;
+	.clearfix();
+}
+.my_sider{
+	padding:0;
+}
+.container{
+	padding:0;
 }
