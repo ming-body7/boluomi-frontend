@@ -55,7 +55,8 @@
                         latitude: 39.915,
                         longitude: 116.404,
                         city: "Beijing",
-                        marked:false
+                        marked:false,
+                        url:""
                     };
 
                     $scope.logoButton = "上传";
@@ -171,7 +172,8 @@
                         area:$scope.localMerchant.area,
                         address:$scope.localMerchant.address,
                         licence:$scope.localMerchant.licence,
-                        location:$scope.localMerchant.longitude + ',' + $scope.localMerchant.latitude
+                        location:$scope.localMerchant.longitude + ',' + $scope.localMerchant.latitude,
+                        url:$scope.localMerchant.url
                     };
                     DataService.AddMerchant($scope.merchant, function(response){
                         if(response.success){

@@ -43,7 +43,8 @@
                         area:"",
                         address:"",
                         licence:"",
-                        location:""
+                        location:"",
+                        url:""
                     };
                     $scope.merchant = merchant;
                     $scope.uploadOption = "logo";
@@ -129,7 +130,8 @@
                         latitude: location.lat,
                         longitude: location.lng,
                         city: merchantInfo.city,
-                        marked:true
+                        marked:true,
+                        url:merchantInfo.url
                     }
                 }
 
@@ -271,16 +273,17 @@
 
                 function saveBrandInfo(){
                      $scope.merchant = {
-                        name:$scope.localMerchant.name,
-                        phone:$scope.localMerchant.phone,
-                        logo:$scope.localMerchant.logo,
-                        type:$scope.localMerchant.type,
-                        province:$scope.localMerchant.province,
-                        city:$scope.localMerchant.city,
-                        area:$scope.localMerchant.area,
-                        address:$scope.localMerchant.address,
-                        licence:$scope.localMerchant.licence,
-                        location:$scope.localMerchant.longitude + ',' + $scope.localMerchant.latitude
+                         name:$scope.localMerchant.name,
+                         phone:$scope.localMerchant.phone,
+                         logo:$scope.localMerchant.logo,
+                         type:$scope.localMerchant.type,
+                         province:$scope.localMerchant.province,
+                         city:$scope.localMerchant.city,
+                         area:$scope.localMerchant.area,
+                         address:$scope.localMerchant.address,
+                         licence:$scope.localMerchant.licence,
+                         location:$scope.localMerchant.longitude + ',' + $scope.localMerchant.latitude,
+                         url:$scope.localMerchant.url
                     };
                     DataService.EditMerchant($scope.merchant, function(response){
                         if(response.success){
