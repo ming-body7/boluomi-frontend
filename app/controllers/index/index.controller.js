@@ -102,9 +102,14 @@
         }
         function getPasscode(){
             //TODO:调用获取passcode的接口,倒计时
-            if(!getPasscodeCheck($scope.account)){
+            if(!(Object.keys($scope.forgetForm.account.$error).length == 0)){
                 return;
             }
+            AuthenticationService.GetCode($scope.account, function(response){
+                if(response.success){
+
+                }
+            });
             countDownClock();
             alert("已为您发送语音验证码，请注意接听电话，谢谢!");
         }
@@ -123,8 +128,9 @@
                 }
             });
         }
+
         function countDownClock(){
-            $scope.counter = 120;
+            $scope.counter = 60;
             $scope.countDown = function(){
                 $scope.counter--;
                 if($scope.counter >= 0){
