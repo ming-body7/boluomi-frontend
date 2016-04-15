@@ -12,7 +12,7 @@
         <div class="error" ng-show="loginSubmitted" ng-messages="loginForm.password.$error">
             <div ng-message="required">请填写密码</div>
         </div>
-        <a class="login-btn J_login_btn" ng-click="login()">登录</a>
+        <a class="login-btn J_login_btn" ng-click="login()" ng-bind="default.loginButtonText"></a>
         <div class="info">
             <input ng-model="rememberMe" ng-true-value="1" ng-false-value="0"  id="remember_me" type="checkbox" name="" id="">
             30天内自动登录

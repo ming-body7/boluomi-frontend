@@ -58,7 +58,7 @@ angular.module('myApp')
 			return $scope.demo_base_url+ x.id;
 		}
 		function transferTime(x){
-			var today = new Date();
+			/*var today = new Date();
 			var time = new Date(Date.parse(x));
 			var isSameDay = (today.getDate() == time.getDate()
 			&& today.getMonth() == time.getMonth()
@@ -67,7 +67,9 @@ angular.module('myApp')
 				return time.getHours()+':'+time.getMinutes()+':'+time.getSeconds();
 			}else{
 				return time.getFullYear()+'-'+time.getMonth()+'-'+time.getDay();
-			}
+			}*/
+			return new Date(Date.parse(x));
+
 
 		}
 	}]);
