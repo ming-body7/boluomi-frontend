@@ -1,4 +1,11 @@
-@import "base";
+.clearfix(){
+	zoom:1;
+	&:after{
+		content:"";
+		display:table;
+		clear:both;
+	};
+}
 .banner{
 	height:904px;
 	position:relative;
@@ -426,11 +433,14 @@
 /*制作H5分享的web页面*/
 .web_share{
 	background:url(../img/web_share_bg.jpg) no-repeat top center;
+	background-size:cover;
 	.cont{
-		width:898px;
-		margin:0 auto;
-		padding:120px 0 120px 304px;
-		.clearfix();
+		position: absolute;
+		width:768px;
+		top: 50%;
+		left: 50%;
+		margin: -350px 0 0 -374px;
+		/*.clearfix();*/
 	}
 	.phone_mode{
 		float:left;
@@ -460,6 +470,12 @@
 		border-radius:4px;
 		margin:36px auto 0;
 		font-size:24px;
+		&:hover{
+			background-color:#FB1A4E;
+		}
+		&:active{
+			background-color:#A91235;
+		}
 	}
 	.footer{
 		background:#fff;
@@ -469,6 +485,21 @@
 		p{
 			color:#ff2e5e;
 		}
+	}
+}
+.slogin{
+	text-align: right;
+	color:rgba(255,255,255,.5);
+	padding:0 74px 20px 0;
+	margin-right:50px;
+	background:url(../img/witer_logo.png) no-repeat right top;
+}
+.web_btn{
+	&:hover{
+		background:rgba(255,255,255,.3);
+	}
+	&:active{
+		background:rgba(255,255,255,.6);
 	}
 }
 

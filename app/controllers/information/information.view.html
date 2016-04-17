@@ -48,7 +48,7 @@
 					</div>
 				</li>
 				<li class="row">
-					<div class="col-md-2 col-md-offset-2">
+					<div class="col-md-5 col-md-offset-2">
 						<img class="logo_img" ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
 					</div>
 				</li>
@@ -107,7 +107,8 @@
 						<baidu-map  options="smallMap" control="smallMapControl"></baidu-map>
 					</div>
 				</li>
-				<li class="row">
+				<!-- 后台不需要营业执照需改功能 -->
+				<!-- <li class="row">
 					<div class="col-md-2">
 						<span class="key">营业执照：</span>
 					</div>
@@ -118,17 +119,17 @@
 								accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
 							{{licenceButton}}</button>
 					</div>
-				</li>
-				<li ng-show="licence_uploading" class="row">
+				</li> -->
+				<!-- <li ng-show="licence_uploading" class="row">
 					<div class="col-md-6 col-md-offset-2">
 						<progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
 					</div>
-				</li>
-				<li class="row">
+				</li> -->
+				<!-- <li class="row">
 					<div class="col-md-2 col-md-offset-2">
 						<img class="licence_img" ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
 					</div>
-				</li>
+				</li> -->
 			</ul>
 			<a class="save_btn b_state_e" ng-click="saveBrandInfo()">保存</a>
 		</form>

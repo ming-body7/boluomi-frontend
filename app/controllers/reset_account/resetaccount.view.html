@@ -8,7 +8,7 @@
                 <li>
                     <span>原密码：</span>
                     <input ng-model="password" type="password" name="password" placeholder="请输入原密码"
-                           ng-minlength="6" ng-maxlength="10" required>
+                           ng-minlength="6" ng-maxlength="10" required maxlength="10">
                     <div class="error" ng-show="submitted" ng-messages="resetAccountForm.password.$error">
                         <div ng-message="required">请填写密码</div>
                     </div>
@@ -16,7 +16,7 @@
                 <li>
                     <span>新账号：</span>
                     <input ng-model="newAccount" type="text" name="account" placeholder="请输入新手机号"
-                           ng-pattern="/^1{1}[3-9]{1}[0-9]{9}$/" ng-maxlength="11" required>
+                           ng-pattern="/^1{1}[3-9]{1}[0-9]{9}$/" ng-maxlength="11" required maxlength="11">
                     <div class="error" ng-show="submitted||getCodeSubmitted" ng-messages="resetAccountForm.account.$error">
                         <div ng-message="required">请输入手机号</div>
                         <div ng-message="pattern">请输入正确的手机号</div>
@@ -26,7 +26,7 @@
                 <li class="code">
                     <span>验证码：</span>
                     <input ng-model="code" type="text" name="code" placeholder="请输入验证码"
-                           required>
+                           required maxlength="6">
                     <a ng-click="getCode()">获取验证码</a>
                     <div class="error" ng-show="submitted" ng-messages="resetAccountForm.code.$error">
                         <div ng-message="required">请输入验证码</div>

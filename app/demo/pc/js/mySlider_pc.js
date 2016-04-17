@@ -277,8 +277,22 @@ $(function(){
 		taggingClick();
 	})	
 
+	
+	//屏幕自适应
+	// function retain(){
+	// 	$('html').css('fontSize',$(window).width()/10);
+	// }
 
+	// retain();
 
+	function auto_height(){
+		$('.web_share').height( $(window).height() )
+	}
+	auto_height();
+
+	$(window).on('resize',function(){
+		auto_height();
+	})
 	
 });
 
