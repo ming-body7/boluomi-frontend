@@ -3,8 +3,8 @@
 
     angular
         .module('myApp', ['myApp.directive','myApp.content', 'myApp.admin','ngMessages','ngFileUpload',
-            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','uiRouterStyles','progressButton',
-            'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad'])
+            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','progressButton',
+            'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad','betsol.uiRouterStyles'])
         .config(config)
         .run(run);
 
@@ -148,7 +148,10 @@
     function run($rootScope, $cookies, Permission, UserService, $state) {
 
         $rootScope.globals = $cookies.get('globals') || {};
-
+        if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
+            //redirectToMain();
+            UserService.setAccessLevel('user');
+        }
 
 
         $rootScope.$on('$stateChangeStart', function(evt, to, params) {
@@ -172,7 +175,7 @@
         });
 
         Permission
-            .defineRole('user', function (stateParams) {
+            .defineRole('anonymous', function (stateParams) {
                 var accessLevel = UserService.getAccessLevel();
                 if (accessLevel == 'anonymous') {
                     return true;

@@ -27,7 +27,8 @@
         (function initController() {
             AuthenticationService.GetCredentials()
             if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
-                redirectToMain();
+                //redirectToMain();
+                UserService.setAccessLevel('user');
             }
         })();
         function openLoginAndForgetZone(){
