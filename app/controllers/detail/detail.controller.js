@@ -2,8 +2,8 @@
  * Created by body7 on 10/21/15.
  */
 angular.module('myApp')
-    .controller('modifiedController', ['$rootScope','$timeout','Upload','$scope','$state', '$stateParams','DataService', '$modal', '$log',
-        function($rootScope, $timeout, Upload, $scope, $state, $stateParams, DataService, $modal, $log){
+    .controller('modifiedController', ['$rootScope','$timeout','Upload','$scope','$state', '$stateParams','DataService', '$modal', '$window',
+        function($rootScope, $timeout, Upload, $scope, $state, $stateParams, DataService, $modal, $window){
 
             var App = $rootScope.App;
             var uploadAPI = App.uploadAPI;
@@ -71,7 +71,7 @@ angular.module('myApp')
                         $scope.product = response.data.detail[0];
 
                         $scope.guideTitle = $scope.product.title;
-                        if($scope.product.pics == null){
+                        if($scope.product.pics == null || $scope.product.pics == ""){
                             $scope.product.pics = [];
                         }else{
                             var pics = $scope.product.pics.split(",");
@@ -256,6 +256,7 @@ angular.module('myApp')
                         if(response.success){
                             //$state.go('main.content');
                             alert("保存成功！");
+                            openPreviewTab(pid);
 
                         }
                         $scope.saveButton = "保存";
@@ -266,12 +267,16 @@ angular.module('myApp')
                             //$state.go('main.content');
                             pid = response.data.id;
                             alert("保存成功！");
+                            openPreviewTab(pid);
                         }
                         $scope.saveButton = "保存";
                     });
                 }
             }
 
+            function openPreviewTab(pid){
+                $window.open('http://www.boluomi1314.com/demo/pc/web_share.html?pid='+pid);
+            }
 
 
             $scope.upload = function (file, errFiles) {
