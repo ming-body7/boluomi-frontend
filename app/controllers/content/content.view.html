@@ -14,7 +14,7 @@
 				<div class="pic">
 					<div class="img_box">
 						<img class="banner_pic" ng-src="{{x.banner_pic}}" alt="pic">
-						<p>{{transferTime(x.updated_at)}}</p>
+						<p>{{transferTime(x.updated_at) | date:'yyyy-MM-dd'}}</p>
 					</div>
 					<div class="qr_code">
 						<qrcode class="qr_img" version="{{4}}" error-correction-level="{{M}}" size="{{240}}" data="{{getQRUrl(x)}}" href="{{getQRUrl(x)}}"></qrcode>

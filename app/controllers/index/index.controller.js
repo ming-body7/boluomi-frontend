@@ -9,7 +9,8 @@
     function indexController(UtilsService, AuthenticationService,$scope, $rootScope, $state, DataService,UserService,$cookies, $timeout) {
 
         $scope.default = {
-          passcodeText:"获取验证码"
+            passcodeText:"获取验证码",
+            loginButtonText:"登陆"
         };
         $scope.loginForgetZoneVisible =false;
 
@@ -24,7 +25,11 @@
         $scope.getPasscode = getPasscode;
 
         (function initController() {
-            AuthenticationService.GetCredentials();
+            AuthenticationService.GetCredentials()
+            if($rootScope.globals!=null&& $rootScope.globals.role == 'user'){
+                //redirectToMain();
+                UserService.setAccessLevel('user');
+            }
         })();
         function openLoginAndForgetZone(){
             $scope.loginForgetZoneVisible = true;
@@ -55,7 +60,9 @@
                 UserService.setAccessLevel('user');
                 $state.go('main.content.content');
             }else{
+                $scope.default.loginButtonText = "登录中。。。";
                 AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
+                    $scope.default.loginButtonText = "登录";
                     if (response.success) {
 
                         DataService.GetMerchantInfo(function(response){
@@ -102,9 +109,14 @@
         }
         function getPasscode(){
             //TODO:调用获取passcode的接口,倒计时
-            if(!getPasscodeCheck($scope.account)){
+            if(!(Object.keys($scope.forgetForm.account.$error).length == 0)){
                 return;
             }
+            AuthenticationService.GetCode($scope.account, function(response){
+                if(response.success){
+
+                }
+            });
             countDownClock();
             alert("已为您发送语音验证码，请注意接听电话，谢谢!");
         }
@@ -123,8 +135,9 @@
                 }
             });
         }
+
         function countDownClock(){
-            $scope.counter = 120;
+            $scope.counter = 60;
             $scope.countDown = function(){
                 $scope.counter--;
                 if($scope.counter >= 0){
