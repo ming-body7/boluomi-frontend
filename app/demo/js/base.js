@@ -5,7 +5,7 @@ function to_pc(){
 	    system.mac = p.indexOf("Mac") == 0;  
 	    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);     
 	    if(system.win||system.mac||system.xll){//电脑
-	    	window.location.href = 'www.boluomi1314.com/demo/pc/web_share.html?pid='+ getQueryString(pid);
+	    	window.location.href = '/demo/pc/web_share.html?pid='+ getQueryString('pid');
 	    }else{
 	    	//设置页面固定显示宽度320;
 	    	setDeviceW();
