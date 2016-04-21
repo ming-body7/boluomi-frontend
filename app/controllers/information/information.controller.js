@@ -127,8 +127,8 @@
                         area:merchantInfo.area,
                         address:merchantInfo.address,
                         licence:merchantInfo.licence,
-                        latitude: location.lat,
-                        longitude: location.lng,
+                        latitude: location.latitude,
+                        longitude: location.longitude,
                         city: merchantInfo.city,
                         marked:true,
                         url:merchantInfo.url

@@ -248,7 +248,8 @@
                     area:merchant.area,
                     address:merchant.address,
                     licence:merchant.licence,
-                    location:merchant.location
+                    location:merchant.location,
+                    url:merchant.url
                 }
 
             }).success(function (response) {
@@ -286,7 +287,8 @@
                     area:merchant.area,
                     address:merchant.address,
                     licence:merchant.licence,
-                    location:merchant.location
+                    location:merchant.location,
+                    url:merchant.url
                 }
 
             }).success(function (response) {
