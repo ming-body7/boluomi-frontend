@@ -346,6 +346,7 @@ a{-webkit-tap-highlight-color:rgba(0,0,0,0)}
 		border-radius:50%;
 		border:3px solid #fff;
 		margin-top:-44px;
+		overflow: hidden;
 	}
 	.brand_name{
 		color:#000;
@@ -613,4 +614,76 @@ a{-webkit-tap-highlight-color:rgba(0,0,0,0)}
 }
 
 
+/*制作H5分享的web页面*/
+.web_share{
+	background:url(../img/web_share_bg.jpg) no-repeat top center;
+	background-size:cover;
+	.cont{
+		position: absolute;
+		width:768px;
+		top: 50%;
+		left: 50%;
+		margin: -350px 0 0 -374px;
+	}
+	.phone_mode{
+		float:left;
+		width:416px;
+		height:698px;
+		background:url(../img/phone_line.png) no-repeat;
+		margin-right:60px;
+		position:relative;
+	}
+	.sweep_wrap{
+		float:left;
+		padding-top:60px;
+		h3{
+			height:32px;
+			text-align: center;
+			margin-bottom:24px;
+		}
+	}
+	.free_creation{
+		display:block;
+		width:240px;
+		height:64px;
+		line-height: 64px;
+		text-align: center;
+		color:#fff;
+		background:#ff2e5e;
+		border-radius:4px;
+		margin:36px auto 0;
+		font-size:24px;
+		&:hover{
+			background-color:#FB1A4E;
+		}
+		&:active{
+			background-color:#A91235;
+		}
+	}
+	.footer{
+		background:#fff;
+		h1{
+			padding:26px 0;
+		}
+		p{
+			color:#ff2e5e;
+		}
+	}
+}
+.slogin{
+	clear:both;
+	text-align: right;
+	color:rgba(255,255,255,.5);
+	padding-right:74px;
+	margin-right:-300px;
+	background:url(../img/witer_logo.png) no-repeat right top;
+}
+.web_btn{
+	&:hover{
+		background:rgba(255,255,255,.3);
+	}
+	&:active{
+		background:rgba(255,255,255,.6);
+	}
+}
 
