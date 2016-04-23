@@ -283,7 +283,7 @@ angular.module('myApp')
                 $scope.f = file;
                 $scope.errFile = errFiles && errFiles[0];
                 if (file) {
-                    var new_pic = "img/1.jpg";
+                    var new_pic = "img/default_img.png";
                     $scope.product.pics.push(new_pic);
 
                     file.upload = Upload.upload({

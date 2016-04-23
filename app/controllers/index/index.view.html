@@ -58,9 +58,9 @@
 
 
 <!-- 移动端提示弹窗 -->
-<div ng-if="showLinkBox" id="link-box" class="link-box">
+<div ng-show="showLinkBox" id="link-box" class="link-box">
     <a class="link-a" href="www.boluomi1314.com">www.boluomi1314.com</a>
-    <a class="i-know J_i-know" href="javascript:;">我知道了</a>
+    <a ng-click="showLinkBox = false" class="i-know J_i-know">我知道了</a>
 </div>
 
 <div id="mask" class="mask"></div>
