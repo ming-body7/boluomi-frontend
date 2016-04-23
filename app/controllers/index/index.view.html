@@ -13,7 +13,7 @@
             <div class="btn_wrap">
                 <a class="view-case-btn b_state_c" href="#">查看案例</a>
                 <a class="free-register-btn b_state_d" ui-sref="register">免费注册</a>
-                <a class="gopc_btn b_state_d">免费使用</a>
+                <a ng-click="showLinkBox = true" class="gopc_btn b_state_d">免费使用</a>
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
 
 
 <!-- 移动端提示弹窗 -->
-<div id="link-box" class="link-box">
+<div ng-if="showLinkBox" id="link-box" class="link-box">
     <a class="link-a" href="www.boluomi1314.com">www.boluomi1314.com</a>
     <a class="i-know J_i-know" href="javascript:;">我知道了</a>
 </div>
