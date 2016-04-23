@@ -52,9 +52,8 @@
 					<img ng-src="{{item}}" alt="loading..." width="150" height="236">
 					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 				</div>
-				<div class="pro">
-					<!--<progressbar ng-if="uploading[$index]" animate="true" value="progress[$index]" type="success"><b>{{progress[$index]}}%</b></progressbar>-->
-					<progressbar animate="true" value="40" type="success"><b>{{progress[$index]}}%</b></progressbar>
+				<div class="pro" ng-if="uploading[$index]">
+					<progressbar animate="true" value="progress[$index]" type="success"></progressbar>
 				</div>
 			</li>
 			<li>
