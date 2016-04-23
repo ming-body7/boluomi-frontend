@@ -59,8 +59,8 @@
 			<li>
 				<div ngf-select="uploadFiles($files, $invalidFiles)" multiple
 					 accept="image/*,application/pdf"  ngf-pattern="'image/*,application/pdf'">
-					<a ng-if="product.pics.length == 0">请上传图片</a>
-					<a ng-if="product.pics.length != 0">添加图片</a>
+					<a class="add_img" ng-if="product.pics.length == 0"></a>
+					<a class="add_img" ng-if="product.pics.length != 0"></a>
 				</div>
 			</li>
 		</ul>

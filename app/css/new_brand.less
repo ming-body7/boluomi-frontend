@@ -124,13 +124,51 @@
 	}
 	.pro{
 		display: block;
-		height: 8px;
-		background: #B328BB;
+		height: 4px;
+		background: #fff;
 		margin: 10px 0;
+		position: relative;
+		width: 40%;
+		top: 50%;
+		left: 50%;
+		z-index: 1;
+		transform: translate(-50%, -50%);
+		&:before{
+			content: "";
+		    position: absolute;
+		    padding: 4px;
+		    border: 2px solid #fff;
+		    width: 100%;
+		    top: -4px;
+		    left: -6px;
+		    box-sizing: content-box;
+		}
+	}
+	.add_img{
+		display: block;
+		height:234px;
+		text-align: center;
+		line-height: 234px;
+		background:#f2f2f2 url(../img/add_img.png) no-repeat center;
+		cursor:pointer;
+	}
+	.add_img_default{
+		background-image:url(../img/default_img.png);
+		position: relative;
+		&:before{
+			content:'';
+			position:absolute;
+			left:0;
+			top:0;
+			width:100%;
+			height:100%;
+			background-color:rgba(0,0,0,.4);
+		}
 	}
 
 }
 .face_btn{
 	margin-left:578px;
 }
+
 
