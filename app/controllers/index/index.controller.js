@@ -13,7 +13,7 @@
             loginButtonText:"登陆"
         };
         $scope.loginForgetZoneVisible =false;
-
+        $scope.showLinkBox = false;
 
         $scope.login = login;
         $scope.checkLoginStatus = checkLoginStatus;
