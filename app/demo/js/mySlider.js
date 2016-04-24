@@ -63,7 +63,7 @@ $(function(){
 			}
 		};
 
-		临时模拟数据d  正常情况是ajax返回的data
+		//临时模拟数据d  正常情况是ajax返回的data
 		def.resolve(d);
 
 	
