@@ -49,10 +49,10 @@
 	<div class="upload_zone">
 		<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
 
-			<li class=“hasload” ng-repeat="item in product.pics track by $index" as-sortable-item>
+			<li ng-repeat="item in product.pics track by $index" as-sortable-item>
 				<div as-sortable-item-handle ngf-as-background="true">
 					<img ng-src="{{item}}" alt="loading..." width="150" height="236">
-					<div class="mask"></div>
+					<div ng-if="uploading[$index]" class="mask"></div>
 					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 				</div>
 				<div class="pro" ng-if="uploading[$index]">
