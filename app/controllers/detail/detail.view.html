@@ -6,7 +6,7 @@
 	<div class="page_face">
 		<div class="img_box">
 			<img class="banner_pic"  ng-src="{{product.banner_pic}}" alt="封面图片"/>
-			<p type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="100MB">
+			<p type="file" ngf-select="uploadBanner($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="100MB">
 			<a id="banner_progress_button" progress-button value="banner_progress" in-progress="上传中。。。" complete="更改封面">更改封面</a>
 			</p>
 		</div>
@@ -49,9 +49,10 @@
 	<div class="upload_zone">
 		<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
 
-			<li ng-repeat="item in product.pics track by $index" as-sortable-item>
+			<li class=“hasload” ng-repeat="item in product.pics track by $index" as-sortable-item>
 				<div as-sortable-item-handle ngf-as-background="true">
 					<img ng-src="{{item}}" alt="loading..." width="150" height="236">
+					<div class="mask"></div>
 					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 				</div>
 				<div class="pro" ng-if="uploading[$index]">
@@ -80,7 +81,7 @@
 		height:100%;
 	}
 	.banner_pic {
-		min-width: 100%;
+		max-width: 100%;
 		min-height: 100%;
 		margin:auto;
 		display:block;

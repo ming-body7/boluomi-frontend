@@ -1,39 +1,55 @@
 angular.module('myApp')
 	.controller('contentController', ['$scope','DataService', '$rootScope',function($scope, DataService, $rootScope){
 
-		$scope.totalItems = 0;
+		//$scope.totalItems = 0;
 		$scope.currentPage = 1;
-		$scope.maxSize = 8;
+		$scope.maxSize = 11;
 
 		$scope.list = new Array();
 		var page = 0;
-		var pageSize = 10;
+		var pageSize = 11;
 
 		$scope.demo_base_url = "http://www.boluomi1314.com/demo/?pid=";
+
+		$scope.getProductList = getProductList;
 		$scope.deleteProduct = deleteProduct;
 		$scope.goPage = goPage;
 		$scope.transferTime = transferTime;
 		$scope.getQRUrl = getQRUrl;
 
+		init();
 
-		DataService.GetProductList(page, pageSize, function(response){
-			if (response.success) {
-				for(i = 0; i<response.data.list.length; i++){
-					var p = response.data.list[i];
-					if(p.status >= 0){
-						$scope.list.push(p);
-					}
-				}
-				//$scope.list = response.data.list;
-
-				//$scope.totalItems = response.data.totalCount;
-				$scope.totalItems = $scope.list.length;
-			}
+		$scope.$watch(function(){
+			return $scope.currentPage;
+		}, function(newValue, oldValue){
+			getProductList(newValue - 1, pageSize);
 		});
+
+		function init(){
+			//getProductList(0, pageSize);
+		}
+
+
+		
+		function getProductList(page, pageSize){
+			DataService.GetProductList(page, pageSize, function(response){
+				if (response.success) {
+					$scope.list = [];
+					for(i = 0; i<response.data.list.length; i++){
+						var p = response.data.list[i];
+						if(p.status >= 0){
+							$scope.list.push(p);
+						}
+					}
+					$scope.totalItems = response.data.totalCount;
+					$scope.numPages = 5;
+				}
+			});
+		}
+
 
 		function deleteProduct(x){
 			if (confirm("确认删除？")) {
-				//TODO: 服务器端删除
 				DataService.DelProduct(x.id, $rootScope.globals.authKey, function(response){
 					if(response.success){
 						alert("删除成功");
@@ -49,27 +65,14 @@ angular.module('myApp')
 		}
 
 		function goPage(page){
-			if(page>=0 && page<($scope.totalItems/$scope.maxSize)){
+			if(page>=0 && page<=Math.ceil($scope.totalItems/$scope.maxSize)){
 				$scope.currentPage = page;
 			}
-
 		}
 		function getQRUrl(x){
 			return $scope.demo_base_url+ x.id;
 		}
 		function transferTime(x){
-			/*var today = new Date();
-			var time = new Date(Date.parse(x));
-			var isSameDay = (today.getDate() == time.getDate()
-			&& today.getMonth() == time.getMonth()
-			&& today.getFullYear() == time.getFullYear())
-			if(isSameDay){
-				return time.getHours()+':'+time.getMinutes()+':'+time.getSeconds();
-			}else{
-				return time.getFullYear()+'-'+time.getMonth()+'-'+time.getDay();
-			}*/
 			return new Date(Date.parse(x));
-
-
 		}
 	}]);

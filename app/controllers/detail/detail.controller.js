@@ -160,7 +160,7 @@ angular.module('myApp')
                 }
             }
 
-            $scope.uploadFiles = function(file, errFiles) {
+            $scope.uploadBanner = function(file, errFiles) {
                 $scope.f = file;
 
                 $scope.errFile = errFiles && errFiles[0];
@@ -323,7 +323,7 @@ angular.module('myApp')
                 var pics_length = $scope.product.pics.length;
 
                 angular.forEach(files, function(file, index) {
-                    var new_pic = "img/1.jpg";
+                    var new_pic = "img/default_img.png";
                     var new_progress = 0;
                     var uploading = false;
                     $scope.product.pics.push(new_pic);

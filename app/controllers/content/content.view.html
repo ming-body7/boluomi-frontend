@@ -36,13 +36,14 @@
 			</li>
 		</ul>
 		<nav class="mana_page">			
-			<pagination items-per-page = "pageSize" total-items="totalItems" ng-model="currentPage" max-size="maxSize"
+			<pagination items-per-page = "11" total-items="totalItems" ng-model="currentPage" max-size="5"
 						class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"
 						previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页"></pagination>
 			<div class="go_zone">
-				第<input class="write_page" type="text" ng-model="page" name="" id="">页
+				第<input class="write_page" type="text" ng-model="page" name="" id="" placeholder="{{page}}">页
 				<a ng-click="goPage(page)">GO</a>
 			</div>
+
 		</nav>
 	</div>
 </div>
