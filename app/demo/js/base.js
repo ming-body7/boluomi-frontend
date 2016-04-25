@@ -13,7 +13,7 @@ function to_pc(){
 }
 
 //见设备是PC的  跳转到 www.boluomi1314.com/demo/pc/web_share.html?pid=18 
-// to_pc();
+to_pc();
 
 function setDeviceW(){
 	var w = $(window);

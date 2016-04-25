@@ -204,6 +204,8 @@ angular.module('myApp')
                             //$state.go('main.content');
                             alert("保存成功！");
 
+                        }else{
+                            alert("保存失败:图片不能为空");
                         }
                         $scope.saveButton = "保存";
                     });
@@ -213,7 +215,8 @@ angular.module('myApp')
                             //$state.go('main.content');
                             pid = response.data.id;
                             alert("保存成功！");
-
+                        }else{
+                            alert("保存失败:图片不能用空");
                         }
                         $scope.saveButton = "保存";
                     });
@@ -222,8 +225,37 @@ angular.module('myApp')
             }
 
             function saveChangesAndExit(){
-                saveChanges();
-                $state.go('main.content');
+                $scope.saveButton = "保存中。。。";
+                if($scope.product.is_brand == true){
+                    $scope.product.is_brand = 1;
+                }else{
+                    $scope.product.is_brand = 0;
+                }
+
+                if(pid != null){
+                    DataService.EditProduct(pid, $rootScope.globals.authKey, $scope.product, function(response){
+                        if(response.success){
+                            $state.go('main.content');
+                            alert("保存成功！");
+
+                        }else{
+                            alert("保存失败");
+                        }
+                        $scope.saveButton = "保存";
+                    });
+                }else{
+                    DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
+                        if(response.success){
+                            $state.go('main.content');
+                            pid = response.data.id;
+                            alert("保存成功！");
+                        }else{
+                            alert("保存失败");
+                        }
+                        $scope.saveButton = "保存";
+                    });
+                }
+
             }
 
             function preview(){
@@ -258,6 +290,8 @@ angular.module('myApp')
                             alert("保存成功！");
                             openPreviewTab(pid);
 
+                        }else{
+                            alert("保存失败");
                         }
                         $scope.saveButton = "保存";
                     });
@@ -268,6 +302,8 @@ angular.module('myApp')
                             pid = response.data.id;
                             alert("保存成功！");
                             openPreviewTab(pid);
+                        }else{
+                            alert("保存失败");
                         }
                         $scope.saveButton = "保存";
                     });

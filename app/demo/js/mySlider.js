@@ -64,7 +64,7 @@ $(function(){
 		};
 
 		//临时模拟数据d  正常情况是ajax返回的data
-		def.resolve(d);
+		//def.resolve(d);
 
 	
 
@@ -97,13 +97,15 @@ $(function(){
 
 			// console.log(serImg_data)
 			data.push({
-				'content' : '<div class="section sec '+ clas +'" style="background-image:url(./img/'+ serImg_data[i].pic +');'+ bg_size +'"><div>'
+				'content' : '<div class="section sec '+ clas +'" style="background-image:url('+ serImg_data[i].pic +');'+ bg_size +'"><div>'
 			})
 		};
-		
+		//标题
+		var title = d.title;
+		document.title = title;
 		//商家logo填充
 		var logoImg = d.logoImg;
-		var logoHtml = '<a class="logoWrap" href="javascript:;"><img class="logo" src="./img/'+ logoImg +'" alt=""></a>';
+		var logoHtml = '<a class="logoWrap" href="javascript:;"><img class="logo" src="'+ logoImg +'" alt=""></a>';
 
 		//商家名称
 		var brandName = d.brandName;
@@ -194,7 +196,7 @@ $(function(){
 
 
 		//图片预加载
-		var imgList = [serImg_data[0].pic,'albumBg.png','light.png','btn_arrow.png','music-icon.png','loading.gif','cotyRight.png','indexIcon.png','musicIcon.png','Sublogo.png','playingBg.png','workingIcon.png','cover.png'];
+		var imgList = [serImg_data[0].pic,'img/albumBg.png','img/light.png','img/btn_arrow.png','img/music-icon.png','img/loading.gif','img/copyRight.png','img/indexIcon.png','img/musicIcon.png','img/playingBg.png','img/workingIcon.png','img/cover.png'];
 
 		loadImg(imgList);
 		function loadImg(list){
@@ -213,7 +215,7 @@ $(function(){
 						$('#audio_btn').show();
 					}
 				}
-				oImg.src = './img/' + ele;
+				oImg.src =  ele;
 			})
 		};
 
@@ -221,7 +223,7 @@ $(function(){
 		function load_more(){
 			for(var i=0;i<serImg_data.length;i++){
 				var oImg = new Image();
-				oImg.src = './img/'+serImg_data[i].pic;
+				oImg.src = serImg_data[i].pic;
 			}
 		}
 	});
