@@ -13,7 +13,7 @@
             <div class="btn_wrap">
                 <a class="view-case-btn b_state_c" href="#">查看案例</a>
                 <a class="free-register-btn b_state_d" ui-sref="register">免费注册</a>
-                <a ng-click="showLinkBox = true" class="gopc_btn b_state_d">免费使用</a>
+                <a ng-click="showLinkBox = true" class="gopc_btn b_state_d">免费试用</a>
             </div>
         </div>
     </div>
@@ -51,18 +51,13 @@
 </div>
 <div ng-include="'views/footer.view.html'"></div>
 <login-forget-zone ng-show="loginForgetZoneVisible"></login-forget-zone>
-<mask></mask>
-<linkBox></linkBox>
-
-
-
 
 <!-- 移动端提示弹窗 -->
 <div ng-show="showLinkBox" id="link-box" class="link-box">
-    <a class="link-a" href="www.boluomi1314.com">www.boluomi1314.com</a>
+    <a class="link-a">www.boluomi1314.com</a>
     <a ng-click="showLinkBox = false" class="i-know J_i-know">我知道了</a>
 </div>
 
-<div id="mask" class="mask"></div>
+<div ng-show="showLinkBox" id="mask" class="mask"></div>
 
 

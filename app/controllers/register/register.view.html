@@ -38,7 +38,7 @@
             <span>设置密码：</span>
         </div>
         <div class="infoR">
-            <input ng-model="user.password" name="password" class="ipt" placeholder="密码（6-20位字母或数字)" type="text"
+            <input ng-model="user.password" name="password" class="ipt" placeholder="密码（6-20位字母或数字)" type="password"
                    data-empty="请填写密码~" data-error="两次密码不一样~" required>
             <div class="error" ng-messages="registerForm.password.$dirty&&registerForm.password.$error">
                 <div ng-message="required">请填写密码~</div>
@@ -51,7 +51,7 @@
             <span>确认密码：</span>
         </div>
         <div class="infoR">
-            <input ng-model="user.rePassword" name="rePassword" class="ipt" placeholder="确认密码(6-20位字母或数字）" type="text"
+            <input ng-model="user.rePassword" name="rePassword" class="ipt" placeholder="确认密码(6-20位字母或数字）" type="password"
                    data-empty="请填写确认密码~" data-error="两次密码不一样~" required>
             <div class="error" ng-messages="registerForm.rePassword.$dirty&&registerForm.rePassword.$error">
                 <div ng-message="required">请填写确认密码~</div>

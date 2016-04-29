@@ -26,7 +26,7 @@
 		<li>
 			<span>背景音乐：{{musicName}}</span>
 			<p class="base_btn" type="file"
-					ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="14MB">
+					ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="5MB">
 
 				<a progress-button value="music_progress" in-progress="上传中。。。" complete="重新上传">上传</a>
 			</p>
@@ -51,7 +51,7 @@
 
 			<li ng-repeat="item in product.pics track by $index" as-sortable-item>
 				<div as-sortable-item-handle ngf-as-background="true">
-					<img ng-src="{{item}}" alt="loading..." width="150" height="236">
+					<img class="uploaded_pic" ng-src="{{item}}" alt="loading..." width="150" height="236">
 					<div ng-if="uploading[$index]" class="mask"></div>
 					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 				</div>
@@ -61,7 +61,7 @@
 			</li>
 			<li>
 				<div ngf-select="uploadFiles($files, $invalidFiles)" multiple
-					 accept="image/*,application/pdf"  ngf-pattern="'image/*,application/pdf'">
+					 accept="image/*,application/pdf"  ngf-pattern="'image/*,application/pdf'" ngf-max-size="4MB">
 					<!--<a class="add_img" ng-if="product.pics.length == 0"></a>
 					<a class="add_img" ng-if="product.pics.length != 0"></a> -->
 					<a class="add_img"></a>
@@ -87,6 +87,9 @@
 		display:block;
 		position: absolute;
 		top: 0; left: 0; bottom: 0; right: 0;
+	}
+	.uploaded_pic {
+		object-fit: cover;
 	}
 	#coverContainer {
 		display:inline-block;

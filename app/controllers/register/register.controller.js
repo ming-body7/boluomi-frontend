@@ -37,13 +37,15 @@
             if(!(Object.keys($scope.registerForm.account.$error).length == 0)){
                 return;
             }
-            AuthenticationService.GetCode($scope.account, function(response){
+            AuthenticationService.GetCode($scope.user.account, function(response){
                 if(response.success){
-
+                    countDownClock();
+                    alert("已为您发送语音验证码，请注意接听电话，谢谢!");
+                }else{
+                    
                 }
             });
-            countDownClock();
-            alert("已为您发送语音验证码，请注意接听电话，谢谢!");
+
         }
 
         function countDownClock(){

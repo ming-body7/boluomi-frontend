@@ -60,7 +60,7 @@
                 UserService.setAccessLevel('user');
                 $state.go('main.content.content');
             }else{
-                $scope.default.loginButtonText = "登录中。。。";
+                $scope.default.loginButtonText = "登录中...";
                 AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                     $scope.default.loginButtonText = "登录";
                     if (response.success) {

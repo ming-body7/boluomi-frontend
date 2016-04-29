@@ -290,7 +290,7 @@
                             alert("保存成功");
                             $state.go('main.content');
                         }else{
-
+                            alert("保存失败");
                         }
                     });
                 }

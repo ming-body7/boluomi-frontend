@@ -190,8 +190,18 @@ angular.module('myApp')
             }
 
             function saveChanges(){
+                //check
+                if($scope.product.title == null || $scope.product.title=="" || $scope.product.title == undefined){
+                    alert("对不起，保存失败！请填写标题，并且至少上传一张照片。");
+                    return;
+                }
 
-                $scope.saveButton = "保存中。。。";
+                if($scope.product.pics == null ||  $scope.product.pics == undefined || $scope.product.pics.length < 1){
+                    alert("对不起，保存失败！请填写标题，并且至少上传一张照片。");
+                    return;
+                }
+
+                $scope.saveButton = "保存中...";
                 if($scope.product.is_brand == true){
                     $scope.product.is_brand = 1;
                 }else{
@@ -225,7 +235,19 @@ angular.module('myApp')
             }
 
             function saveChangesAndExit(){
-                $scope.saveButton = "保存中。。。";
+                //check
+                if($scope.product.title == null || $scope.product.title=="" || $scope.product.title == undefined){
+                    alert("对不起，保存失败！请填写标题，并且至少上传一张照片。");
+                    return;
+                }
+
+                if($scope.product.pics == null ||  $scope.product.pics == undefined || $scope.product.pics.length < 1){
+                    alert("对不起，保存失败！请填写标题，并且至少上传一张照片。");
+                    return;
+                }
+
+
+                $scope.saveButton = "保存中...";
                 if($scope.product.is_brand == true){
                     $scope.product.is_brand = 1;
                 }else{
@@ -258,24 +280,8 @@ angular.module('myApp')
 
             }
 
-            function preview(){
-                /*if($scope.product.is_brand == true){
-                    $scope.product.is_brand = 1;
-                }else{
-                    $scope.product.is_brand = 0;
-                }
 
-                DataService.AddProduct($rootScope.globals.authKey, $scope.product, function(response){
-                    if(response.success){
-                        //
-                        pid = response.data.id;
-                        //alert("生成成功！");
-                        $rootScope.previewPid = pid;
-                        $state.go('preview',{pid:pid});
-                    }else{
-                        alert("生成失败");
-                    }
-                });*/
+            function preview(){
                 $scope.saveButton = "保存中。。。";
                 if($scope.product.is_brand == true){
                     $scope.product.is_brand = 1;
@@ -352,10 +358,15 @@ angular.module('myApp')
             $scope.uploading = [];
 
 
+
             $scope.uploadFiles = function(files, errFiles) {
                 $scope.files = files;
                 $scope.errFiles = errFiles;
 
+                if($scope.errFiles.length > 0){
+                    alert("图片过大");
+                }
+                
                 var pics_length = $scope.product.pics.length;
 
                 angular.forEach(files, function(file, index) {

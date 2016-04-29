@@ -154,12 +154,17 @@
         }
 
 
-        $rootScope.$on('$stateChangeStart', function(evt, to, params) {
-            if (to.redirectTo) {
-                evt.preventDefault();
-                $state.go(to.redirectTo, params)
-
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            if(fromState.name == 'main.content.create' || fromState.name == 'main.content.create'){
+                
             }
+            
+            if (toState.redirectTo) {
+                event.preventDefault();
+                $state.go(toState.redirectTo, toParams)
+            }
+
+
         });
 
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {

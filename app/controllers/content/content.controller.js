@@ -1,5 +1,6 @@
 angular.module('myApp')
-	.controller('contentController', ['$scope','DataService', '$rootScope',function($scope, DataService, $rootScope){
+	.controller('contentController', ['$scope','DataService', '$rootScope','$window',
+		function($scope, DataService, $rootScope, $window){
 
 		//$scope.totalItems = 0;
 		$scope.currentPage = 1;
@@ -16,6 +17,7 @@ angular.module('myApp')
 		$scope.goPage = goPage;
 		$scope.transferTime = transferTime;
 		$scope.getQRUrl = getQRUrl;
+		$scope.preview = preview;
 
 		init();
 
@@ -64,6 +66,9 @@ angular.module('myApp')
 			}
 		}
 
+		function preview(x){
+			$window.open(getQRUrl(x));
+		}
 		function goPage(page){
 			if(page>=0 && page<=Math.ceil($scope.totalItems/$scope.maxSize)){
 				$scope.currentPage = page;
