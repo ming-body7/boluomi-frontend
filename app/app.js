@@ -181,7 +181,7 @@
 
         Permission
             .defineRole('anonymous', function (stateParams) {
-                var accessLevel = UserService.getAccessLevel();
+                var accessLevel = $rootScope.globals.role;
                 if (accessLevel == 'anonymous') {
                     return true;
                 } else {
@@ -189,15 +189,31 @@
                 }
             })
             .defineRole('user', function (stateParams) {
-                var accessLevel = UserService.getAccessLevel();
+                var accessLevel = $rootScope.globals.role;
                 if (accessLevel == 'user') {
                     return true;
                 } else {
                     return false;
                 }
             })
+            .defineRole('user.brand', function (stateParams) {
+                var accessLevel = $rootScope.globals.role;
+                if (accessLevel == 'user.brand') {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            .defineRole('user.audit', function (stateParams) {
+                var accessLevel = $rootScope.globals.role;
+                if (accessLevel == 'user.audit') {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
             .defineRole('admin', function (stateParams) {
-                var accessLevel = UserService.getAccessLevel();
+                var accessLevel = $rootScope.globals.role;
                 if (accessLevel == 'admin') {
                     return true;
                 } else {

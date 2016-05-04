@@ -21,9 +21,9 @@
             AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                 if (response.success) {
 
-                    AuthenticationService.SetCredentials($scope.account, response.data.auth_key);
+                    AuthenticationService.SetCredentials($scope.account, response.data.auth_key,response.data.id, "admin", 30);
 
-                    UserService.setAccessLevel('admin');
+                    //UserService.setAccessLevel('admin');
 
                     $state.go('admin.merchants');
                 } else {

@@ -5,8 +5,8 @@
         .module('myApp')
         .factory('UserService', UserService);
  
-    UserService.$inject = ['$http', '$rootScope'];
-    function UserService($http, $rootScope) {
+    UserService.$inject = ['$http', '$rootScope','AuthenticationService'];
+    function UserService($http, $rootScope, AuthenticationService) {
 
         var App = window.App;
         var baseUrl = App.baseUrl;
@@ -42,7 +42,7 @@
                 if(response.type == 2){
                     callback({success: true, data: response.result});
                 }else{
-                    callback({success: false, data:"error"});
+                    callback({success: false, data:response.msg});
                 }
 
             });

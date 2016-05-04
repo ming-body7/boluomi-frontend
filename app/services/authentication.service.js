@@ -5,10 +5,10 @@
         .module('myApp')
         .factory('AuthenticationService', AuthenticationService);
  
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope'];
+    function AuthenticationService($http, $cookies, $rootScope) {
 
-        var App = $rootScope.App;
+        var App = window.App;
         var baseUrl = App.baseUrl;
 
         var service = {};
@@ -21,6 +21,7 @@
         service.UpdatePassword = UpdatePassword;
         service.ResetAccount = ResetAccount;
         service.GetCode = GetCode;
+        service.IsSessionExpired = IsSessionExpired;
         service.GetCredentials = GetCredentials;
         service.SendHttpRequest = SendHttpRequest;
 
@@ -88,6 +89,11 @@
             var extendUrl = '/v1/code/receive';
             SendHttpRequest(data, extendUrl, callback);
         }
+
+        function IsSessionExpired(id, auth_key, callback){
+
+        }
+
         function ClearCredentials() {
             $rootScope.globals = {role:'anonymous', account:"null",
                 authKey:"null", id:null};
@@ -96,17 +102,18 @@
             $http.defaults.headers.common.Authorization = 'Basic ';
         }
 
-        function SetCredentials(account, authKey, id, role) {
-
+        function SetCredentials(account, authKey, id, role, expire) {
+            //expire count as minute
             $rootScope.globals = {
                 role:role,
                 account:account,
                 authKey:authKey,
                 id:id
             };
-            $cookies.put('globals', JSON.stringify($rootScope.globals));
+            var now = new Date();
+            var expireDate = new Date(now.getTime() + expire*60*1000);
+            $cookies.put('globals', JSON.stringify($rootScope.globals), {'expires': expireDate});
         }
-
 
         function GetCredentials(){
             var globals = $cookies.get('globals');

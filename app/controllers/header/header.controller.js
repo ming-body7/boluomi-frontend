@@ -5,9 +5,9 @@
         .module('myApp')
         .controller('headerController', ['$scope','$rootScope','AuthenticationService','$location', 'UserService',function($scope, $rootScope,AuthenticationService,$location, UserService){
 
-            $scope.permission = UserService.getAccessLevel();
+            $scope.permission = $rootScope.globals.role;
             $scope.$watch(function(){
-                return UserService.getAccessLevel();
+                return $rootScope.globals.role;
             }, function(newVal){
                 $scope.permission = newVal;
             }, true);
@@ -27,7 +27,7 @@
                     if (response.success) {
                         AuthenticationService.ClearCredentials();
                         $location.path('/index');
-                        UserService.setAccessLevel('anonymous');
+
                     } else {
 
 

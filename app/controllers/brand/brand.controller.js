@@ -6,8 +6,8 @@
     angular
         .module('myApp')
         .controller('brandController', ['$scope', '$rootScope', 'Upload', '$timeout','DataService','$state','' +
-        'GeoCoderService','UtilsService',
-            function($scope, $rootScope, Upload, $timeout, DataService, $state, GeoCoderService, UtilsService){
+        'GeoCoderService','UtilsService', 'AuthenticationService',
+            function($scope, $rootScope, Upload, $timeout, DataService, $state, GeoCoderService, UtilsService, uthenticationService){
 
                 var App = $rootScope.App;
                 var uploadAPI = App.uploadAPI;
@@ -150,7 +150,7 @@
 
                 function addBrandInfo(){
                     $scope.submitted = true;
-                    if(!($scope.brandForm.$error === {})){
+                    if(!(Object.keys($scope.brandForm.$error).length == 0)){
                         return;
                     }
                     if($scope.localMerchant.logo == ""){
@@ -159,7 +159,7 @@
                     if($scope.localMerchant.licence == ""){
                         return;
                     }
-                    if($scope.localMerchant.marked){
+                    if(!$scope.localMerchant.marked){
                         return;
                     }
                     $scope.merchant = {
@@ -177,6 +177,7 @@
                     };
                     DataService.AddMerchant($scope.merchant, function(response){
                         if(response.success){
+                            AuthenticationService.SetCredentials($rootScope.globals.account, $rootScope.globals.authKey, $rootScope.globals.id, 'user.audit',10);
                             $state.go('audit');
                         }else{
                             //品牌信息修改失败callback
@@ -190,6 +191,7 @@
                 function openMapModal(){
                     $scope.markOnMap = true;
                     if($scope.brandForm.address.$error.required!=null){
+
                         return;
                     }
                     GeoCoderService.getLocationByAddress($scope.localMerchant.city,$scope.localMerchant.address,

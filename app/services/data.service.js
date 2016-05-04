@@ -8,8 +8,8 @@
         .module('myApp')
         .factory('DataService', DataService);
 
-    DataService.$inject = ['$rootScope', '$http'];
-    function DataService($rootScope ,$http) {
+    DataService.$inject = ['$rootScope', '$http','AuthenticationService'];
+    function DataService($rootScope ,$http, AuthenticationService) {
 
         var App = window.App;
         var baseUrl = App.baseUrl;

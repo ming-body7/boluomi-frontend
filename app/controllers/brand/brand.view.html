@@ -46,10 +46,10 @@
             </div>
 
             <div class="infoR">
-                <button id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{localMerchant.logo}}"
+                <a id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{localMerchant.logo}}"
                         class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-                        accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                    {{logoButton}}</button>
+                        accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
+                    {{logoButton}}</a>
                 <div class="error" ng-show="submitted&&!localMerchant.logo">
                     请上传商家LOGO，只支持jpg、png、gif格式，大小不超过3M
                 </div>
@@ -113,7 +113,7 @@
                 <span>详细地址：</span>
             </div>
             <div class="infoR">
-                <input ng-model="localMerchant.address" type="text" name="address" required>
+                <input ng-model="localMerchant.address" type="text" name="address" class="ipt" required>
                 <div class="error" ng-show="markOnMap||submitted" ng-messages="brandForm.address.$error">
                     <div ng-message="required">请输入详细地址</div>
                 </div>
@@ -143,11 +143,11 @@
             </div>
             <div class="infoR">
                 <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> -->
-                <button id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
+                <a id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
                         class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
                         accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
-                    {{licenceButton}}</button>
-                <div class="error" ng-show="submitted&&!localMerchant.logo">
+                    {{licenceButton}}</a>
+                <div class="error" ng-show="submitted&&!localMerchant.licence">
                     请上传营业执照
                 </div>
                 <div ng-show="licence_uploading">
@@ -172,14 +172,14 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h3 class="modal-title">I'm a modal!</h3>
+                    <h3 class="modal-title">地图标注</h3>
                 </div>
                 <div class="modal-body">
                     <baidu-map control="mapModalControl" options="mapOptions"></baidu-map>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="closeMapModal()">OK</button>
-                    <button class="btn btn-warning" type="button" ng-click="dismissMapModal()">Cancel</button>
+                    <button class="btn btn-primary" type="button" ng-click="closeMapModal()">确认</button>
+                    <button class="btn btn-warning" type="button" ng-click="dismissMapModal()">取消</button>
                 </div>
             </div>
 
