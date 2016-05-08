@@ -27,7 +27,7 @@ $(function(){
 		 	dataType : 'json',
 		 	data : {pid : pid},
 		 	success : function(data){
-				console.log(data)
+				// console.log(data)
 				def.resolve(data);
 		 	},
 		 	error : function(data){
@@ -35,29 +35,30 @@ $(function(){
 		 	}
 	 });
 	var d = {
-			result : {
-				serImg : [{
-					width : 640,
-					height : 960,
-					pic : './img/1.jpg'
-				},{
-					width : 640,
-					height : 960,
-					pic : './img/3.jpg'
-				},{
-					width : 640,
-					height : 960,
-					pic : './img/2.jpg'
+				result : {
+					serImg : [{
+						width : 640,
+						height : 960,
+						pic : './img/1.jpg'
+					},{
+						width : 640,
+						height : 960,
+						pic : './img/3.jpg'
+					},{
+						width : 640,
+						height : 960,
+						pic : './img/2.jpg'
+					}
+					],
+					logoImg : './img/brand_log.png',
+					brandName : '商家名称',
+					brandAddress: '望京soho',
+					brand_type : '商家类型',
+					animateType : '2',
+					musical : './img/marry you.mp3',
+					location : '154.241,77.214'
 				}
-				],
-				logoImg : './img/brand_log.png',
-				brandName : '商家名称',
-				brandAddress: '望京soho',
-				brand_type : '商家类型',
-				animateType : '2',
-				musical : './img/marry you.mp3'
-			}
-		};
+			};
 
 		//临时模拟数据d  正常情况是ajax返回的data
 		def.resolve(d);
@@ -69,8 +70,6 @@ $(function(){
 		d = d.result;
 		//data数据填充
 		var data = [];
-
-		
 
 		//单张图片数据填充
 		var serImg_data = d.serImg;
@@ -98,10 +97,12 @@ $(function(){
 				'content' : '<div class="section sec '+ clas +'" style="background-image:url('+ serImg_data[i].pic +');'+ bg_size +'"><div>'
 			})
 		};
-		
+		//标题
+		var title = d.title;
+		document.title = title;
 		//商家logo填充
-		var logoImg = d.logoImg;;
-		var logoHtml = '<a class="logoWrap" href="infoC.html"><img class="logo" src="'+ logoImg +'" alt=""></a>';
+		var logoImg = d.logoImg;
+		var logoHtml = '<a class="logoWrap" href="javascript:;"><img class="logo" src="'+ logoImg +'" alt=""></a>';
 
 		//商家名称
 		var brandName = d.brandName;
@@ -109,11 +110,14 @@ $(function(){
 
 		//商家地址
 		var brandAddress = d.brandAddress;
-		var brandAddressHtml = '<em id="brand_address" class="brand_address">'+ brandAddress +'</em>';
+		var brandAddressHtml = '<em id="brand_address" class="brand_address" data-pos="'+ d.location +'">'+ brandAddress +'</em>';
 
 		//商家类型
 		var brand_type = d.brand_type;
 		var brandHtml = '<i class="brand_type">类型：'+ brand_type +'</i>';
+
+		//商家详情
+		var brand_detail = d.detail_url ? '<a class="detailBtn txt_col" href="'+ d.detail_url +'">详细信息</a>' : '';
 
 		// 动画类型
 		var n = d.animateType;
@@ -139,19 +143,11 @@ $(function(){
 		$('#audio').attr('src', musical);
 
 		//商家电话
-		var tel = 18575562180;
+		var tel = d.tel;
 
-		//商家列表图片填充
-		// var brandImg = ['listPic1.png','listPic2.png','listPic3.png','listPic4.png','listPic5.png','listPic6.png'];
-		// liHtml = '';
-		// for(var i=0;i<brandImg.length;i++){
-		// 	liHtml += '<li data-ani="bounceIn"><a href="infoB.html"><img src="img/'+ brandImg[i] +'" alt="" /></a></li>';
-		// };
 
-		// var brandHand = '<div class="section brandSec"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml +'<a class="detailBtn" href="./seeDetails.html">查看详情</a></p><i class="moonBg"></i><h2><em>该商家的其他作品</em></h2><ul>';
-		var brandHand = '<div class="section brandSec new_b"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml +'<a class="detailBtn txt_col" href="./seeDetails.html">详细信息</a><a class="detailBtn" href="tel:'+ tel +'">联系商家</a></p><ul>';
+		var brandHand = '<div class="section brandSec new_b"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml + brand_detail +'<a class="detailBtn" href="tel:'+ tel +'">联系商家</a></p><ul>';
 		var brandFoot = '</ul></div><div>';
-		// var brandHtml = brandHand + liHtml + brandFoot;
 		var brandHtml = brandHand + brandFoot;
 		data.push({
 			'content' : brandHtml
@@ -167,28 +163,10 @@ $(function(){
 		    isLooping: true,
 		    animateType: animateType,      //default, rotate, flip, depth, flow 和 card
 		    onslidechange: function(idx) {
-		    	idx = idx+1;
-		    	if(idx == 1){
-		    		liBounceInHide('.brandSec');
-		    	}else if(idx == (serImg_data+1)){
-		    		liBounceInShow('.brandSec');
-		    	}else if(idx == serImg_data){
-		    		liBounceInHide('.brandSec');
-		    	}
+		    
 		    }
 		});
-		function show(sec){
-			var child = $(sec).find('.edit_area').children();
-			$.each(child,function(){
-				$(this).addClass( $(this).attr('data-ani') );
-			});
-		};
-		function hide(sec){
-			var child = $(sec).find('.edit_area').children();
-			$.each(child,function(){
-				$(this).removeClass( $(this).attr('data-ani') );
-			})
-		};
+
 
 		//音乐播放控制
 		var audio = document.getElementById('audio');
@@ -215,10 +193,7 @@ $(function(){
 
 
 		//图片预加载
-		var imgList = ['albumBg.png','light.png','btn_arrow.png','music-icon.png','loading.gif','cotyRight.png','indexIcon.png','musicIcon.png','Sublogo.png','playingBg.png','workingIcon.png','cover.png'];
-		//所有图片合并
-		// $.merge( $.merge(imgList,serImg,brandImg), brandImg);
-		// $.merge( imgList, serImg);
+		var imgList = [serImg_data[0].pic,'img/albumBg.png','img/light.png','img/btn_arrow.png','img/music-icon.png','img/loading.gif','img/copyRight.png','img/indexIcon.png','img/musicIcon.png','img/playingBg.png','img/workingIcon.png','img/cover.png'];
 
 		loadImg(imgList);
 		function loadImg(list){
@@ -230,12 +205,24 @@ $(function(){
 					iNow++;
 					if(iNow == num){
 						$('.loading').remove();
-						show('.sec1');
+
+						//加载更多图片
+						load_more();
+
+						$('#audio_btn').show();
 					}
 				}
-				oImg.src = './img/' + ele;
+				oImg.src =  ele;
 			})
 		};
+
+		//加载更多图片
+		function load_more(){
+			for(var i=0;i<serImg_data.length;i++){
+				var oImg = new Image();
+				oImg.src = serImg_data[i].pic;
+			}
+		}
 	});
 
 
@@ -244,53 +231,13 @@ $(function(){
 		console.log(data)
 	})
 
-	
-
-	function liBounceInShow(sec){
-		var sec = $(sec);
-		var aniName = sec.find('li').eq(0).attr('data-ani');
-		
-		sec.find('li').each(function(){
-			$(this).addClass(aniName);
-		})
-	}
-	function liBounceInHide(sec){
-		var sec = $(sec);
-		var aniName = sec.find('li').eq(0).attr('data-ani');
-		
-		sec.find('li').each(function(){
-			$(this).removeClass(aniName);
-		})	
-	}
-
-
-	//划页
-	var iNow = 0;
-	//下一页
-	$('#next_btn').on('click',next_btn_click);
-	function next_btn_click(){
-		iNow ++;
-		if(iNow == serImg_data+2){
-			iNow = 1;
-		}
-		islider.slideTo(iNow);
-	}
-
-	//上一页
-	$('#prev_btn').on('click',prev_btn_click);
-	function prev_btn_click(){
-		iNow --;
-		if(iNow == -(serImg_data+1)){
-			iNow = 0;
-		}
-		console.log(iNow)
-		islider.slideTo(iNow);
-	}
-
 	var bd = $('body');
 	//点击加载商家地图
 	bd.on('touchstart','#brand_address',function(){
-		var address = $(this).html();
+		var _this = $(this);
+		var la = _this.attr('data-pos').split(',')[0];
+		var lo = _this.attr('data-pos').split(',')[1];
+		
 		
 			function taggingClick(){//地图标注
 		   		var mapZ = $('<div id="allmap" class="allmap">map</div>');
@@ -309,7 +256,7 @@ $(function(){
 
 			  // 百度地图API功能
 			    var map = new BMap.Map("allmap");
-			    var point = new BMap.Point(116.331398,39.897445);
+			    var point = new BMap.Point(la,lo);
 			    map.centerAndZoom(point,14);
 			    map.enableScrollWheelZoom(true);
 
@@ -319,12 +266,9 @@ $(function(){
 			    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
 
 			    map.addControl(top_left_control);        
-			    map.addControl(top_left_navigation);     
+			    map.addControl(top_left_navigation);   
 
-			    // 创建地址解析器实例
-			    var myGeo = new BMap.Geocoder();
-			    // 将地址解析结果显示在地图上,并调整地图视野
-			    myGeo.getPoint(address, function(point){
+			    // （1）依据坐标值定位  
 			      if (point) {
 			        map.centerAndZoom(point, 16);
 			        var marker = new BMap.Marker(point);
@@ -343,14 +287,43 @@ $(function(){
 			                  _this.attr('data-position', p.lng+',' + p.lat)
 			            }); 
 			          }
-
-			        // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
 			      }else{
 			      	mapZ.fadeOut().remove();
 			      	oMask.fadeOut().remove();
 			        alert("您选择地址没有解析到结果!");
 			      }
-			    }, "北京市");
+			    
+			    // // （2）依据地址名称定位 创建地址解析器实例
+			    // var address = $(this).html();
+			    // var myGeo = new BMap.Geocoder();
+			    // // 将地址解析结果显示在地图上,并调整地图视野
+			    // myGeo.getPoint(address, function(point){
+			    //   if (point) {
+			    //     map.centerAndZoom(point, 16);
+			    //     var marker = new BMap.Marker(point);
+
+			    //     map.addOverlay(marker);
+			    //     marker.enableDragging();
+
+			    //     marker.addEventListener("mouseup",attribute);
+			    //     function attribute(){
+			    //         var p = marker.getPosition();  //获取marker的经纬度值位置
+			    //         myGeo.getLocation(p, function(rs){//通过经纬度解析地址
+			    //           var addComp = rs.addressComponents;
+			    //               address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
+
+			    //               // 移动了坐标点重新赋值
+			    //               _this.attr('data-position', p.lng+',' + p.lat)
+			    //         }); 
+			    //       }
+
+			    //     // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+			    //   }else{
+			    //   	mapZ.fadeOut().remove();
+			    //   	oMask.fadeOut().remove();
+			    //     alert("您选择地址没有解析到结果!");
+			    //   }
+			    // }, "北京市");
 			}
 			taggingClick();
 

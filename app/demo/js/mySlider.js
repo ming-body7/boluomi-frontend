@@ -18,7 +18,7 @@ $(function(){
 		}
 	};
 
-	var pid = getUrlParameter('pid');
+	var pid = getUrlParameter('pid') || 2;
 
 	//h5首页数据接口
 	 $.ajax({
@@ -39,16 +39,16 @@ $(function(){
 				serImg : [{
 					width : 640,
 					height : 960,
-					pic : '1.jpg'
+					pic : '/test/demo/img/1.jpg'
 				}
 				,{
 					width : 640,
 					height : 960,
-					pic : '3.jpg'
+					pic : '/test/demo/img/3.jpg'
 				},{
 					width : 640,
 					height : 960,
-					pic : '2.jpg'
+					pic : '/test/demo/img/2.jpg'
 				}
 				],
 				logoImg : 'brand_log.png',
@@ -64,7 +64,7 @@ $(function(){
 		};
 
 		//临时模拟数据d  正常情况是ajax返回的data
-		//def.resolve(d);
+		// def.resolve(d);
 
 	
 
@@ -122,9 +122,12 @@ $(function(){
 		//商家详情
 		var brand_detail = d.detail_url ? '<a class="detailBtn txt_col" href="'+ d.detail_url +'">详细信息</a>' : '';
 
+
 		// 动画类型
 		var n = d.animateType;
 		var animateType = '';
+
+
 
 		switch(n){
 			case '0':
@@ -150,7 +153,7 @@ $(function(){
 
 
 		var brandHand = '<div class="section brandSec new_b"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml + brand_detail +'<a class="detailBtn" href="tel:'+ tel +'">联系商家</a></p><ul>';
-		var brandFoot = '</ul></div><div>';
+		var brandFoot = '</ul><a class="copyRight" href="javascript:;"></a></div><div>';
 		var brandHtml = brandHand + brandFoot;
 		data.push({
 			'content' : brandHtml
@@ -296,42 +299,77 @@ $(function(){
 			        alert("您选择地址没有解析到结果!");
 			      }
 			    
-			    // // （2）依据地址名称定位 创建地址解析器实例
-			    // var address = $(this).html();
-			    // var myGeo = new BMap.Geocoder();
-			    // // 将地址解析结果显示在地图上,并调整地图视野
-			    // myGeo.getPoint(address, function(point){
-			    //   if (point) {
-			    //     map.centerAndZoom(point, 16);
-			    //     var marker = new BMap.Marker(point);
-
-			    //     map.addOverlay(marker);
-			    //     marker.enableDragging();
-
-			    //     marker.addEventListener("mouseup",attribute);
-			    //     function attribute(){
-			    //         var p = marker.getPosition();  //获取marker的经纬度值位置
-			    //         myGeo.getLocation(p, function(rs){//通过经纬度解析地址
-			    //           var addComp = rs.addressComponents;
-			    //               address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
-
-			    //               // 移动了坐标点重新赋值
-			    //               _this.attr('data-position', p.lng+',' + p.lat)
-			    //         }); 
-			    //       }
-
-			    //     // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
-			    //   }else{
-			    //   	mapZ.fadeOut().remove();
-			    //   	oMask.fadeOut().remove();
-			    //     alert("您选择地址没有解析到结果!");
-			    //   }
-			    // }, "北京市");
 			}
 			taggingClick();
 
 
 	})	
+
+	//微信jsdk初始化
+	init_config();
+
+	function init_config(){
+		$.ajax({
+			type : 'POST',
+			url : 'initconfig.php',
+			data : {url : window.location.href},
+			dataType : 'json',
+			success : function(data){
+				wx_config(data);
+			}
+		})
+
+
+		function wx_config(data){
+			wx.config({
+			  debug: false,
+			  appId: data.appId,
+			  timestamp: data.timestamp,
+			  nonceStr: data.nonceStr,
+			  signature: data.signature,
+			  url : data.url,
+			  jsApiList: [
+			    // 所有要调用的 API 都要加到这个列表中
+			    'onMenuShareAppMessage',
+			    'onMenuShareTimeline'
+			  ]
+			});
+		}
+	}
+
+	wx.ready(function() {
+		// alert('微信已经ready')
+		//分享给朋友
+		wx.onMenuShareAppMessage({
+			title: '菠萝蜜分享', // 分享标题
+			desc: '秋风庭院藓侵阶。一任珠帘闲不卷，终日谁来！金锁已沉埋，壮气蒿莱。晚凉天净月华开。想得玉楼瑶殿影，空照秦淮。', // 分享描述
+			link: 'http://m2.xiaoliangkou.com/test/demo/main.html', // 分享链接
+			imgUrl: '/test/demo/img/cover.png', // 分享图标
+			type: 'link', // 分享类型,music、video或link，不填默认为link
+			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+			success: function() {
+				// 用户确认分享后执行的回调函数
+			},
+			cancel: function() {
+				// 用户取消分享后执行的回调函数
+			}
+		});
+
+
+		//分享到朋友圈
+		wx.onMenuShareTimeline({
+			title: '菠萝蜜分享到朋友圈 黄河远上白云间，一片孤城万仞山。羌笛何须怨杨柳，春风不度玉门关。', // 分享标题
+			link: 'http://m2.xiaoliangkou.com/test/demo/main.html', // 分享链接
+			imgUrl: '/test/demo/img/cover.png', // 分享图标
+			success: function() {
+				// 用户确认分享后执行的回调函数
+			},
+			cancel: function() {
+				// 用户取消分享后执行的回调函数
+			}
+		});
+	});
+
 });
 
 

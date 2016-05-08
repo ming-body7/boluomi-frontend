@@ -148,7 +148,7 @@ $(function(){
 
 
 		var brandHand = '<div class="section brandSec new_b"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml + brand_detail +'<a class="detailBtn" href="tel:'+ tel +'">联系商家</a></p><ul>';
-		var brandFoot = '</ul></div><div>';
+		var brandFoot = '</ul><a class="copyRight" href="javascript:;"></div><div>';
 		var brandHtml = brandHand + brandFoot;
 		data.push({
 			'content' : brandHtml
