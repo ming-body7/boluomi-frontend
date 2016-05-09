@@ -60,16 +60,9 @@
 
 
         function ResetPassword(account, code, password, rePassword, callback){
-            $http.post(baseUrl+'/v1/register/resetpassword',
-                {account: account, code:code, password: password, repassword:rePassword})
-                .success(function (response) {
-                    if(response.type == 2){
-                        callback({success: true, data: response.result});
-                    }else{
-                        callback({success: false, data:response.result});
-                    }
-
-                });
+            var data = {account: account, code:code, password: password, repassword:rePassword};
+            var extendUrl = '/v1/register/resetpassword';
+            SendHttpRequest(data, extendUrl, callback);
         }
 
         function UpdatePassword(auth_key, oldpassword, newpassword, renewpassword, callback){

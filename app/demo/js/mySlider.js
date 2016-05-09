@@ -18,7 +18,7 @@ $(function(){
 		}
 	};
 
-	var pid = getUrlParameter('pid') || 2;
+	var pid = getUrlParameter('pid');
 
 	//h5首页数据接口
 	 $.ajax({
@@ -39,16 +39,16 @@ $(function(){
 				serImg : [{
 					width : 640,
 					height : 960,
-					pic : '/test/demo/img/1.jpg'
+					pic : '/demo/img/1.jpg'
 				}
 				,{
 					width : 640,
 					height : 960,
-					pic : '/test/demo/img/3.jpg'
+					pic : '/demo/img/3.jpg'
 				},{
 					width : 640,
 					height : 960,
-					pic : '/test/demo/img/2.jpg'
+					pic : '/demo/img/2.jpg'
 				}
 				],
 				logoImg : 'brand_log.png',
