@@ -1,80 +1,83 @@
-<div class="curmb">
-	<a ui-sref="main.content">婚纱照分享</a> &gt; <a href="">{{guideTitle}}</a>
-</div>
-
-<div class="share_wrap">
-	<div class="page_face">
-		<div class="img_box">
-			<img class="banner_pic"  ng-src="{{product.banner_pic}}" alt="封面图片"/>
-			<p type="file" ngf-select="uploadBanner($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="100MB">
-			<a id="banner_progress_button" progress-button value="banner_progress" in-progress="上传中。。。" complete="更改封面">更改封面</a>
-			</p>
-		</div>
-		<h4>标题</h4>
-		<input type="text" placeholder="快给作品起个名字吧"  ng-model = "product.title"/>
-		<h4>描述</h4>
-		<textarea placeholder="加点摘要说明，发送到朋友圈，点开的可能性更大哟~" ng-model = "product.description"></textarea>
+<div class="ang_content_detail">
+	<div class="curmb">
+		<a ui-sref="main.content">婚纱照分享</a> &gt; <a href="">{{guideTitle}}</a>
 	</div>
-	<ul class="choice_type">
-		<li><span>页尾品牌：</span>
-			<input ng-model="product.is_brand" class="check" type="checkbox"
-				   ng-true-value="1"
-				   ng-false-value="0"
-				   ng-checked="product.is_brand == 1">
-			<strong>作品最后一页展示商家品牌广告</strong>
-		</li>
-		<li>
-			<span>背景音乐：{{musicName}}</span>
-			<p class="base_btn" type="file"
-					ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="5MB">
 
-				<a progress-button value="music_progress" in-progress="上传中。。。" complete="重新上传">上传</a>
-			</p>
-			<em class="tips">（只能上传MP3格式的，不超过4M ）</em>
-			<div ng-show="music_uploading">
-				<progressbar animate="true" value="music_progress" type="success"><b>{{music_progress}}%</b></progressbar>
+	<div class="share_wrap">
+		<div class="page_face">
+			<div class="img_box">
+				<img class="banner_pic"  ng-src="{{product.banner_pic}}" alt="封面图片"/>
+				<p type="file" ngf-select="uploadBanner($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="100MB">
+					<a id="banner_progress_button" progress-button value="banner_progress" in-progress="上传中。。。" complete="更改封面">更改封面</a>
+				</p>
 			</div>
-		</li>
-
-		<li>
-			<span>页面切换：</span>
-			<select ng-model="product.change_status">
-				<option ng-selected="product.change_status == 0" value =0>上下切换</option>
-				<option ng-selected="product.change_status == 1" value =1>折叠切换</option>
-				<option ng-selected="product.change_status == 2" value =2>立体切换</option>
-			</select>
-		</li>
-	</ul>
-	<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
-	<div class="upload_zone">
-		<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
-
-			<li ng-repeat="item in product.pics track by $index" as-sortable-item>
-				<div as-sortable-item-handle ngf-as-background="true">
-					<img class="uploaded_pic" ng-src="{{item}}" alt="loading..." width="150" height="236">
-					<div ng-if="uploading[$index]" class="mask"></div>
-					<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
-				</div>
-				<div class="pro" ng-if="uploading[$index]">
-					<progressbar animate="true" value="progress[$index]" type="success"></progressbar>
-				</div>
+			<h4>标题</h4>
+			<input type="text" placeholder="快给作品起个名字吧"  ng-model = "product.title"/>
+			<h4>描述</h4>
+			<textarea placeholder="加点摘要说明，发送到朋友圈，点开的可能性更大哟~" ng-model = "product.description"></textarea>
+		</div>
+		<ul class="choice_type">
+			<li><span>页尾品牌：</span>
+				<input ng-model="product.is_brand" class="check" type="checkbox"
+					   ng-true-value="1"
+					   ng-false-value="0"
+					   ng-checked="product.is_brand == 1">
+				<strong>作品最后一页展示商家品牌广告</strong>
 			</li>
 			<li>
-				<div ngf-select="uploadFiles($files, $invalidFiles)" multiple
-					 accept="image/*,application/pdf"  ngf-pattern="'image/*,application/pdf'" ngf-max-size="4MB">
-					<!--<a class="add_img" ng-if="product.pics.length == 0"></a>
-					<a class="add_img" ng-if="product.pics.length != 0"></a> -->
-					<a class="add_img"></a>
+				<span>背景音乐：{{musicName}}</span>
+				<p class="base_btn" type="file"
+				   ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="5MB">
+
+					<a progress-button value="music_progress" in-progress="上传中。。。" complete="重新上传">上传</a>
+				</p>
+				<em class="tips">（只能上传MP3格式的，不超过4M ）</em>
+				<div ng-show="music_uploading">
+					<progressbar animate="true" value="music_progress" type="success"><b>{{music_progress}}%</b></progressbar>
 				</div>
 			</li>
+
+			<li>
+				<span>页面切换：</span>
+				<select ng-model="product.change_status">
+					<option ng-selected="product.change_status == 0" value =0>上下切换</option>
+					<option ng-selected="product.change_status == 1" value =1>折叠切换</option>
+					<option ng-selected="product.change_status == 2" value =2>立体切换</option>
+				</select>
+			</li>
 		</ul>
+		<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
+		<div class="upload_zone">
+			<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
+
+				<li ng-repeat="item in product.pics track by $index" as-sortable-item>
+					<div as-sortable-item-handle ngf-as-background="true">
+						<img class="uploaded_pic" ng-src="{{item}}" alt="loading..." width="150" height="236">
+						<div ng-if="uploading[$index]" class="mask"></div>
+						<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
+					</div>
+					<div class="pro" ng-if="uploading[$index]">
+						<progressbar animate="true" value="progress[$index]" type="success"></progressbar>
+					</div>
+				</li>
+				<li>
+					<div ngf-select="uploadFiles($files, $invalidFiles)" multiple
+						 accept="image/*,application/pdf"  ngf-pattern="'image/*,application/pdf'" ngf-max-size="4MB">
+						<!--<a class="add_img" ng-if="product.pics.length == 0"></a>
+                        <a class="add_img" ng-if="product.pics.length != 0"></a> -->
+						<a class="add_img"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+
+		<button class="i_btn save_btn b_state_e" ng-click="saveChanges()">{{saveButton}}</button>
+		<a class="i_btn pre_view b_state_f" ng-click="preview()">预览</a>
+		<button class="i_btn save_btn b_state_e" ng-click="saveChangesAndExit()">保存并退出</button>
 	</div>
-
-
-	<button class="i_btn save_btn b_state_e" ng-click="saveChanges()">{{saveButton}}</button>
-	<a class="i_btn pre_view b_state_f" ng-click="preview()">预览</a>
-	<button class="i_btn save_btn b_state_e" ng-click="saveChangesAndExit()">保存并退出</button>
 </div>
+
 <style>
 	#banner_progress_button {
 		width:100%;

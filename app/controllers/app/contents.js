@@ -50,7 +50,8 @@
                         only: ['user'],
                         redirectTo: 'index'
                     },
-                    css: 'css/manage_brand.css'
+                    //css: 'css/manage_brand.css'
+                    //css: 'css/main.css'
                 }
             })
             .state('main.content.create', {
@@ -62,7 +63,8 @@
                         only: ['user'],
                         redirectTo: 'index'
                     },
-                    css: 'css/new_brand.css'
+                    //css: 'css/new_brand.css'
+                    //css: 'css/main.css'
                 }
 
             })
@@ -75,7 +77,8 @@
                         only: ['user'],
                         redirectTo: 'index'
                     },
-                    css: 'css/new_brand.css'
+                    //css: 'css/new_brand.css'
+                    //css: 'css/main.css'
                 }
 
             })
@@ -88,7 +91,7 @@
                         only: ['user'],
                         redirectTo: 'index'
                     },
-                    css: 'css/base_info.css'
+                    //css: 'css/base_info.css'
                 }
 
             })
@@ -101,7 +104,8 @@
                         only: ['user'],
                         redirectTo: 'index'
                     },
-                    css: 'css/change_account.css'
+                    //css: 'css/change_account.css'
+                    //css: 'css/main.css'
                 }
 
             })
@@ -114,7 +118,8 @@
                         only: ['user'],
                         redirectTo: 'index'
                     },
-                    css: 'css/change_account.css'
+                    //css: 'css/change_account.css'
+                    //css: 'css/main.css'
                 }
 
             });

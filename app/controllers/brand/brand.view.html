@@ -1,192 +1,186 @@
-
-<!--<link rel="stylesheet" href="css/finishbrandinfo.css" />-->
-
-
-<div class="banner"></div>
-<form name="brandForm" ng-submit="addBrandInfo()">
-    <ul id="brandForm" class="main">
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>商家名称：</span>
-            </div>
-            <div class="infoR">
-                <input ng-model="localMerchant.name" name="name" id="brand_name" class="ipt" type="text"
-                       ng-focus="brandForm.name.$setDirty()" ng-blur="brandForm.name.$setPristine()" required>
-                <div class="error" ng-messages="brandForm.name.$error" data-empty="请填写商家名">
-                    <div ng-show="brandForm.name.$dirty||submitted" ng-message="required">请输入商家的名称，如北京金夫人婚纱影楼</div>
+<div class="ang_register_brand_audit">
+    <div class="banner"></div>
+    <form name="brandForm" ng-submit="addBrandInfo()">
+        <ul id="brandForm" class="main">
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>商家名称：</span>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>联系方式：</span>
-            </div>
-            <div class="infoR">
-                <input ng-model="localMerchant.phone" name="phone" id="contact_phone" class="ipt" type="text" maxlength="11"
-                       ng-focus="brandForm.phone.$setDirty()" ng-blur="brandForm.phone.$setPristine()" required>
-                <div class="error" ng-messages="brandForm.phone.$error" data-empty="请填写商家名">
-                    <div ng-show="brandForm.phone.$dirty||submitted" ng-message="required">请输入电话，方便客户联系到您</div>
+                <div class="infoR">
+                    <input ng-model="localMerchant.name" name="name" id="brand_name" class="ipt" type="text"
+                           ng-focus="brandForm.name.$setDirty()" ng-blur="brandForm.name.$setPristine()" required>
+                    <div class="error" ng-messages="brandForm.name.$error" data-empty="请填写商家名">
+                        <div ng-show="brandForm.name.$dirty||submitted" ng-message="required">请输入商家的名称，如北京金夫人婚纱影楼</div>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="infoL">
-                <span class="key">默认网址：</span>
-            </div>
-            <div class="infoR">
-                <input ng-model="localMerchant.url" id="url" class="ipt" type="text">
-            </div>
-        </li>
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>商家LOGO：</span>
-            </div>
+            </li>
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>联系方式：</span>
+                </div>
+                <div class="infoR">
+                    <input ng-model="localMerchant.phone" name="phone" id="contact_phone" class="ipt" type="text" maxlength="11"
+                           ng-focus="brandForm.phone.$setDirty()" ng-blur="brandForm.phone.$setPristine()" required>
+                    <div class="error" ng-messages="brandForm.phone.$error" data-empty="请填写商家名">
+                        <div ng-show="brandForm.phone.$dirty||submitted" ng-message="required">请输入电话，方便客户联系到您</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="infoL">
+                    <span class="key">默认网址：</span>
+                </div>
+                <div class="infoR">
+                    <input ng-model="localMerchant.url" id="url" class="ipt" type="text">
+                </div>
+            </li>
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>商家LOGO：</span>
+                </div>
 
-            <div class="infoR">
-                <a id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{localMerchant.logo}}"
-                        class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-                        accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
-                    {{logoButton}}</a>
-                <div class="error" ng-show="submitted&&!localMerchant.logo">
-                    请上传商家LOGO，只支持jpg、png、gif格式，大小不超过3M
+                <div class="infoR">
+                    <a id="brand_logo" ng-click="uploadOption = 'logo'" data-logo-src="{{localMerchant.logo}}"
+                            class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+                            accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
+                        {{logoButton}}</a>
+                    <div class="error" ng-show="submitted&&!localMerchant.logo">
+                        请上传商家LOGO，只支持jpg、png、gif格式，大小不超过3M
+                    </div>
+                    <div ng-show="logo_uploading">
+                        <progressbar  animate="true" value="logo_process" type="success"><b>{{logo_process}}%</b></progressbar>
+                    </div>
                 </div>
-                <div ng-show="logo_uploading">
-                    <progressbar  animate="true" value="logo_process" type="success"><b>{{logo_process}}%</b></progressbar>
+                <div>
+                    <img ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
                 </div>
-            </div>
-            <div>
-                <img ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
-            </div>
-
-
-        </li>
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>商家类型：</span>
-            </div>
-            <div id="brand_type" class="infoR" data-type="">
-                <label for="type1">
-                    <input ng-model="localMerchant.type" id="type1"  value="0" name="type" type="radio"
-                            ng-click="brandForm.type.$setTouched()" required>
-                    影楼</label>
-                <label for="type2">
-                    <input ng-model="localMerchant.type" id="type2"  value="1" name="type" type="radio"
-                           ng-click="brandForm.type.$setTouched()" required>
-                    工作室</label>
-                <div class="error" ng-show="submitted&&brandForm.type.$untouched">
-                    请选择类型
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>商家地址：</span>
-            </div>
-            <div class="infoR">
-                <select name="province" required  ng-model="localMerchant.province" ng-options="key as key for (key,value) in division"
-                        ng-click="brandForm.province.$setTouched()" ng-change="localMerchant.city='';localMerchant.area='';">
-                    <option value="">省</option>
-                </select>
-
-                <select  name="city" required ng-model="localMerchant.city" ng-options="key as key for (key,value) in division[localMerchant.province]"
-                         ng-click="brandForm.city.$setTouched()" ng-change="localMerchant.area='';">
-                    <option value="">市</option>
-                </select>
-                <select  name="area" required ng-model="localMerchant.area" ng-options="value as value for value in division[localMerchant.province][localMerchant.city]"
-                         ng-click="brandForm.area.$setTouched()">
-                    <option value="">区</option>
-                </select>
-                <div class="error" ng-show="submitted&&(brandForm.province.$untouched||brandForm.city.$untouched||brandForm.area.$untouched)">
-                    请选择商家地址
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>详细地址：</span>
-            </div>
-            <div class="infoR">
-                <input ng-model="localMerchant.address" type="text" name="address" class="ipt" required>
-                <div class="error" ng-show="markOnMap||submitted" ng-messages="brandForm.address.$error">
-                    <div ng-message="required">请输入详细地址</div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>地图标注：</span>
-            </div>
-            <div class="infoR">
-                <a id="map_mark"  ng-click="openMapModal()">标注</a>
-                <div class="error" ng-show="submitted&&!localMerchant.marked">
-                    请在地图上标注位置
-                </div>
-            </div>
-        </li>
-        <li class="row">
-            <div ng-show="mapModalOpened||localMerchant.marked" aria-hidden="false" style="display: block;" class="col-md-offset-2 map_preview">
-                <baidu-map options="smallMap" control="smallMapControl"></baidu-map>
-            </div>
-        </li>
-        <li>
-            <div class="infoL">
-                <i>*</i>
-                <span>营业执照：</span>
-            </div>
-            <div class="infoR">
-                <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> -->
-                <a id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
-                        class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-                        accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
-                    {{licenceButton}}</a>
-                <div class="error" ng-show="submitted&&!localMerchant.licence">
-                    请上传营业执照
-                </div>
-                <div ng-show="licence_uploading">
-                    <progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
-                </div>
-            </div>
-            <div>
-                <img ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
-            </div>
 
 
-        </li>
-    </ul>
-    <a id="submit_audit" class="submit-btn b_state_a" type="submit" ng-click="addBrandInfo()">提交审核</a>
-</form>
-
-<div ng-include="'views/footer.view.html'"></div>
-
-<div>
-    <div class="modal fade in" aria-hidden="false" style="display: block;" ng-show="showModal">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h3 class="modal-title">地图标注</h3>
+            </li>
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>商家类型：</span>
                 </div>
-                <div class="modal-body">
-                    <baidu-map control="mapModalControl" options="mapOptions"></baidu-map>
+                <div id="brand_type" class="infoR" data-type="">
+                    <label for="type1">
+                        <input ng-model="localMerchant.type" id="type1"  value="0" name="type" type="radio"
+                                ng-click="brandForm.type.$setTouched()" required>
+                        影楼</label>
+                    <label for="type2">
+                        <input ng-model="localMerchant.type" id="type2"  value="1" name="type" type="radio"
+                               ng-click="brandForm.type.$setTouched()" required>
+                        工作室</label>
+                    <div class="error" ng-show="submitted&&brandForm.type.$untouched">
+                        请选择类型
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="closeMapModal()">确认</button>
-                    <button class="btn btn-warning" type="button" ng-click="dismissMapModal()">取消</button>
+            </li>
+
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>商家地址：</span>
                 </div>
+                <div class="infoR">
+                    <select name="province" required  ng-model="localMerchant.province" ng-options="key as key for (key,value) in division"
+                            ng-click="brandForm.province.$setTouched()" ng-change="localMerchant.city='';localMerchant.area='';">
+                        <option value="">省</option>
+                    </select>
+
+                    <select  name="city" required ng-model="localMerchant.city" ng-options="key as key for (key,value) in division[localMerchant.province]"
+                             ng-click="brandForm.city.$setTouched()" ng-change="localMerchant.area='';">
+                        <option value="">市</option>
+                    </select>
+                    <select  name="area" required ng-model="localMerchant.area" ng-options="value as value for value in division[localMerchant.province][localMerchant.city]"
+                             ng-click="brandForm.area.$setTouched()">
+                        <option value="">区</option>
+                    </select>
+                    <div class="error" ng-show="submitted&&(brandForm.province.$untouched||brandForm.city.$untouched||brandForm.area.$untouched)">
+                        请选择商家地址
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>详细地址：</span>
+                </div>
+                <div class="infoR">
+                    <input ng-model="localMerchant.address" type="text" name="address" class="ipt" required>
+                    <div class="error" ng-show="markOnMap||submitted" ng-messages="brandForm.address.$error">
+                        <div ng-message="required">请输入详细地址</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>地图标注：</span>
+                </div>
+                <div class="infoR">
+                    <a id="map_mark"  ng-click="openMapModal()">标注</a>
+                    <div class="error" ng-show="submitted&&!localMerchant.marked">
+                        请在地图上标注位置
+                    </div>
+                </div>
+            </li>
+            <li class="row">
+                <div ng-show="mapModalOpened||localMerchant.marked" aria-hidden="false" style="display: block;" class="col-md-offset-2 map_preview">
+                    <baidu-map options="smallMap" control="smallMapControl"></baidu-map>
+                </div>
+            </li>
+            <li>
+                <div class="infoL">
+                    <i>*</i>
+                    <span>营业执照：</span>
+                </div>
+                <div class="infoR">
+                    <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> -->
+                    <a id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
+                            class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
+                            accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
+                        {{licenceButton}}</a>
+                    <div class="error" ng-show="submitted&&!localMerchant.licence">
+                        请上传营业执照
+                    </div>
+                    <div ng-show="licence_uploading">
+                        <progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
+                    </div>
+                </div>
+                <div>
+                    <img ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
+                </div>
+
+
+            </li>
+        </ul>
+        <a id="submit_audit" class="submit-btn b_state_a" type="submit" ng-click="addBrandInfo()">提交审核</a>
+    </form>
+    <div>
+        <div class="modal fade in" aria-hidden="false" style="display: block;" ng-show="showModal">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h3 class="modal-title">地图标注</h3>
+                    </div>
+                    <div class="modal-body">
+                        <baidu-map control="mapModalControl" options="mapOptions"></baidu-map>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" ng-click="closeMapModal()">确认</button>
+                        <button class="btn btn-warning" type="button" ng-click="dismissMapModal()">取消</button>
+                    </div>
+                </div>
+
             </div>
-
         </div>
     </div>
 </div>
-
 
 
 <style>

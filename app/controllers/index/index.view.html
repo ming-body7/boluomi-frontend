@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main ang_main">
     <div class="banner">
         <div class="inner">
             <h1 class="web_logo">
@@ -48,16 +48,19 @@
             </div>
         </div>
     </div>
-</div>
-<div ng-include="'views/footer.view.html'"></div>
-<login-forget-zone ng-show="loginForgetZoneVisible"></login-forget-zone>
 
-<!-- 移动端提示弹窗 -->
-<div ng-show="showLinkBox" id="link-box" class="link-box">
-    <a class="link-a">www.boluomi1314.com</a>
-    <a ng-click="showLinkBox = false" class="i-know J_i-know">我知道了</a>
+
+    <login-forget-zone ng-show="loginForgetZoneVisible"></login-forget-zone>
+
+    <!-- 移动端提示弹窗 -->
+    <div ng-show="showLinkBox" id="link-box" class="link-box">
+        <a class="link-a">www.boluomi1314.com</a>
+        <a ng-click="showLinkBox = false" class="i-know J_i-know">我知道了</a>
+    </div>
+
+    <div ng-show="showLinkBox" id="mask" class="mask"></div>
 </div>
 
-<div ng-show="showLinkBox" id="mask" class="mask"></div>
+
 
 

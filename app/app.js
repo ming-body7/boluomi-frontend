@@ -49,7 +49,7 @@
                     permissions: {
                         except: []
                     },
-                    css: 'css/main.css'
+                    //css: 'css/main.css'
                 }
             })
             .state('brand', {
@@ -60,7 +60,8 @@
                     permissions: {
                         except: []
                     },
-                    css: 'css/finishbrandinfo.css'
+                    //css: 'css/finishbrandinfo.css'
+                    //css: 'css/main.css'
                 }
             })
             .state('audit', {
@@ -71,7 +72,8 @@
                     permissions: {
                         except: []
                     },
-                    css: 'css/finishbrandinfo.css'
+                    //css: 'css/finishbrandinfo.css'
+                    //css: 'css/main.css'
                 }
             })
             .state('login', {
@@ -92,7 +94,8 @@
                     permissions: {
                         except: []
                     },
-                    css: 'css/finishbrandinfo.css'
+                    //css: 'css/finishbrandinfo.css'
+                    //css: 'css/main.css'
                 }
             })
             .state('main', {

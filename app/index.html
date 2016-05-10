@@ -18,8 +18,12 @@
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
 
-    <!--<link rel="stylesheet" href="css/main.css"/>
-    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <!--<link rel="stylesheet" href="css/islider.css"/>
+    <link rel="stylesheet" href="css/Animation.css"/>
+    <link rel="stylesheet" href="css/mySlider.css"/>-->
+
+    <!--<link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/base_info.css">
     <link rel="stylesheet" href="css/manage_brand.css"/> -->
@@ -64,7 +68,7 @@
 <script src="directives/mapModal.directive.js"></script>
 
 
-<script src="controllers/app/content.js"></script>
+<script src="controllers/app/contents.js"></script>
 <script src="controllers/admin/admin.js"></script>
 <script src="controllers/app/app.controller.js"></script>
 
@@ -115,7 +119,8 @@
 <div ng-controller="appController">
     <div ui-view></div>
 </div>
-
-
+<div>
+    <div ng-include="'views/footer.view.html'"></div>
+</div>
 </body>
 </html>
