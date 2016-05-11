@@ -102,10 +102,31 @@ $(function(){
 		};
 		//标题
 		var title = d.title;
+		//document.title = title;
+
+		//hack on title
+		//http://www.zhihu.com/question/27849091#
+		var $body = $('body')
 		document.title = title;
+		// hack在微信等webview中无法修改document.title的情况
+		var $iframe = $('<iframe src="/favicon.ico"></iframe>').on('load', function() {
+			setTimeout(function() {
+				$iframe.off('load').remove()
+			}, 0)
+		}).appendTo($body)
+
+
 		//商家logo填充
 		var logoImg = d.logoImg;
 		var logoHtml = '<a class="logoWrap" href="javascript:;"><img class="logo" src="'+ logoImg +'" alt=""></a>';
+
+		//微信分享接口hack
+		//把logo插入到body下面第一个
+		var share_pic = '<img style="width:0px;height:0px;" src="'+ logoImg +'" alt="">';
+		var bd = $('body');
+		bd.prepend(share_pic);
+		//
+
 
 		//商家名称
 		var brandName = d.brandName;
