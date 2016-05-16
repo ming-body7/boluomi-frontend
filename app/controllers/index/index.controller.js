@@ -60,7 +60,7 @@
                 return;
             }
 
-            $scope.default.loginButtonText = "登录中...";
+            $scope.default.loginButtonText = "登录中";
             AuthenticationService.Login($scope.account, $scope.password, $scope.rememberMe, function (response) {
                 $scope.default.loginButtonText = "登录";
                 if (response.success) {
@@ -112,12 +112,13 @@
                     if(response.data.account != null){
                         alert("用户名不存在，请先注册");
                     }else{
-                        alert("用户名或密码错误");
+                        alert("密码错误,请重新输入");
                     }
                 }
             });
 
         }
+
         function getPasscode(){
             //TODO:调用获取passcode的接口,倒计时
             if(!(Object.keys($scope.forgetForm.account.$error).length == 0)){
@@ -125,15 +126,16 @@
             }
             AuthenticationService.GetCode($scope.account, function(response){
                 if(response.success){
-
+                    countDownClock();
+                    alert("已为您发送语音验证码，请注意接听电话，谢谢!");
                 }else{
                     console.log("验证码获取失败");
                     console.log(response.data);
                 }
             });
-            countDownClock();
-            alert("已为您发送语音验证码，请注意接听电话，谢谢!");
+
         }
+
         function resetPassword() {
             $scope.forgetSubmitted = true;
             if(!(Object.keys($scope.forgetForm.$error).length == 0)){
@@ -142,11 +144,48 @@
 
             AuthenticationService.ResetPassword($scope.account, $scope.code, $scope.password, $scope.rePassword, function (response) {
                 if (response.success) {
-                    //AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    //$location.path('/login');
-                    $state.go('index');
+                    DataService.GetMerchantInfo(function(response){
+                        if(response.success){
+                            $rootScope.User = response.data.detail;
+                        }else{
+                            console.log("无法加载商户信息");
+                        }
+                    });
+
+
+                    var status = response.data.status;
+                    var role = "";
+                    var expireTime = 0;
+                    //debug status
+                    status = 1;
+                    switch(status){
+                        case -1: //已删除
+                            alert('你的信息已删除！');
+                            closeLoginAndForgetZone();
+                            return;
+                        case 1: //已通过
+                            role = "user";
+                            expireTime = 24*60;
+                            break;
+                        case 9: //信息未完成  去完善信息
+                            role = "user.brand";
+                            expireTime = 30;
+                            break;
+                        case 0: //未审批
+                            role = "user.audit";
+                            expireTime = 30;
+                            break;
+                        default:
+                            role = "user";
+                            break;
+                    };
+
+                    var expireTime = 30;  //30 min
+                    AuthenticationService.SetCredentials($scope.account, response.data.auth_key, response.data.id, role, expireTime);
+                    redirect($rootScope.globals.role);
                 } else {
                     //TODO:后端重设密码返回说明
+                    alert("重设密码失败,请您稍后再试");
                 }
             });
         }

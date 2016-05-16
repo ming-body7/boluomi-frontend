@@ -12,11 +12,11 @@
         <div class="error" ng-show="loginSubmitted" ng-messages="loginForm.password.$error">
             <div ng-message="required">请填写密码</div>
         </div>
-        <a class="login-btn J_login_btn" ng-click="login()" ng-bind="default.loginButtonText"></a>
+        <a class="login-btn J_login_btn" style="cursor: pointer;" ng-click="login()" ng-bind="default.loginButtonText"></a>
         <div class="info">
-            <input ng-model="rememberMe" ng-true-value="1" ng-false-value="0"  id="remember_me" type="checkbox" name="" id="">
-            30天内自动登录
-            <a id="forget_link" class="forget-link" ng-click="forget()">忘记密码</a>
+
+            <label style="cursor: pointer;"><input ng-model="rememberMe" ng-true-value="1" ng-false-value="0"  id="remember_me" type="checkbox" name="" id="">30天内自动登录</label>
+            <a style="cursor: pointer;" id="forget_link" class="forget-link" ng-click="forget()">忘记密码</a>
         </div>
         <a ui-sref="register" class="brand-regist-btn">商家免费注册</a>
         <i class="close-btn J_close_btn" ng-click="closeLoginAndForgetZone()"></i>

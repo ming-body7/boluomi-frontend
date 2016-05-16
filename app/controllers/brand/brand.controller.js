@@ -61,6 +61,7 @@
 
                     $scope.logoButton = "上传";
                     $scope.licenceButton = "上传";
+                    $scope.mapButton = "标注";
                     $scope.uploadOption = "logo";
                     $scope.logo_process = 0;
                     $scope.licence_process = 0;
@@ -122,13 +123,13 @@
 
                             if($scope.uploadOption == "logo"){
                                 $scope.localMerchant.logo = uploadFolder+response.data.url;
-                                $scope.logoButton = "上传成功";
+                                $scope.logoButton = "重新上传";
                                 $scope.logo_process = 100;
                                 $scope.logo_uploading = false;
 
                             }else{
                                 $scope.localMerchant.licence = uploadFolder+response.data.url;
-                                $scope.licenceButton = "上传成功";
+                                $scope.licenceButton = "重新上传";
                                 $scope.licence_process = 100;
                                 $scope.licence_uploading = false;
                             }
@@ -230,6 +231,8 @@
                     $scope.localMerchant.longitude = location.longitude;
                     $scope.localMerchant.marked = true;
                     updateSmallMap(location,$scope.localMerchant.city);
+
+                    $scope.mapButton = "重新标注";
                 }
 
 
