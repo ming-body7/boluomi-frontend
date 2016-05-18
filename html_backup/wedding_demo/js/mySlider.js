@@ -128,7 +128,7 @@ $(function(){
 
 
 	//图片预加载
-	var imgList = ['albumBg.png','sec1Pic1.jpg','sec1Text.png','sec2Pic1.jpg','sec2Text.png','sec3Pic1.jpg','sec3Pic2.jpg','sec3Text.png','sec4Pic1.jpg','sec4Text.png','sec5Pic1.jpg','sec5Pic2.jpg','sec5Text.png','sec6Pic1.jpg','sec6Text.png','sec7Pic1.jpg','sec7Pic2.jpg','sec7Pic3.jpg','sec7Text.png','logo.png','listPic1.png','listPic2.png','listPic3.png','listPic4.png','listPic5.png','listPic6.png','light.png','btn_arrow.png','music-icon.png','loading.gif','cotyRight.png','indexIcon.png','musicIcon.png','Sublogo.png','playingBg.png','workingIcon.png','cover.png'];
+	var imgList = ['albumBg.png','sec1Pic1.jpg','sec1Text.png','sec2Pic1.jpg','sec2Text.png','sec3Pic1.jpg','sec3Pic2.jpg','sec3Text.png','sec4Pic1.jpg','sec4Text.png','sec5Pic1.jpg','sec5Pic2.jpg','sec5Text.png','sec6Pic1.jpg','sec6Text.png','sec7Pic1.jpg','sec7Pic2.jpg','sec7Pic3.jpg','sec7Text.png','logo.png','listPic1.png','listPic2.png','listPic3.png','listPic4.png','listPic5.png','listPic6.png','light.png','btn_arrow.png','music-icon.png','loading.gif','copyRight.png','indexIcon.png','musicIcon.png','Sublogo.png','playingBg.png','workingIcon.png','cover.png'];
 	loadImg(imgList);
 	function loadImg(list){
 		var num = list.length;
