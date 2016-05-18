@@ -4,7 +4,7 @@
     angular
         .module('myApp', ['myApp.directive','myApp.content', 'myApp.admin','ngMessages','ngFileUpload',
             'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','progressButton',
-            'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad','betsol.uiRouterStyles'])
+            'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad'])
         .config(config)
         .run(run);
 
@@ -48,8 +48,7 @@
                 data: {
                     permissions: {
                         except: []
-                    },
-                    //css: 'css/main.css'
+                    }
                 }
             })
             .state('brand', {
@@ -58,10 +57,13 @@
                 controller: "brandController",
                 data: {
                     permissions: {
-                        except: []
-                    },
-                    //css: 'css/finishbrandinfo.css'
-                    //css: 'css/main.css'
+                        only: ['user.brand'],
+                        redirectTo: 'index'
+
+                        //debug use only
+                        //except:[]
+
+                    }                    
                 }
             })
             .state('audit', {
@@ -70,10 +72,10 @@
                 controller: "auditController",
                 data: {
                     permissions: {
-                        except: []
-                    },
-                    //css: 'css/finishbrandinfo.css'
-                    //css: 'css/main.css'
+                        only: ['user.audit'],
+                        redirectTo: 'index'
+                        //except: []
+                    }
                 }
             })
             .state('login', {
@@ -93,9 +95,7 @@
                 data: {
                     permissions: {
                         except: []
-                    },
-                    //css: 'css/finishbrandinfo.css'
-                    //css: 'css/main.css'
+                    }
                 }
             })
             .state('main', {

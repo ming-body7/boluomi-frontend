@@ -78,7 +78,7 @@
                     var role = "";
                     var expireTime = 0;
                     //debug status
-                    status = 1;
+                    //status = 1;
                     switch(status){
                         case -1: //已删除
                             alert('你的信息已删除！');
@@ -157,7 +157,7 @@
                     var role = "";
                     var expireTime = 0;
                     //debug status
-                    status = 1;
+                    //status = 1;
                     switch(status){
                         case -1: //已删除
                             alert('你的信息已删除！');

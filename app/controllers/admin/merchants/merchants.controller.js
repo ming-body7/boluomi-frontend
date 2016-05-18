@@ -6,7 +6,7 @@ angular.module('myApp')
 
         $scope.list = {};
         var page = 0;
-        var pageSize = 10;
+        var pageSize = 100;
         //$scope.GetProductList = GetProductList;
         DataService.AdminGetMerchantList(page, pageSize, function(response){
             if (response.success) {

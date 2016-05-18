@@ -11,6 +11,8 @@
                 ng-minlength="6" ng-maxlength="10" required>
         <div class="error" ng-show="loginSubmitted" ng-messages="loginForm.password.$error">
             <div ng-message="required">请填写密码</div>
+            <div ng-message="maxlength">密码为6-10位数字或字母</div>
+            <div ng-message="minlength">密码为6-10位数字或字母</div>
         </div>
         <a class="login-btn J_login_btn" style="cursor: pointer;" ng-click="login()" ng-bind="default.loginButtonText"></a>
         <div class="info">
@@ -35,25 +37,31 @@
         </div>
         <div class="ipt-zone">
             <input ng-model="code" class="ipt" type="text" name="code" placeholder="验证码"
-                   required>
+                   ng-minlength="4" ng-maxlength="4" required>
             <span class="get-code" ng-click="getPasscode()">{{default.passcodeText}}</span>
         </div>
         <div class="error" ng-show="forgetSubmitted" ng-messages="forgetForm.code.$error">
             <div ng-message="required">请输入验证码</div>
+            <div ng-message="maxlength">验证码为四位数字</div>
+            <div ng-message="minlength">验证码为四位数字</div>
         </div>
         <div class="ipt-zone">
             <input ng-model="password" class="ipt" type="password" name="password" placeholder="密码（6-20位字母或数字）"
-                   required>
+                   ng-minlength="6" ng-maxlength="10" required>
         </div>
         <div class="error" ng-show="forgetSubmitted" ng-messages="forgetForm.password.$error">
             <div ng-message="required">请输入密码</div>
+            <div ng-message="maxlength">密码为6-10位数字或字母</div>
+            <div ng-message="minlength">密码为6-10位数字或字母</div>
         </div>
         <div class="ipt-zone">
             <input ng-model="rePassword" class="ipt" type="password" name="rePassword" placeholder="确认密码（6-20位字母或数字）"
-                   required>
+                   ng-minlength="6" ng-maxlength="10" required>
         </div>
         <div class="error" ng-show="forgetSubmitted" ng-messages="forgetForm.rePassword.$error">
             <div ng-message="required">请再次输入密码</div>
+            <div ng-message="maxlength">密码为6-10位数字或字母</div>
+            <div ng-message="minlength">密码为6-10位数字或字母</div>
         </div>
         <a id="finish_btn" class="finish-btn" ng-click="resetPassword()">完成</a>
         <i class="close-btn J_close_btn" ng-click="closeLoginAndForgetZone()"></i>

@@ -5,8 +5,13 @@
     'use strict';
     angular
         .module('myApp')
-        .controller('auditController', ['$scope',function($scope){
+        .controller('auditController', ['$scope', '$state', 'AuthenticationService',function($scope, $state, AuthenticationService){
+            $scope.gotIt = gotIt;
 
+            function gotIt(){
+                AuthenticationService.ClearCredentials();
+                $state.go('index');
+            }
 
         }]);
 })();
