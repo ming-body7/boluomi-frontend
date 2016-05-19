@@ -109,7 +109,7 @@ $(function(){
 
 
 	//图片预加载
-	var imgList = ['albumBg.png','light.png','btn_arrow.png','music-icon.png','loading.gif','cotyRight.png','indexIcon.png','musicIcon.png','Sublogo.png','playingBg.png','workingIcon.png','cover.png'];
+	var imgList = ['albumBg.png','light.png','btn_arrow.png','music-icon.png','loading.gif','copyRight.png','indexIcon.png','musicIcon.png','Sublogo.png','playingBg.png','workingIcon.png','cover.png'];
 	//所有图片合并
 	$.merge(imgList,serImg);
 
