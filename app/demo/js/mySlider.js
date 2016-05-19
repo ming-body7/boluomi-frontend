@@ -367,7 +367,7 @@ $(function(){
 		wx.onMenuShareAppMessage({
 			title: data.title, // 分享标题
 			desc:data.description, // 分享描述
-			link: 'www.boluomi1314.com', // 分享链接
+			link: window.location.href, // 分享链接
 			imgUrl: data.logoImg, // 分享图标
 			type: 'link', // 分享类型,music、video或link，不填默认为link
 			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -383,7 +383,7 @@ $(function(){
 		//分享到朋友圈
 		wx.onMenuShareTimeline({
 			title: data.title + data.description, // 分享标题
-			link: 'www.boluomi1314.com', // 分享链接
+			link: window.location.href, // 分享链接
 			imgUrl: data.logoImg, // 分享图标
 			success: function() {
 				// 用户确认分享后执行的回调函数
