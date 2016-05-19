@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div>
-                    <img ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
+                    <img class="logo_img" ng-if="localMerchant.logo!=null && localMerchant.logo!= ''" ng-src="{{localMerchant.logo}}" alt="">
                 </div>
 
 
@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div>
-                    <img ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
+                    <img class="licence_img" ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
                 </div>
 
 
@@ -184,6 +184,16 @@
 
 
 <style>
+
+    .logo_img{
+        width:200px;
+        height:200px;
+    }
+
+    .licence_img{
+        width:400px;
+        height:600px;
+    }
     .infoL{
         box-sizing: content-box;
     }
