@@ -141,7 +141,10 @@ $(function(){
 
 		// 配置音乐
 		var musical =  d.musical;
-		$('#audio').attr('src', musical);
+		if(musical != ''){
+			$('#audio').show();
+			$('#audio').attr('src', musical);
+		}
 
 		//商家电话
 		var tel = d.tel;
@@ -210,7 +213,7 @@ $(function(){
 						//加载更多图片
 						load_more();
 
-						$('#audio_btn').show();
+						// $('#audio_btn').show();
 					}
 				}
 				oImg.src =  ele;
