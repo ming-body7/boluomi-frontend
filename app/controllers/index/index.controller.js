@@ -10,7 +10,7 @@
 
         $scope.default = {
             passcodeText:"获取验证码",
-            loginButtonText:"登陆"
+            loginButtonText:"登录"
         };
         $scope.loginForgetZoneVisible =false;
         $scope.showLinkBox = false;
