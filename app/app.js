@@ -4,7 +4,7 @@
     angular
         .module('myApp', ['myApp.directive','myApp.content', 'myApp.admin','ngMessages','ngFileUpload',
             'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','progressButton',
-            'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad'])
+            'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad', 'angular-sortable-view'])
         .config(config)
         .run(run);
 

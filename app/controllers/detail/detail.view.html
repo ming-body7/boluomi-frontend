@@ -48,11 +48,10 @@
 		</ul>
 		<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
 		<div class="upload_zone">
-			<ul class="sortable-row" as-sortable="sortableOptions" ng-model="product.pics" >
-
-				<li ng-repeat="item in product.pics track by $index" as-sortable-item>
-					<div as-sortable-item-handle ngf-as-background="true">
-						<img class="uploaded_pic" ng-src="{{item}}" alt="loading..." width="150" height="236">
+			<ul class="sortable-container grid" sv-root sv-part="product.pics">
+				<li ng-repeat="item in product.pics track by $index" sv-element>
+					<div>
+						<img draggable="false" class="uploaded_pic" ng-src="{{item}}" alt="loading..." width="150" height="236">
 						<div ng-if="uploading[$index]" class="mask"></div>
 						<p ng-click="product.pics.splice($index,1); $event.stopPropagation()"></p>
 					</div>
@@ -63,8 +62,6 @@
 				<li>
 					<div ngf-select="uploadFiles($files, $invalidFiles)" multiple
 						 accept="image/*,application/pdf"  ngf-pattern="'image/*,application/pdf'" ngf-max-size="4MB">
-						<!--<a class="add_img" ng-if="product.pics.length == 0"></a>
-                        <a class="add_img" ng-if="product.pics.length != 0"></a> -->
 						<a class="add_img"></a>
 					</div>
 				</li>
