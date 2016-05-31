@@ -182,9 +182,12 @@ $(function(){
 		var brandHand = '<div class="section brandSec new_b"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml + brand_detail +'<a class="detailBtn" href="tel:'+ tel +'">联系商家</a></p><ul>';
 		var brandFoot = '</ul><a class="copyRight" href="http://mp.weixin.qq.com/s?__biz=MzAwMTczOTcwNw==&mid=500511278&idx=1&sn=d60101879140760caf2de536bfad6710&scene=0&previewkey=u2Aqp0ghBv8tcuF%2FSVMhy8wqSljwj2bfCUaCyDofEow%3D#wechat_redirect"></a></div><div>';
 		var brandHtml = brandHand + brandFoot;
-		data.push({
-			'content' : brandHtml
-		});
+		if(d.is_brand == '1'){
+			data.push({
+				'content' : brandHtml
+			});
+		}
+
 
 
 		
@@ -372,7 +375,7 @@ $(function(){
 			title: data.title, // 分享标题
 			desc:data.description, // 分享描述
 			link: window.location.href, // 分享链接
-			imgUrl: data.logoImg, // 分享图标
+			imgUrl: data.banner_pic_n, // 分享图标
 			type: 'link', // 分享类型,music、video或link，不填默认为link
 			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 			success: function() {
@@ -388,7 +391,7 @@ $(function(){
 		wx.onMenuShareTimeline({
 			title: data.title + data.description, // 分享标题
 			link: window.location.href, // 分享链接
-			imgUrl: data.logoImg, // 分享图标
+			imgUrl: data.banner_pic_n, // 分享图标
 			success: function() {
 				// 用户确认分享后执行的回调函数
 			},
