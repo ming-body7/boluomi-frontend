@@ -8,7 +8,7 @@
 <!--[if gt IE 8]><!-->
 <html lang="zh" ng-app="myApp" class="no-js"> <!--<![endif]-->
 
-<html lang="zh" ng-app="myApp" ui-router-styles>
+<html lang="zh" ng-app="myApp" ng-strict-di>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,54 +44,59 @@
 
 <link rel="stylesheet" type="text/css" href="bower_components/ng-sortable/dist/ng-sortable.min.css">
 
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+
+
 
 <script src="config.js"></script>
-<script src="app.js"></script>
-
+<!--<script src="app.js"></script>-->
+<script src="min/app.min.js"></script>
 
 <script src="directives/loginForget.directive.js"></script>
 <script src="directives/mapModal.directive.js"></script>
 
 
-<script src="controllers/app/contents.js"></script>
-<script src="controllers/admin/admin.js"></script>
-<script src="controllers/app/app.controller.js"></script>
+<!--<script src="controllers/app/contents.js"></script>-->
+<!--<script src="controllers/admin/admin.js"></script>-->
+<!--<script src="controllers/app/app.controller.js"></script>-->
 
 
-<script src="services/authentication.service.js"></script>
-<script src="services/flash.service.js"></script>
-<script src="services/data.service.js"></script>
-<script src="services/user.service.js"></script>
-<script src="services/geocoder.service.js"></script>
-<script src="services/utils.service.js"></script>
+<!--<script src="services/authentication.service.js"></script>-->
+<!--<script src="services/flash.service.js"></script>-->
+<!--<script src="services/data.service.js"></script>-->
+<!--<script src="services/user.service.js"></script>-->
+<!--<script src="services/geocoder.service.js"></script>-->
+<!--<script src="services/utils.service.js"></script>-->
+<script src="min/services.min.js"></script>
 
-<script src="components/version/version.js"></script>
-<script src="components/version/version-directive.js"></script>
-<script src="components/version/interpolate-filter.js"></script>
 
-<script src="controllers/header/header.controller.js"></script>
-<script src="controllers/index/index.controller.js"></script>
-<script src="controllers/login/login.controller.js"></script>
-<script src="controllers/register/register.controller.js"></script>
-<script src="controllers/content/content.controller.js"></script>
-<script src="controllers/sidebar/sidebar.controller.js"></script>
-<script src="controllers/detail/detail.controller.js"></script>
-<script src="controllers/brand/brand.controller.js"></script>
-<script src="controllers/audit/audit.controller.js"></script>
-<script src="controllers/main/main.controller.js"></script>
-<script src="controllers/hot/hot.controller.js"></script>
-<script src="controllers/reset_password/resetPassword.controller.js"></script>
-<script src="controllers/reset_account/resetAccount.controller.js"></script>
-<script src="controllers/update_password/updatePassword.controller.js"></script>
-<script src="controllers/information/information.controller.js"></script>
-<script src="controllers/advertisement/advertisement.controller.js"></script>
-<script src="controllers/admin/main/adminMain.controller.js"></script>
-<script src="controllers/admin/login/login.controller.js"></script>
-<script src="controllers/admin/merchants/merchants.controller.js"></script>
-<script src="controllers/admin/products/products.controller.js"></script>
-<script src="controllers/admin/product/product.controller.js"></script>
-<script src="controllers/admin/merchant/merchant.controller.js"></script>
-<script src="controllers/preview/preview.controller.js"></script>
+
+<!--<script src="controllers/header/header.controller.js"></script>-->
+<!--<script src="controllers/index/index.controller.js"></script>-->
+<!--<script src="controllers/login/login.controller.js"></script>-->
+<!--<script src="controllers/register/register.controller.js"></script>-->
+<!--<script src="controllers/content/content.controller.js"></script>-->
+<!--<script src="controllers/sidebar/sidebar.controller.js"></script>-->
+<!--<script src="controllers/detail/detail.controller.js"></script>-->
+<!--<script src="controllers/brand/brand.controller.js"></script>-->
+<!--<script src="controllers/audit/audit.controller.js"></script>-->
+<!--<script src="controllers/main/main.controller.js"></script>-->
+<!--<script src="controllers/reset_password/resetPassword.controller.js"></script>-->
+<!--<script src="controllers/reset_account/resetAccount.controller.js"></script>-->
+<!--<script src="controllers/update_password/updatePassword.controller.js"></script>-->
+<!--<script src="controllers/information/information.controller.js"></script>-->
+<!--<script src="controllers/advertisement/advertisement.controller.js"></script>-->
+<!--<script src="controllers/admin/main/adminMain.controller.js"></script>-->
+<!--<script src="controllers/admin/login/login.controller.js"></script>-->
+<!--<script src="controllers/admin/merchants/merchants.controller.js"></script>-->
+<!--<script src="controllers/admin/products/products.controller.js"></script>-->
+<!--<script src="controllers/admin/product/product.controller.js"></script>-->
+<!--<script src="controllers/admin/merchant/merchant.controller.js"></script>-->
+<!--<script src="controllers/preview/preview.controller.js"></script>-->
+
+<script src="min/controllers.min.js"></script>
 
 
 <body>

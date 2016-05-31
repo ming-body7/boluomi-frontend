@@ -5,8 +5,8 @@
         .module('myApp')
         .factory('UserService', UserService);
  
-    UserService.$inject = ['$http', '$rootScope','AuthenticationService'];
-    function UserService($http, $rootScope, AuthenticationService) {
+    UserService.$inject = ['$http'];
+    function UserService($http) {
 
         var App = window.App;
         var baseUrl = App.baseUrl;

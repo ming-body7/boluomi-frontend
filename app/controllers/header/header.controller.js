@@ -3,7 +3,8 @@
 
     angular
         .module('myApp')
-        .controller('headerController', ['$scope','$rootScope','AuthenticationService','$location', 'UserService',function($scope, $rootScope,AuthenticationService,$location, UserService){
+        .controller('headerController', ['$scope','$rootScope','AuthenticationService','$location', 'UserService',
+            function($scope, $rootScope,AuthenticationService,$location, UserService){
 
             $scope.permission = $rootScope.globals.role;
             $scope.$watch(function(){

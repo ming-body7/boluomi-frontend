@@ -5,8 +5,7 @@
     'use strict';
     angular
         .module('myApp')
-        .controller('brandController', ['$scope', '$rootScope', 'Upload', '$timeout','DataService','$state','' +
-        'GeoCoderService','UtilsService', 'AuthenticationService',
+        .controller('brandController', ['$scope', '$rootScope', 'Upload', '$timeout','DataService','$state','GeoCoderService','UtilsService', 'AuthenticationService',
             function($scope, $rootScope, Upload, $timeout, DataService, $state, GeoCoderService, UtilsService, AuthenticationService){
 
                 var App = $rootScope.App;
