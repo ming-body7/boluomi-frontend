@@ -3,8 +3,8 @@
 
     angular
         .module('myApp', ['myApp.directive','myApp.content', 'myApp.admin','ngMessages','ngFileUpload',
-            'ui.router', 'ui.bootstrap', 'ngAnimate', 'uiSwitch','baiduMap','progressButton',
-            'ngCookies', 'as.sortable', 'baiduMap', 'monospaced.qrcode', 'permission','angularLoad', 'angular-sortable-view'])
+            'ui.router', 'ui.bootstrap', 'ngAnimate','baiduMap','progressButton',
+            'ngCookies', 'baiduMap', 'monospaced.qrcode', 'permission', 'angular-sortable-view'])
         .config(config)
         .run(run);
 
