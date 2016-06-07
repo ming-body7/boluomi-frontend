@@ -20,13 +20,18 @@
                 <img ng-src="{{x.logo}}" alt="Logo" style="width:200px; height:200px;"/>
             </td>
             <td>{{x.name}}</td>
-            <td>{{x.licence}}</td>
+            <td>
+                <a ng-href={{x.licence}} target="_blank">
+                    <span ng-show="x.licence == null || x.licence == ''">未上传</span>
+                    <span ng-hide="x.licence == null || x.licence == ''">点击查看</span>
+                </a>
+            </td>
 
             <td>浏览:{{x.read_num}}</td>
             <td>分享:{{x.share_num}}</td>
 
             <td>{{x.phone}}</td>
-            <td>创建时间：{{x.created_at}}</td>
+            <td>{{x.created_at}}</td>
             <td>{{statusList[x.status]}}</td>
 
             <td><button class="btn" type="button" ng-click="functionList[x.status](x.id)">{{methodList[x.status]}}</button></td>

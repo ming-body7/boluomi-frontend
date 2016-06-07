@@ -34,6 +34,11 @@
                     DataService.AdminAuditMerchant(merchant_id, 1, function(response){
                         if(response.success){
                             alert("恢复成功");
+                            DataService.AdminGetMerchantList(page, pageSize, function(response){
+                                if (response.success) {
+                                    $scope.list = response.data.list;
+                                }
+                            });
                         }else{
                             alert("恢复失败");
                         }
@@ -43,6 +48,11 @@
                     DataService.AdminAuditMerchant(merchant_id, 1, function(response){
                         if(response.success){
                             alert("通过成功");
+                            DataService.AdminGetMerchantList(page, pageSize, function(response){
+                                if (response.success) {
+                                    $scope.list = response.data.list;
+                                }
+                            });
                         }else{
                             alert("通过失败");
                         }
@@ -52,6 +62,11 @@
                     DataService.AdminAuditMerchant(merchant_id, -1, function(response){
                         if(response.success){
                             alert("拉黑成功");
+                            DataService.AdminGetMerchantList(page, pageSize, function(response){
+                                if (response.success) {
+                                    $scope.list = response.data.list;
+                                }
+                            });
                         }else{
                             alert("拉黑失败");
                         }
