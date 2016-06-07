@@ -170,7 +170,7 @@ $(function(){
 		// 配置音乐
 		var musical =  d.musical;
 		if(musical != ''){
-			$('#audio').show();
+			$('#audio_btn').show();
 			$('#audio').attr('src', musical);
 		}
 
