@@ -27,7 +27,6 @@ $(function(){
 		 	dataType : 'json',
 		 	data : {pid : pid},
 		 	success : function(data){
-				console.log(data)
 				def.resolve(data);
 		 	},
 		 	error : function(data){
@@ -145,6 +144,7 @@ $(function(){
 			$('#audio').show();
 			$('#audio').attr('src', musical);
 		}
+
 
 		//商家电话
 		var tel = d.tel;
@@ -352,6 +352,8 @@ $(function(){
 	creatCode();
 	
 });
+
+
 
 
 
