@@ -151,8 +151,8 @@
                         <progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
                     </div>
                 </div>
-                <div>
-                    <img class="licence_img" ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
+                <div class="licence_img">
+                    <img ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
                 </div>
 
 
@@ -191,8 +191,9 @@
     }
 
     .licence_img{
-        width:400px;
-        height:600px;
+        width: 200px;
+        height: 200px;
+        margin-top: 10px;
     }
     .infoL{
         box-sizing: content-box;

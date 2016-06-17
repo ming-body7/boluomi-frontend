@@ -187,6 +187,10 @@ $(function(){
 			});
 		}
 
+		//只有一张图片且不显示品牌尾页时 不显示滑动箭头
+		if (d.is_brand != 1 && serImg_num == 1) {
+			$('#iSlider-arrow').hide();
+		}
 
 
 		
