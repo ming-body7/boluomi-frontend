@@ -27,7 +27,7 @@ input:focus{outline:none; }
 	overflow: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;
-};
+}
 .opaZone(@num:0){
 	opacity:@num;
 	filter:alpha(opacity=@num);
@@ -50,6 +50,24 @@ a{
 		text-decoration:none;	
 	};
 }
+.help{
+	display: inline-block;
+	width:32px;
+	height:32px;
+	background:url(../img/help.png) no-repeat;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.delete{
+	display: inline-block;
+	width:26px;
+	height:26px;
+	background:url(../img/delete.png) no-repeat;
+	background-size:contain;
+	vertical-align: middle;
+	cursor: pointer;		
+}
+
 .b_state_a{
 	&:hover{
 		background-color:#e51f4b;
@@ -1312,8 +1330,12 @@ a{
 	textarea {
 		resize: none;
 	}
-
-
+	.music_z{
+		font-size:12px;
+	}
+	.delete{
+		margin-left:4px;
+	}
 
 }
 /*注册信息*/

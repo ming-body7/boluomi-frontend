@@ -26,12 +26,14 @@
 			</li>
 			<li>
 				<span>背景音乐：{{musicName}}</span>
+				<span class="music_z">一千个伤心的理由<i class="delete"></i></span>
 				<p class="base_btn" type="file"
 				   ngf-validate-fn="validate($file)" ngf-select="uploadMusic($file)" ngf-max-size="5MB">
 
 					<a progress-button value="music_progress" in-progress="上传中。。。" complete="重新上传">上传</a>
 				</p>
 				<em class="tips">（只能上传MP3格式的，不超过4M ）</em>
+				<a href="http://mp.weixin.qq.com/s?__biz=MzAwMTczOTcwNw==&mid=500511293&idx=1&sn=7924f21827465bd9ca09d67052d9f4c2#rd" class="help" target="_blank"></a>
 				<div ng-show="music_uploading">
 					<progressbar animate="true" value="music_progress" type="success"><b>{{music_progress}}%</b></progressbar>
 				</div>
@@ -46,7 +48,7 @@
 				</select>
 			</li>
 		</ul>
-		<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：</p>
+		<p class="tips">上传照片（960*1008，jpg、png、gif格式，大小不超过3M）：<a href="http://mp.weixin.qq.com/s?__biz=MzAwMTczOTcwNw==&mid=500511292&idx=1&sn=c0e78354126415ccd880280fb65fe0e1#rd" class="help" target="_blank"></a></p>
 		<div class="upload_zone">
 			<ul class="sortable-container grid" sv-root sv-part="product.pics">
 				<li ng-repeat="item in product.pics track by $index" sv-element>
