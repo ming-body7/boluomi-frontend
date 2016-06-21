@@ -59,7 +59,7 @@ $(function(){
 				musical : 'img/marry you.mp3',
 				location :'116.470981,40.003265',
 				tel : 18575562180,
-				detail_url : './seeDetails.html' //无值返回 null
+				url : './seeDetails.html' //无值返回 null
 			}
 		};
 
@@ -117,7 +117,7 @@ $(function(){
 		var brandHtml = '<i class="brand_type">类型：'+ brand_type +'</i>';
 
 		//商家详情
-		var brand_detail = d.detail_url ? '<a class="detailBtn txt_col" href="'+ d.detail_url +'">详细信息</a>' : '';
+		var brand_detail = d.url ? '<a class="detailBtn txt_col" href="'+ d.url +'">详细信息</a>' : '';
 
 		// 动画类型
 		var n = d.animateType;
