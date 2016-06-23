@@ -21,13 +21,15 @@
             $scope.statusList = {
                 "-1": "已删除",
                 "0": "未审批",
-                "1":"已通过"
+                "1":"已通过",
+                "9":"信息未完成"
             };
 
             $scope.methodList = {
                 "-1": "恢复",
                 "0": "通过",
-                "1":"拉黑"
+                "1":"拉黑",
+                "9":"请通知商家完善信息"
             };
             $scope.functionList = {
                 "-1": function(merchant_id){
@@ -71,6 +73,9 @@
                             alert("拉黑失败");
                         }
                     });
+                },
+                "9":function(merchant_id){
+                    alert("请管理员通知商家完善信息");
                 }
             };
 
