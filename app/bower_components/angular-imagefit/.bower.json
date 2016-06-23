@@ -1,0 +1,35 @@
+{
+  "name": "angular-imagefit",
+  "description": "angular-imagefit",
+  "version": "0.0.4",
+  "authors": [
+    "Tushar Borole <tushariscoolster@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tushariscoolster/angular-imagefit"
+  },
+  "homepage": "http://tushariscoolster.github.io/angular-imagefit/",
+  "license": "LGPL-2.1",
+  "main": "angular-unsaved-changes.js",
+  "keywords": [
+    "angular-imagefit",
+    "angular"
+  ],
+  "ignore": [
+    "gh-pages",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {},
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.4",
+    "commit": "ffda6cdc1a148d5c0f49b30d58c6938d3e047343"
+  },
+  "_source": "https://github.com/tushariscoolster/angular-imagefit.git",
+  "_target": "^0.0.4",
+  "_originalSource": "angular-imagefit",
+  "_direct": true
+}
