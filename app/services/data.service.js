@@ -275,7 +275,7 @@
                     return str.join("&");
                 },
                 data: {
-                    status:0,
+                    status:1,
                     auth_key:$rootScope.globals.authKey,
                     id:$rootScope.globals.id,
                     name:merchant.name,
