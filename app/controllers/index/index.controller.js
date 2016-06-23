@@ -81,7 +81,7 @@
                     //status = 1;
                     switch(status){
                         case -1: //已删除
-                            alert('你的信息已删除！');
+                            alert('您的账号因违反规则，已经被禁用。');
                             closeLoginAndForgetZone();
                             return;
                         case 1: //已通过
