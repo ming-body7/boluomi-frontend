@@ -22,7 +22,7 @@
                     <span class="key">商家账号：</span>
                 </div>
                 <div class="col-md-10">
-                    <p>{{merchant.id}}</p>
+                    <p>{{merchant.account}}</p>
                 </div>
             </li>
 
@@ -50,11 +50,6 @@
                     <span class="key">商家LOGO：</span>
                 </div>
 
-                <!--<div class="col-md-10">
-                    <a ng-click="uploadOption = 'logo'" id="brand_logo"
-                       href="javascript:;" data-logo-src="" class="base_btn"  role="button">{{logoButton}}</a>
-                </div> -->
-
                 <div class="col-md-10">
                     <button id="brand_logo" class="base_btn"  role="button"
                             ng-click="uploadOption = 'logo'" data-logo-src="{{merchant.logo}}"
@@ -72,11 +67,11 @@
             </li>
             <li class="row">
                 <div class="col-md-2">
-                    <span class="key">商家头图：</span>
+                    <span class="key">商家网址：</span>
                 </div>
 
                 <div class="col-md-10">
-                    <a class="base_btn"  role="button">上传</a>
+                    <input ng-model="merchant.url" id="url" class="ipt" type="text">
                 </div>
 
             </li>
@@ -99,9 +94,6 @@
                     <span class="key">所在区域：</span>
                 </div>
                 <div class="col-md-10">
-                    <!--<select ng-model="merchant.province" class="J_province" name="" id=""><option value="-1">请选择</option></select>
-                    <select ng-model="merchant.city" class="J_city" name="" id=""><option value="-1">请选择</option></select>
-                    <select ng-model="merchant.area" class="J_area" name="" id=""><option value="-1">请选择</option></select> -->
                     <select required=""  ng-model="merchant.province" ng-options="key as key for (key,value) in division"
                             ng-change="merchant.city='';merchant.area='';">
                         <option value="">省</option>
@@ -143,13 +135,8 @@
                 <div class="col-md-2">
                     <span class="key">营业执照：</span>
                 </div>
-                <!--<div class="col-md-10">
-                     <a class="base_btn" role="button" ng-click="uploadOption = 'licence'" id="licence_pic"
-                       href="javacript:;" data-licence-src="">{{licenceButton}}</a>
-                </div>-->
                 <div class="col-md-10">
-                    <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{merchant.licence}}">{{licenceButton}}</a> -->
-                    <button id="licence_pic" class="base_btn" role="button"
+                   <button id="licence_pic" class="base_btn" role="button"
                             ng-click="uploadOption = 'licence'" data-logo-src="{{merchant.licence}}"
                             class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
                             accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
@@ -164,7 +151,7 @@
                 </div>
             </li>
         </ul>
-        <a class="save_btn" ng-click="saveBrandInfo()">保存</a>
+        <!--<a class="save_btn" ng-click="saveBrandInfo()">保存</a>-->
         <a class="save_btn" ng-click="functionList[merchant.status]">{{methodList[merchant.status]}}</a>
     </div>
 </div>

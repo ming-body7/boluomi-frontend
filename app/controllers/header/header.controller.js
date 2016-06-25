@@ -30,7 +30,8 @@
                         $location.path('/index');
 
                     } else {
-
+                        AuthenticationService.ClearCredentials();
+                        $location.path('/index');
 
                     }
                 });

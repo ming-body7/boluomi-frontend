@@ -9,7 +9,7 @@
             $scope.list = {};
             var page = 0;
             var pageSize = 10;
-            $scope.demo_base_url = "wwww.boluomi1314.com/demo/?id=";
+            $scope.demo_base_url = "http://www.boluomi1314.com/demo/?id=";
 
 
 
@@ -52,6 +52,11 @@
                     DataService.AdminAuditProduct(product_id, 1, function(response){
                         if(response.success){
                             alert("恢复成功");
+                            DataService.AdminGetProductList(page, pageSize, function(response){
+                                if (response.success) {
+                                    $scope.list = response.data.list;
+                                }
+                            });
                         }else{
                             alert("恢复失败");
                         }
@@ -61,6 +66,11 @@
                     DataService.AdminAuditProduct(product_id, 1, function(response){
                         if(response.success){
                             alert("通过成功");
+                            DataService.AdminGetProductList(page, pageSize, function(response){
+                                if (response.success) {
+                                    $scope.list = response.data.list;
+                                }
+                            });
                         }else{
                             alert("通过失败");
                         }
@@ -70,6 +80,11 @@
                     DataService.AdminAuditProduct(product_id, -1, function(response){
                         if(response.success){
                             alert("删除成功");
+                            DataService.AdminGetProductList(page, pageSize, function(response){
+                                if (response.success) {
+                                    $scope.list = response.data.list;
+                                }
+                            });
                         }else{
                             alert("删除失败");
                         }

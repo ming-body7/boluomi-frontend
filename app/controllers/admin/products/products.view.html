@@ -16,7 +16,7 @@
         <tr ng-repeat="x in list">
             <td ui-sref="admin.products.product({product_id: x.id})">{{x.id}}</td>
             <td ui-sref="admin.products.product({product_id: x.id})">
-                <img ng-src="{{x.banner_pic}}" alt="pic" />
+                <img ng-src="{{x.banner_pic}}" alt="pic" style="width:200px; height:200px;"/>
             </td>
             <td ui-sref="admin.product({product_id: x.id})">{{x.title}}</td>
             <td>{{x.name}}</td>     <!-- TODO：跳转到商家页面无法完成，缺少商家ID -->
@@ -25,7 +25,7 @@
             <td>分享:{{x.share_num}}</td>
             <td>
                 <div class="qr_code">
-                    <qrcode class="qr_img" version="{{4}}" error-correction-level="{{M}}" size="{{274}}" data="{{getQRUrl(x)}}" download></qrcode>
+                    <qrcode class="qr_img" version="{{4}}" error-correction-level="{{M}}" size="{{240}}" data="{{getQRUrl(x)}}"></qrcode>
                 </div>
             </td>
 
