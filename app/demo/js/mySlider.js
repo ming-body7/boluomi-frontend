@@ -20,6 +20,14 @@ $(function(){
 
 	var pid = getUrlParameter('pid');
 
+	//动态补全http
+	function fillHttp(url){
+		if(url.indexOf('http') == -1){//没有http
+			return 'http://' + url;
+		}
+		return url;	
+	}
+
 	//h5首页数据接口
 	 $.ajax({
 		 	url : 'http://www.boluomi1314.com:8083/info/data/view',
@@ -143,7 +151,7 @@ $(function(){
 		var brandHtml = '<i class="brand_type">类型：'+ brand_type +'</i>';
 
 		//商家详情
-		var brand_detail = d.url ? '<a class="detailBtn txt_col" href="'+ d.url +'">详细信息</a>' : '';
+		var brand_detail = d.url ? '<a class="detailBtn txt_col" href="'+ fillHttp(d.url) +'">详细信息</a>' : '';
 
 
 		// 动画类型
@@ -232,7 +240,7 @@ $(function(){
 
 
 		//图片预加载
-		var imgList = [serImg_data[0].pic,'img/albumBg.png','img/light.png','img/btn_arrow.png','img/music-icon.png','img/loading.gif','img/copyRight.png','img/indexIcon.png','img/musicIcon.png','img/playingBg.png','img/workingIcon.png','img/cover.png'];
+		var imgList = [serImg_data[0].pic,'img/albumBg.png','img/btn_arrow.png','img/music-icon.png','img/copyRight.png','img/indexIcon.png','img/musicIcon.png'];
 
 		loadImg(imgList);
 		function loadImg(list){

@@ -19,6 +19,15 @@ $(function(){
 	};
 
 	var pid = getUrlParameter('pid');
+
+
+	//动态补全http
+	function fillHttp(url){
+		if(url.indexOf('http') == -1){//没有http
+			return 'http://' + url;
+		}
+		return url;	
+	}
 	
 	//h5首页数据接口
 	$.ajax({
@@ -117,7 +126,7 @@ $(function(){
 		var brandHtml = '<i class="brand_type">类型：'+ brand_type +'</i>';
 
 		//商家详情
-		var brand_detail = d.url ? '<a class="detailBtn txt_col" href="'+ d.url +'">详细信息</a>' : '';
+		var brand_detail = d.url ? '<a class="detailBtn txt_col" href="'+ fillHttp(d.url) +'">详细信息</a>' : '';
 
 		// 动画类型
 		var n = d.animateType;
