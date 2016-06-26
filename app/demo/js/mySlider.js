@@ -414,7 +414,6 @@ $(function(){
 
 });
 
-alert(0)
 
 
 
