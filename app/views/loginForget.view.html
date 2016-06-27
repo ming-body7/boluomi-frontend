@@ -1,6 +1,7 @@
 <form name="loginForm">
     <div id="login_zone" class="tipsBox login-zone" ng-show="loginFormVisible">
-        <input ng-model="account" name="account" placeholder="账号（手机号）" class="ipt J_account" type="text"
+        <input ng-model="account" name="account" placeholder="账号（手机号）" class="ipt J_account" type="number"
+               maxlength="11"
                ng-pattern="/^1{1}[3-9]{1}[0-9]{9}$/" ng-maxlength="11" required>
         <div class="error" ng-show="loginSubmitted" ng-messages="loginForm.account.$error">
             <div ng-message="required">请输入手机号</div>

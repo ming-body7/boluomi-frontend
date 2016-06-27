@@ -7,9 +7,9 @@
 		<div class="page_face">
 			<div class="img_box">
 				<img class="banner_pic"  ng-src="{{product.banner_pic}}" alt="封面图片" style="width: 200px; height: 200px;"/>
-				<!--<p type="file" ngf-select="uploadBanner($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="100MB">-->
-					<!--<a id="banner_progress_button" progress-button value="banner_progress" in-progress="上传中。。。" complete="更改封面">更改封面</a>-->
-				<!--</p>-->
+				<p type="file" ngf-select="uploadBanner($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="100MB">
+					<a id="banner_progress_button" progress-button value="banner_progress" in-progress="上传中。。。" complete="更改封面">更改封面</a>
+				</p>
 			</div>
 			<h4>标题</h4>
 			<input type="text" placeholder="快给作品起个名字吧"  ng-model = "product.title"/>
