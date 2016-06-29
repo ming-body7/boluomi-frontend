@@ -386,8 +386,8 @@ $(function(){
 			title: wechatData.title, // 分享标题
 			desc:wechatData.description, // 分享描述
 			link: window.location.href, // 分享链接
-			//imgUrl: wechatData.banner_pic_n, // 分享图标
-			imgUrl:"http://www.boluomi1314.com:8084/images/20160627/N2016062707284743631.jpeg",
+			imgUrl: wechatData.banner_pic_n, // 分享图标
+			//imgUrl:"http://www.boluomi1314.com:8084/images/20160627/N2016062707284743631.jpeg",
 			type: 'link', // 分享类型,music、video或link，不填默认为link
 			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 			success: function() {
@@ -403,8 +403,8 @@ $(function(){
 		wx.onMenuShareTimeline({
 			title: wechatData.title + wechatData.description, // 分享标题
 			link: window.location.href, // 分享链接
-			//imgUrl: wechatData.banner_pic_n, // 分享图标
-			imgUrl:"http://www.boluomi1314.com:8084/images/20160627/N2016062707284743631.jpeg",
+			imgUrl: wechatData.banner_pic_n, // 分享图标
+			//imgUrl:"http://www.boluomi1314.com:8084/images/20160627/N2016062707284743631.jpeg",
 			success: function() {
 				// 用户确认分享后执行的回调函数
 			},
