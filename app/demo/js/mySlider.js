@@ -363,7 +363,7 @@ $(function(){
 
 		function wx_config(data){
 			wx.config({
-			  debug: false,
+			  debug: true,
 			  appId: data.appId,
 			  timestamp: data.timestamp,
 			  nonceStr: data.nonceStr,
@@ -383,10 +383,11 @@ $(function(){
 		var data = wechatData;
 		//分享给朋友
 		wx.onMenuShareAppMessage({
-			title: data.title, // 分享标题
-			desc:data.description, // 分享描述
+			title: wechatData.title, // 分享标题
+			desc:wechatData.description, // 分享描述
 			link: window.location.href, // 分享链接
-			imgUrl: data.banner_pic_n, // 分享图标
+			//imgUrl: wechatData.banner_pic_n, // 分享图标
+			imgUrl:"http://www.boluomi1314.com:8084/images/20160627/N2016062707284743631.jpeg",
 			type: 'link', // 分享类型,music、video或link，不填默认为link
 			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 			success: function() {
@@ -400,9 +401,10 @@ $(function(){
 
 		//分享到朋友圈
 		wx.onMenuShareTimeline({
-			title: data.title + data.description, // 分享标题
+			title: wechatData.title + wechatData.description, // 分享标题
 			link: window.location.href, // 分享链接
-			imgUrl: data.banner_pic_n, // 分享图标
+			//imgUrl: wechatData.banner_pic_n, // 分享图标
+			imgUrl:"http://www.boluomi1314.com:8084/images/20160627/N2016062707284743631.jpeg",
 			success: function() {
 				// 用户确认分享后执行的回调函数
 			},
@@ -410,6 +412,12 @@ $(function(){
 				// 用户取消分享后执行的回调函数
 			}
 		});
+	});
+
+	wx.error(function(res){
+
+		// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+
 	});
 
 });
