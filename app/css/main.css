@@ -1405,6 +1405,15 @@ a:focus {
   min-width: 100px;
   *margin-top: 10px;
 }
+.ang_register_brand_audit .main .infoR .help {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: url(../img/help.png) no-repeat;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0px;
+}
 .ang_register_brand_audit .main .error {
   position: absolute;
   top: 10px;

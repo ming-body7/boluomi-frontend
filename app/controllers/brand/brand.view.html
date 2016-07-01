@@ -34,6 +34,7 @@
                 </div>
                 <div class="infoR">
                     <input ng-model="localMerchant.url" id="url" class="ipt" type="text">
+                    <a href="http://mp.weixin.qq.com/s?__biz=MzAwMTczOTcwNw==&mid=500511294&idx=1&sn=aaba032adee68591bacaa1dc71f1da02#rd" target="_blank" class="help"></a>
                 </div>
             </li>
             <li>
@@ -151,11 +152,11 @@
                         <progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
                     </div>
                 </div>
+            </li>
+            <li>
                 <div class="licence_img">
                     <img ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
                 </div>
-
-
             </li>
         </ul>
         <a id="submit_audit" class="submit-btn b_state_a" type="submit" ng-click="addBrandInfo()">提交审核</a>

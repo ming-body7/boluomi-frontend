@@ -28,6 +28,15 @@
                     AuthenticationService.SetCredentials($scope.user.account, response.data.auth_key, response.data.id, 'user.brand',30);
                     $state.go('brand');
                 } else {
+
+                    if(response.data == "10005"){
+                        alert("验证码超时,请重新获取验证码");
+                        return;
+                    }
+                    if(response.data == "10006"){
+                        alert("验证码错误,请重新填写验证码");
+                        return;
+                    }
                     for (var errorName in response.data) {
                         alert(response.data[errorName][0]);
                         break;
