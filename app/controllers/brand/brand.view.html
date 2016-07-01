@@ -153,9 +153,13 @@
                     </div>
                 </div>
             </li>
-            <li>
-                <div class="licence_img">
-                    <img ng-if="localMerchant.licence!=null && localMerchant.licence!= ''" ng-src="{{localMerchant.licence}}" alt="">
+            <li ng-if="localMerchant.licence!=null && localMerchant.licence!= ''">
+                <div class="infoL">
+                </div>
+                <div lass="infoR">
+                    <div>
+                        <img class="licence_img" ng-src="{{localMerchant.licence}}" alt="">
+                    </div>
                 </div>
             </li>
         </ul>
@@ -191,10 +195,14 @@
         height:200px;
     }
 
-    .licence_img{
-        width: 200px;
-        height: 200px;
+    .licence_box{
+        width: 600px;
+        height: 800px;
         margin-top: 10px;
+    }
+    .licence_img{
+        max-height: 800px;
+        max-width: 600px;
     }
     .infoL{
         box-sizing: content-box;

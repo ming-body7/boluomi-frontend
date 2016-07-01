@@ -1320,6 +1320,26 @@ a:focus {
   height: 240px;
   background: url(../img/finish-brand-info.jpg) no-repeat center;
 }
+.ang_register_brand_audit .banner .inner {
+  max-width: 1330px;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+.ang_register_brand_audit .banner .return_to_index_btn {
+  float: right;
+  width: 140px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin-top: -10px;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 2px;
+}
 .ang_register_brand_audit .main {
   width: 550px;
   margin: 0 auto;
