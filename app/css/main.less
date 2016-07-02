@@ -16,13 +16,6 @@ input:focus{outline:none; }
 		clear:both;
 	};
 }
-.pre(@key,@val){
-	-webkit-@{key}:@val;
-	-moz-@{key}:@val;
-	-ms-@{key}:@val;
-	-o-@{key}:@val;
-	@{key}:@val;
-};
 .txtOver(){
 	overflow: hidden;
 	text-overflow:ellipsis;
@@ -1361,17 +1354,10 @@ a{
 		}
 
 		.return_to_index_btn{
-			float:right;
-			width:140px;
-			height:50px;
-			text-align:center;
-			line-height: 50px;
-			border:1px solid #fff;
-			border-radius:4px;
-			margin-top:-10px;
-			font-size:20px;
-			color:#fff;
-			letter-spacing: 2px;
+			display: block;
+		    width: 166px;
+		    height: 50px;
+		    margin: -43px 0 0 155px;
 		}
 	}
 
