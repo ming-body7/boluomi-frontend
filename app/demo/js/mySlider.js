@@ -187,7 +187,7 @@ $(function(){
 
 
 		var brandHand = '<div class="section brandSec new_b"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml + brand_detail +'<a class="detailBtn" href="tel:'+ tel +'">联系商家</a></p><ul>';
-		var brandFoot = '</ul><a class="copyRight" href="javscript:;"></a></div><div>';
+		var brandFoot = '</ul><a class="copyRight" href="mp.weixin.qq.com/s?__biz=MzAwMTczOTcwNw==&mid=500511278&idx=1&sn=d60101879140760caf2de536bfad6710&scene=0&previewkey=u2Aqp0ghBv8tcuF%2FSVMhy8wqSljwj2bfCUaCyDofEow%3D#wechat_redirect"></a></div><div>';
 		var brandHtml = brandHand + brandFoot;
 		if(d.is_brand == '1'){
 			data.push({
@@ -280,71 +280,69 @@ $(function(){
 
 	var bd = $('body');
 	//点击加载商家地图
-	bd.on('touchstart','#brand_address',function(){
-		var _this = $(this);
-		var la = _this.attr('data-pos').split(',')[0];
-		var lo = _this.attr('data-pos').split(',')[1];
+	// bd.on('touchstart','#brand_address',function(){
+	// 	var _this = $(this);
+	// 	var la = _this.attr('data-pos').split(',')[0];
+	// 	var lo = _this.attr('data-pos').split(',')[1];
 		
 		
-			function taggingClick(){//地图标注
-		   		var mapZ = $('<div id="allmap" class="allmap">map</div>');
-		   		var closeBtn = $('<i id="closeBtn" class="closeBtn"></i>');
-		   		var oMask = $('<div id="mask" class="mask"></div>')
+	// 		function taggingClick(){//地图标注
+	// 	   		var mapZ = $('<div id="allmap" class="allmap">map</div>');
+	// 	   		var closeBtn = $('<i id="closeBtn" class="closeBtn"></i>');
+	// 	   		var oMask = $('<div id="mask" class="mask"></div>')
 			
 			 
-			  mapZ.appendTo(bd);
-			  bd.append(oMask).append(closeBtn);
+	// 		  mapZ.appendTo(bd);
+	// 		  bd.append(oMask).append(closeBtn);
 
-			  closeBtn.on('click',function(){
-			  		mapZ.remove();
-			  		oMask.remove();
-			  		$(this).remove();
-			  })
+	// 		  closeBtn.on('click',function(){
+	// 		  		mapZ.remove();
+	// 		  		oMask.remove();
+	// 		  		$(this).remove();
+	// 		  })
 
-			  // 百度地图API功能
-			    var map = new BMap.Map("allmap");
-			    var point = new BMap.Point(la,lo);
-			    map.centerAndZoom(point,14);
-			    map.enableScrollWheelZoom(true);
+	// 		  // 百度地图API功能
+	// 		    var map = new BMap.Map("allmap");
+	// 		    var point = new BMap.Point(la,lo);
+	// 		    map.centerAndZoom(point,14);
+	// 		    map.enableScrollWheelZoom(true);
 
 
-			    //添加控件和比例尺
-			    var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
-			    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+	// 		    //添加控件和比例尺
+	// 		    var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+	// 		    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
 
-			    map.addControl(top_left_control);        
-			    map.addControl(top_left_navigation);   
+	// 		    map.addControl(top_left_control);        
+	// 		    map.addControl(top_left_navigation);   
 
-			    // （1）依据坐标值定位  
-			      if (point) {
-			        map.centerAndZoom(point, 16);
-			        var marker = new BMap.Marker(point);
+	// 		    // （1）依据坐标值定位  
+	// 		      if (point) {
+	// 		        map.centerAndZoom(point, 16);
+	// 		        var marker = new BMap.Marker(point);
 
-			        map.addOverlay(marker);
-			        marker.enableDragging();
+	// 		        map.addOverlay(marker);
+	// 		        marker.enableDragging();
 
-			        marker.addEventListener("mouseup",attribute);
-			        function attribute(){
-			            var p = marker.getPosition();  //获取marker的经纬度值位置
-			            myGeo.getLocation(p, function(rs){//通过经纬度解析地址
-			              var addComp = rs.addressComponents;
-			                  address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
+	// 		        marker.addEventListener("mouseup",attribute);
+	// 		        function attribute(){
+	// 		            var p = marker.getPosition();  //获取marker的经纬度值位置
+	// 		            myGeo.getLocation(p, function(rs){//通过经纬度解析地址
+	// 		              var addComp = rs.addressComponents;
+	// 		                  address = addComp.province + " " + addComp.city + " " + addComp.district + " " + addComp.street + " " + addComp.streetNumber;
 
-			                  // 移动了坐标点重新赋值
-			                  _this.attr('data-position', p.lng+',' + p.lat)
-			            }); 
-			          }
-			      }else{
-			      	mapZ.fadeOut().remove();
-			      	oMask.fadeOut().remove();
-			        alert("您选择地址没有解析到结果!");
-			      }
+	// 		                  // 移动了坐标点重新赋值
+	// 		                  _this.attr('data-position', p.lng+',' + p.lat)
+	// 		            }); 
+	// 		          }
+	// 		      }else{
+	// 		      	mapZ.fadeOut().remove();
+	// 		      	oMask.fadeOut().remove();
+	// 		        alert("您选择地址没有解析到结果!");
+	// 		      }
 			    
-			}
-			taggingClick();
-
-
-	})	
+	// 		}
+	// 		taggingClick();
+	// })	
 
 	//微信jsdk初始化
 	//init_config();
