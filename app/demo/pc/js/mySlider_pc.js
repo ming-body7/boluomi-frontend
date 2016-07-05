@@ -160,7 +160,7 @@ $(function(){
 
 
 		var brandHand = '<div class="section brandSec new_b"><div class="edit_area"><p class="fix_box">'+ logoHtml +brandNameHtml + brandAddressHtml + brandHtml + brand_detail +'<a class="detailBtn" href="tel:'+ tel +'">联系商家</a></p><ul>';
-		var brandFoot = '</ul><a class="copyRight" target="_blank" href="mp.weixin.qq.com/s?__biz=MzAwMTczOTcwNw==&mid=500511278&idx=1&sn=d60101879140760caf2de536bfad6710&scene=0&previewkey=u2Aqp0ghBv8tcuF%2FSVMhy8wqSljwj2bfCUaCyDofEow%3D#wechat_redirect"></div><div>';
+		var brandFoot = '</ul><a class="copyRight" target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzAwMTczOTcwNw==&mid=500511278&idx=1&sn=d60101879140760caf2de536bfad6710&scene=0&previewkey=u2Aqp0ghBv8tcuF%2FSVMhy8wqSljwj2bfCUaCyDofEow%3D#wechat_redirect"></div><div>';
 		var brandHtml = brandHand + brandFoot;
 
 		if(d.is_brand == '1'){
