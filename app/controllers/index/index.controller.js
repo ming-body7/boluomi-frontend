@@ -93,8 +93,11 @@
                             expireTime = 30;
                             break;
                         case 0: //未审批
-                            role = "user.audit";
-                            expireTime = 30;
+                            // role = "user.audit";
+                            // expireTime = 30;
+                            //debug audit
+                            role = "user";
+                            expireTime = 24*60;
                             break;
                         default:
                             role = "user";

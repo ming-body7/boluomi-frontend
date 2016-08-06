@@ -12,7 +12,7 @@
 				var page = 0;
 				var pageSize = 11;
 
-				$scope.demo_base_url = "http://www.boluomi1314.com/demo/?pid=";
+				$scope.demo_base_url = "http://www.boluomi1314.cn/demo/?pid=";
 
 				$scope.getProductList = getProductList;
 				$scope.deleteProduct = deleteProduct;

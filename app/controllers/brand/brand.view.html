@@ -134,34 +134,34 @@
                     <baidu-map options="smallMap" control="smallMapControl"></baidu-map>
                 </div>
             </li>
-            <li>
-                <div class="infoL">
-                    <i>*</i>
-                    <span>营业执照：</span>
-                </div>
-                <div class="infoR">
-                    <!-- <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> -->
-                    <a id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"
-                            class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"
-                            accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">
-                        {{licenceButton}}</a>
-                    <div class="error" ng-show="submitted&&!localMerchant.licence">
-                        请上传营业执照
-                    </div>
-                    <div ng-show="licence_uploading">
-                        <progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>
-                    </div>
-                </div>
-            </li>
-            <li ng-if="localMerchant.licence!=null && localMerchant.licence!= ''">
-                <div class="infoL">
-                </div>
-                <div lass="infoR">
-                    <div>
-                        <img class="licence_img" ng-src="{{localMerchant.licence}}" alt="">
-                    </div>
-                </div>
-            </li>
+            <!--<li>-->
+                <!--<div class="infoL">-->
+                    <!--<i>*</i>-->
+                    <!--<span>营业执照：</span>-->
+                <!--</div>-->
+                <!--<div class="infoR">-->
+                    <!--&lt;!&ndash; <a ng-click="uploadOption = 'licence'" id="licence_pic" href="javacript:;" data-licence-src="{{localMerchant.licence}}">{{licenceButton}}</a> &ndash;&gt;-->
+                    <!--<a id="licence_pic" ng-click="uploadOption = 'licence'" data-logo-src="{{localMerchant.licence}}"-->
+                            <!--class="upload_btn" type="file" ngf-select="uploadSingleFile($file)"-->
+                            <!--accept="image/*" ngf-max-height="2000" ngf-max-size="10MB">-->
+                        <!--{{licenceButton}}</a>-->
+                    <!--<div class="error" ng-show="submitted&&!localMerchant.licence">-->
+                        <!--请上传营业执照-->
+                    <!--</div>-->
+                    <!--<div ng-show="licence_uploading">-->
+                        <!--<progressbar  animate="true" value="licence_process" type="success"><b>{{licence_process}}%</b></progressbar>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li ng-if="localMerchant.licence!=null && localMerchant.licence!= ''">-->
+                <!--<div class="infoL">-->
+                <!--</div>-->
+                <!--<div lass="infoR">-->
+                    <!--<div>-->
+                        <!--<img class="licence_img" ng-src="{{localMerchant.licence}}" alt="">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
         </ul>
         <a id="submit_audit" class="submit-btn b_state_a" type="submit" ng-click="addBrandInfo()">提交审核</a>
     </form>

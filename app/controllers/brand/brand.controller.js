@@ -156,9 +156,9 @@
                     if($scope.localMerchant.logo == ""){
                         return;
                     }
-                    if($scope.localMerchant.licence == ""){
-                        return;
-                    }
+                    // if($scope.localMerchant.licence == ""){
+                    //     return;
+                    // }
                     if(!$scope.localMerchant.marked){
                         return;
                     }
